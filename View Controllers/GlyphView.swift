@@ -18,6 +18,8 @@ class GlyphView: UIView {
         
         backgroundColor = .clear
         
+        backgroundMatrixView.delegate = self
+        
         addSubviewsAndSetupConstraints()
     }
 

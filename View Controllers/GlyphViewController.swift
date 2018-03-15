@@ -17,7 +17,7 @@ class GlyphViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        view = BackgroundMatrixView()
+        view = GlyphView()
     }
 
 }
