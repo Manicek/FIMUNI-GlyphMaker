@@ -10,7 +10,7 @@ import UIKit
 
 class FrontMatrixView: UIView {
     
-    fileprivate let path = UIBezierPath()
+    fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
     var rows = [[CGRect]]()
@@ -24,6 +24,42 @@ class FrontMatrixView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func drawGlyph(_ glyph: Glyph) {
+        log.debug()
+//        let areasIndexes = glyph.parseAreasToIndexes()
+        let areasIndexes = glyph.areasIndexes
+        if areasIndexes.count == 0 {
+            return
+        }
+        
+        var iterator = areasIndexes.makeIterator()
+        
+        let currentIndex = iterator.next()!
+        
+        path = UIBezierPath()
+        
+        path.move(to: rows[currentIndex.x][currentIndex.y].center)
+        
+        for i in 1..<areasIndexes.count {
+            let nextTuple = iterator.next()!
+            
+            let nextPoint = rows[nextTuple.x][nextTuple.y].center
+            
+            if glyph.breakpointsIndexes.contains(i) {
+                path.move(to: nextPoint)
+            } else {
+                path.addLine(to: nextPoint)
+            }
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    func clear() {
+        path = UIBezierPath()
+        setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
