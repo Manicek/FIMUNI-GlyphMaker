@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* FrontMatrixView.swift */; };
+		964954E6205AA1790089A37D /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* GlyphView.swift */; };
 		96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AC20597DC800E6A6B5 /* AppDelegate.swift */; };
 		96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */; };
 		96A959B420597DC800E6A6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B320597DC800E6A6B5 /* Assets.xcassets */; };
 		96A959B720597DC800E6A6B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B520597DC800E6A6B5 /* LaunchScreen.storyboard */; };
-		96A959C02059913000E6A6B5 /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959BF2059913000E6A6B5 /* GlyphView.swift */; };
+		96A959C02059913000E6A6B5 /* BackgroundMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */; };
 		96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C22059A1D300E6A6B5 /* UIColor+Extension.swift */; };
 		96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */; };
 		96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */; };
@@ -23,13 +25,15 @@
 /* Begin PBXFileReference section */
 		3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlyphMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FEB70DCEB8BB4B2292638F /* Pods-GlyphMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		964954E3205AA0AF0089A37D /* FrontMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontMatrixView.swift; sourceTree = "<group>"; };
+		964954E5205AA1790089A37D /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
 		96A959A920597DC800E6A6B5 /* GlyphMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlyphMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A959AC20597DC800E6A6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphViewController.swift; sourceTree = "<group>"; };
 		96A959B320597DC800E6A6B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96A959B620597DC800E6A6B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96A959B820597DC800E6A6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96A959BF2059913000E6A6B5 /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
+		96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMatrixView.swift; sourceTree = "<group>"; };
 		96A959C22059A1D300E6A6B5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
@@ -95,7 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */,
-				96A959BF2059913000E6A6B5 /* GlyphView.swift */,
+				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
+				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
+				964954E5205AA1790089A37D /* GlyphView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -265,12 +271,14 @@
 			files = (
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
-				96A959C02059913000E6A6B5 /* GlyphView.swift in Sources */,
+				964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */,
+				96A959C02059913000E6A6B5 /* BackgroundMatrixView.swift in Sources */,
 				96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,
 				96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */,
 				96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */,
 				96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */,
+				964954E6205AA1790089A37D /* GlyphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
