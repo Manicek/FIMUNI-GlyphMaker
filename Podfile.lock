@@ -1,20 +1,30 @@
 PODS:
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - Realm (3.1.1):
     - Realm/Headers (= 3.1.1)
   - Realm/Headers (3.1.1)
   - RealmSwift (3.1.1):
     - Realm (= 3.1.1)
   - SnapKit (3.2.0)
+  - XCGLogger (5.0.5):
+    - XCGLogger/Core (= 5.0.5)
+  - XCGLogger/Core (5.0.5):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
   - RealmSwift
   - SnapKit (~> 3.2.0)
+  - XCGLogger (~> 5.0.5)
 
 SPEC CHECKSUMS:
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Realm: 42d1c38a5b1bbcc828b48a7ce702cb86fc68adf4
   RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  XCGLogger: 49bceee6dc0c738eae5d6454fdbf800d62256b74
 
-PODFILE CHECKSUM: 515f613f939f7f10e39953c6fb57611c9403c36f
+PODFILE CHECKSUM: e73498b5d00be8c0f01dbef2ba27764596ff3358
 
 COCOAPODS: 1.4.0
