@@ -13,11 +13,20 @@ class FrontMatrixView: UIView {
     fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
-    var rows = [[CGRect]]()
+    fileprivate var testPaths = [UIBezierPath]()
+    
+    var rows = [[CGRect]]() {
+        didSet {
+            createTestRectPaths()
+            setNeedsDisplay()
+        }
+    }
     
     init() {
         super.init(frame: CGRect())
         log.debug()
+        
+        recreatePath()
         
         backgroundColor = .clear
     }
@@ -28,7 +37,6 @@ class FrontMatrixView: UIView {
     
     func drawGlyph(_ glyph: Glyph) {
         log.debug()
-//        let areasIndexes = glyph.parseAreasToIndexes()
         let areasIndexes = glyph.areasIndexes
         if areasIndexes.count == 0 {
             return
@@ -38,7 +46,7 @@ class FrontMatrixView: UIView {
         
         let currentIndex = iterator.next()!
         
-        path = UIBezierPath()
+        recreatePath()
         
         path.move(to: rows[currentIndex.x][currentIndex.y].center)
         
@@ -58,12 +66,17 @@ class FrontMatrixView: UIView {
     }
     
     func clear() {
-        path = UIBezierPath()
+        recreatePath()
         setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
         log.debug()
+        
+        UIColor.green.setFill()
+        for testPath in testPaths {
+            testPath.fill()
+        }
         
         UIColor.red.setStroke()
         path.stroke()
@@ -97,5 +110,77 @@ class FrontMatrixView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         log.debug()
+    }
+}
+
+fileprivate extension FrontMatrixView {
+    
+    func recreatePath() {
+        path = UIBezierPath()
+        path.lineWidth = AppConstants.lineWidth
+    }
+    
+    func createTestRectPaths() {
+        
+        let glyph = Glyph.testGlyph
+        
+        log.debug()
+        let areasIndexes = glyph.areasIndexes
+        if areasIndexes.count == 0 {
+            return
+        }
+        
+        var iterator = areasIndexes.makeIterator()
+        
+        let currentIndex = iterator.next()!
+        
+        var lastPoint = rows[currentIndex.x][currentIndex.y].center
+        
+        for i in 1..<areasIndexes.count {
+            let nextTuple = iterator.next()!
+            
+            let nextPoint = rows[nextTuple.x][nextTuple.y].center
+            
+            if !glyph.breakpointsIndexes.contains(i) {
+                testPaths.append(createAreaPathBetweenPoints(lastPoint, nextPoint))
+            }
+            lastPoint = nextPoint
+        }
+    }
+    
+    func createAreaPathBetweenPoints(_ first: CGPoint, _ second: CGPoint) -> UIBezierPath {
+        let path = UIBezierPath()
+        path.lineWidth = AppConstants.lineWidth
+        
+        var offset = AppConstants.allowedOffset
+        
+        let xDiff = fabs(first.x - second.x)
+        let yDiff = fabs(first.y - second.y)
+        
+        if xDiff != 1 && yDiff != 1 {
+            offset *= CGFloat(2).squareRoot()
+        }
+        
+        let diffSum = xDiff + yDiff
+        let xMultiplier = yDiff / diffSum * (first.x - second.x > 0 ? -1 : 1)
+        let yMultiplier = xDiff / diffSum * (first.y - second.y < 0 ? -1 : 1)
+        
+        if xMultiplier != 1 && yMultiplier != 1 {
+            offset *= CGFloat(2).squareRoot()
+        }
+        
+        let firstCorner1 = CGPoint(x: first.x + xMultiplier * offset, y: first.y + yMultiplier * offset)
+        let firstCorner2 = CGPoint(x: first.x - xMultiplier * offset, y: first.y - yMultiplier * offset)
+        
+        let secondCorner1 = CGPoint(x: second.x + xMultiplier * offset, y: second.y + yMultiplier * offset)
+        let secondCorner2 = CGPoint(x: second.x - xMultiplier * offset, y: second.y - yMultiplier * offset)
+        
+        path.move(to: firstCorner1)
+        path.addLine(to: firstCorner2)
+        path.addLine(to: secondCorner2)
+        path.addLine(to: secondCorner1)
+        path.close()
+        
+        return path
     }
 }

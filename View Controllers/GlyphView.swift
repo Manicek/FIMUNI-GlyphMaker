@@ -40,9 +40,7 @@ class GlyphView: UIView {
         drawGlyphButton.layer.borderColor = UIColor.black.cgColor
         drawGlyphButton.layer.borderWidth = 2
         
-        glyph = Glyph(name: "Test", difficulty: .easy, areasIndexes:
-            [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3)],
-                      breakpointsIndexes: [3])
+        glyph = Glyph.testGlyph
         
         addSubviewsAndSetupConstraints()
     }

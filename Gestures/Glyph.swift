@@ -56,17 +56,10 @@ class Glyph: Object {
         return "id"
     }
     
-//    func parseAreasToIndexes() -> [(Int, Int)] {
-//        var parsedIndexes = [(Int, Int)]()
-//        
-//        for areaIndex in areasIndexes {
-//            let x = areaIndex % 10
-//            let y = (areaIndex % 100) / 10
-//            parsedIndexes.append((x, y))
-//        }
-//        
-//        return parsedIndexes
-//    }
+    static var testGlyph: Glyph {
+        return Glyph(name: "Test", difficulty: .easy, areasIndexes:
+            [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(2, 1), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3), AreaIndexTuple(4, 3), AreaIndexTuple(3, 2)], breakpointsIndexes: [4])
+    }
 }
 
 struct GlyphStore {

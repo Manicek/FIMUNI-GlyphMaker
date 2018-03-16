@@ -57,7 +57,7 @@ class BackgroundMatrixView: UIView {
         for row in rows {
             for area in row {
                 let areaPath = UIBezierPath(rect: area)
-                UIColor.blue.setFill()
+                UIColor(rgb: 45, 161, 216).setFill()
                 areaPath.fill()
                 UIColor.black.setStroke()
                 areaPath.stroke()
