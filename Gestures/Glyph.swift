@@ -49,16 +49,50 @@ class Glyph: Object {
         self.name = name
         self.difficulty = difficulty
         self.areasIndexes.append(objectsIn: areasIndexes)
-        self.breakpointsIndexes.append(objectsIn: breakpointsIndexes)
+        
+        let notTooBigBreakpointsIndexes = breakpointsIndexes.filter( {$0 < areasIndexes.count - 1 && $0 > 1} ).sorted()
+        
+        var checkedBreakpointsIndexes = [Int]()
+        if !notTooBigBreakpointsIndexes.isEmpty {
+            checkedBreakpointsIndexes.append(notTooBigBreakpointsIndexes[0])
+            for i in 1..<notTooBigBreakpointsIndexes.count {
+                let previousIndex = checkedBreakpointsIndexes.last!
+                let currentIndex = notTooBigBreakpointsIndexes[i]
+                
+                if currentIndex != previousIndex && currentIndex != previousIndex + 1 {
+                    checkedBreakpointsIndexes.append(currentIndex)
+                }
+            }
+        }
+        
+        self.breakpointsIndexes.append(objectsIn: checkedBreakpointsIndexes)
     }
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    static var testGlyph: Glyph {
-        return Glyph(name: "Test", difficulty: .easy, areasIndexes:
+    static let testGlyph = Glyph(name: "Test", difficulty: .easy, areasIndexes:
             [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(2, 1), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3), AreaIndexTuple(4, 3), AreaIndexTuple(3, 2)], breakpointsIndexes: [4])
+    
+    
+    func expectedBegindEndAreaIndexTuples() -> [[AreaIndexTuple]] {
+        if areasIndexes.isEmpty {
+            return []
+        }
+
+        if breakpointsIndexes.isEmpty {
+            return [[areasIndexes.first!, areasIndexes.last!]]
+        }
+        
+        var tuples = [[AreaIndexTuple]]()
+        var beginTuple = areasIndexes.first!
+        for index in breakpointsIndexes {
+            tuples.append([beginTuple, areasIndexes[index - 1]])
+            beginTuple = areasIndexes[index]
+        }
+        tuples.append([beginTuple, areasIndexes.last!])
+        return tuples
     }
 }
 

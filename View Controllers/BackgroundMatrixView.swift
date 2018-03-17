@@ -24,7 +24,6 @@ class BackgroundMatrixView: UIView {
         
     init() {
         super.init(frame: CGRect())
-        log.debug()
         
         backgroundColor = .white
     }

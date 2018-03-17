@@ -46,12 +46,10 @@ class GlyphView: UIView {
     }
     
     func clearButtonTapped() {
-        log.debug()
         clear()
     }
 
     func drawGlyphButtonTapped() {
-        log.debug()
         drawGlyph(glyph)
     }
 }
@@ -93,13 +91,13 @@ fileprivate extension GlyphView {
         }
         
         clearButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(15)
-            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
+            make.left.equalTo(self.snp.centerX).offset(20)
         }
         
         drawGlyphButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(15)
-            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
+            make.right.equalTo(self.snp.centerX).offset(-20)
         }
     }
 }
