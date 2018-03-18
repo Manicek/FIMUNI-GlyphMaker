@@ -23,6 +23,13 @@
 		96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */; };
 		96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C92059A25500E6A6B5 /* Defaults.swift */; };
 		96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959CA2059A25500E6A6B5 /* Logger.swift */; };
+		96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C03205EE0E200118AA6 /* Spell.swift */; };
+		96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C07205EF91600118AA6 /* SpellListViewController.swift */; };
+		96DA0C0A205EF92E00118AA6 /* SpellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C09205EF92E00118AA6 /* SpellListView.swift */; };
+		96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C0B205EF94A00118AA6 /* SpellListTableViewManager.swift */; };
+		96DA0C0E205EFA0900118AA6 /* SpellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C0D205EFA0900118AA6 /* SpellListTableViewCell.swift */; };
+		96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C0F205F00BF00118AA6 /* SpellListHeaderView.swift */; };
+		96DA0C13205F026700118AA6 /* DamageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C12205F026700118AA6 /* DamageType.swift */; };
 		B891C92EA65128D28483CB82 /* Pods_GlyphMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +54,13 @@
 		96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
 		96A959C92059A25500E6A6B5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		96A959CA2059A25500E6A6B5 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		96DA0C03205EE0E200118AA6 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
+		96DA0C07205EF91600118AA6 /* SpellListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListViewController.swift; sourceTree = "<group>"; };
+		96DA0C09205EF92E00118AA6 /* SpellListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListView.swift; sourceTree = "<group>"; };
+		96DA0C0B205EF94A00118AA6 /* SpellListTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListTableViewManager.swift; sourceTree = "<group>"; };
+		96DA0C0D205EFA0900118AA6 /* SpellListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListTableViewCell.swift; sourceTree = "<group>"; };
+		96DA0C0F205F00BF00118AA6 /* SpellListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHeaderView.swift; sourceTree = "<group>"; };
+		96DA0C12205F026700118AA6 /* DamageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageType.swift; sourceTree = "<group>"; };
 		DAC3EC2D5FBB41A80A665752 /* Pods-GlyphMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				9642C35E205AF46C001252CA /* Glyph.swift */,
+				96DA0C03205EE0E200118AA6 /* Spell.swift */,
 			);
 			path = Gestures;
 			sourceTree = "<group>";
@@ -90,6 +105,7 @@
 		96A959A020597DC700E6A6B5 = {
 			isa = PBXGroup;
 			children = (
+				96DA0C11205F025300118AA6 /* Enums */,
 				961A7D89205EA5320017046C /* Creatures */,
 				9642C35D205AF45D001252CA /* Gestures */,
 				96A959C82059A23500E6A6B5 /* Utilities */,
@@ -124,10 +140,8 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */,
-				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
-				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
-				964954E5205AA1790089A37D /* GlyphView.swift */,
+				96DA0C06205EF8FF00118AA6 /* SpellListViewController */,
+				96DA0C05205EF8E900118AA6 /* GlyphViewController */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -151,6 +165,37 @@
 				960D855C205BF9A90034F709 /* AppConstants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		96DA0C05205EF8E900118AA6 /* GlyphViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */,
+				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
+				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
+				964954E5205AA1790089A37D /* GlyphView.swift */,
+			);
+			path = GlyphViewController;
+			sourceTree = "<group>";
+		};
+		96DA0C06205EF8FF00118AA6 /* SpellListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96DA0C07205EF91600118AA6 /* SpellListViewController.swift */,
+				96DA0C09205EF92E00118AA6 /* SpellListView.swift */,
+				96DA0C0B205EF94A00118AA6 /* SpellListTableViewManager.swift */,
+				96DA0C0D205EFA0900118AA6 /* SpellListTableViewCell.swift */,
+				96DA0C0F205F00BF00118AA6 /* SpellListHeaderView.swift */,
+			);
+			path = SpellListViewController;
+			sourceTree = "<group>";
+		};
+		96DA0C11205F025300118AA6 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				96DA0C12205F026700118AA6 /* DamageType.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		DF33170CDDC832C7EB4DF73D /* Frameworks */ = {
@@ -300,12 +345,19 @@
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */,
+				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
+				96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */,
 				96A959C02059913000E6A6B5 /* BackgroundMatrixView.swift in Sources */,
+				96DA0C13205F026700118AA6 /* DamageType.swift in Sources */,
 				96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */,
+				96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,
+				96DA0C0A205EF92E00118AA6 /* SpellListView.swift in Sources */,
 				96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */,
 				96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */,
+				96DA0C0E205EFA0900118AA6 /* SpellListTableViewCell.swift in Sources */,
 				96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */,
+				96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */,
 				9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */,
 				961A7D8B205EA5460017046C /* Creature.swift in Sources */,
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,

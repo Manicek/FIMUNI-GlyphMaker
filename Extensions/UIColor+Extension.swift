@@ -13,6 +13,14 @@ extension UIColor {
     class var mainText: UIColor {
         return UIColor(rgb: 245, 245, 245)
     }
+    
+    class var coldBlue: UIColor {
+        return UIColor(rgb: 8, 209, 246)
+    }
+    
+    class var fireRed: UIColor {
+        return UIColor(rgb: 206, 32, 41)
+    }
 }
 
 extension UIColor {

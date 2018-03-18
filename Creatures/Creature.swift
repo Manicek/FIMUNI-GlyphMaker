@@ -8,11 +8,6 @@
 
 import RealmSwift
 
-enum DamageType: Int {
-    case fire = 0
-    case cold = 1
-}
-
 enum CreatureType: Int {
     case beardedDragon = 0
     case wolf = 1
@@ -23,8 +18,8 @@ enum CreatureType: Int {
     
     var baseHealth: Double {
         switch self {
-        case .beardedDragon: return 20
-        case .wolf: return 10
+        case .beardedDragon: return 150
+        case .wolf: return 100
         }
     }
     
@@ -37,10 +32,8 @@ enum CreatureType: Int {
     
     var coldResistance: Double {
         switch self {
-        case .beardedDragon:
-            return 75
-        case .wolf:
-            return 0
+        case .beardedDragon: return 0
+        case .wolf: return 20
         }
     }
 }
@@ -105,4 +98,3 @@ struct CreatureStore {
         realm.safeDelete(creature)
     }
 }
-
