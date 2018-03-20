@@ -18,6 +18,7 @@ class SpellListViewController: UIViewController {
         super.viewDidLoad()
 
         tableViewManager.tableView = spellListView.tableView
+        tableViewManager.delegate = self
 
         view.addSubviews(
             [
@@ -42,5 +43,11 @@ class SpellListViewController: UIViewController {
         title = "Spell List"
         
         tableViewManager.reload()
+    }
+}
+
+extension SpellListViewController: SpellListTableViewManagerDelegate {
+    func pushRequest(_ vc: GlyphViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

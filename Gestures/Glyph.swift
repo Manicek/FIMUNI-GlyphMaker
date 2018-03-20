@@ -75,6 +75,17 @@ class Glyph: Object {
     static let testGlyph = Glyph(name: "Test", difficulty: .easy, areasIndexes:
             [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(2, 1), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3), AreaIndexTuple(4, 3), AreaIndexTuple(3, 2)], breakpointsIndexes: [4])
     
+    static func generateRandomGlyph() -> Glyph {
+        let name = "\(Date())"
+        let difficulty = GlyphDifficulty.easy
+        let numberOfPoints = randomInt(6) + 3
+        let breakpointIndex = randomInt(numberOfPoints - 1)
+        var areasIndexes = [AreaIndexTuple]()
+        for _ in 0..<numberOfPoints {
+            areasIndexes.append(AreaIndexTuple(randomInt(AppConstants.matrixSize), randomInt(AppConstants.matrixSize)))
+        }
+        return Glyph(name: name, difficulty: difficulty, areasIndexes: areasIndexes, breakpointsIndexes: [breakpointIndex])
+    }
     
     func expectedBegindEndAreaIndexTuples() -> [[AreaIndexTuple]] {
         if areasIndexes.isEmpty {
@@ -121,4 +132,8 @@ struct GlyphStore {
         
         realm.safeDelete(glyph)
     }
+}
+
+fileprivate func randomInt(_ upperBound: Int) -> Int {
+    return Int(arc4random_uniform(UInt32(upperBound)))
 }

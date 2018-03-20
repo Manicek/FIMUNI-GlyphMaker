@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9606DD362061188E00778F76 /* RowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606DD352061188E00778F76 /* RowsManager.swift */; };
 		960D855D205BF9A90034F709 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D855C205BF9A90034F709 /* AppConstants.swift */; };
 		961A7D8B205EA5460017046C /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961A7D8A205EA5460017046C /* Creature.swift */; };
 		9642C35F205AF46C001252CA /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C35E205AF46C001252CA /* Glyph.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlyphMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FEB70DCEB8BB4B2292638F /* Pods-GlyphMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		9606DD352061188E00778F76 /* RowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowsManager.swift; sourceTree = "<group>"; };
 		960D855C205BF9A90034F709 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		961A7D8A205EA5460017046C /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		9642C35E205AF46C001252CA /* Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
 				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
 				964954E5205AA1790089A37D /* GlyphView.swift */,
+				9606DD352061188E00778F76 /* RowsManager.swift */,
 			);
 			path = GlyphViewController;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */,
 				96A959C02059913000E6A6B5 /* BackgroundMatrixView.swift in Sources */,
 				96DA0C13205F026700118AA6 /* DamageType.swift in Sources */,
+				9606DD362061188E00778F76 /* RowsManager.swift in Sources */,
 				96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */,
 				96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,

@@ -10,6 +10,8 @@ import SnapKit
 
 class GlyphView: UIView {
     
+    fileprivate let rowsManager = RowsManager()
+    
     fileprivate let backgroundImageView = BackgroundImageView()
     fileprivate let backgroundMatrixView = BackgroundMatrixView()
     fileprivate let frontMatrixView = FrontMatrixView()
@@ -22,13 +24,13 @@ class GlyphView: UIView {
         super.init(coder: aDecoder)
     }
     
-    init() {
+    init(_ glyph: Glyph) {
         super.init(frame: CGRect())
         
+        self.glyph = glyph
+
         backgroundColor = .clear
-        
-        backgroundMatrixView.delegate = self
-        
+                
         clearButton.setTitle("Clear", for: .normal)
         clearButton.setTitleColor(.black, for: .normal)
         clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
@@ -41,9 +43,18 @@ class GlyphView: UIView {
         drawGlyphButton.layer.borderColor = UIColor.black.cgColor
         drawGlyphButton.layer.borderWidth = 2
         
-        glyph = Glyph.testGlyph
-        
         addSubviewsAndSetupConstraints()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        rowsManager.createRowsForFrame(backgroundMatrixView.frame)
+        
+        backgroundMatrixView.rowsManager = rowsManager
+        frontMatrixView.rowsManager = rowsManager
+        
+        frontMatrixView.setup(with: glyph)
     }
     
     func clearButtonTapped() {
@@ -52,12 +63,6 @@ class GlyphView: UIView {
 
     func drawGlyphButtonTapped() {
         drawGlyph(glyph)
-    }
-}
-
-extension GlyphView: BackgroundMatrixViewDelegate {
-    func sendRows(_ rows: [[CGRect]]) {
-        frontMatrixView.rows = rows
     }
 }
 
@@ -97,12 +102,12 @@ fileprivate extension GlyphView {
         }
         
         clearButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(20)
             make.left.equalTo(self.snp.centerX).offset(20)
         }
         
         drawGlyphButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(20)
             make.right.equalTo(self.snp.centerX).offset(-20)
         }
     }

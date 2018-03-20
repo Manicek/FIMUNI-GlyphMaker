@@ -17,15 +17,17 @@ class Spell: Object {
         get { return DamageType(rawValue: damageTypeRaw)! }
         set { damageTypeRaw = newValue.rawValue }
     }
+    dynamic var glyph: Glyph? = nil
     dynamic var unlocked = false
     
-    convenience init(name: String, damageType: DamageType, damage: Double) {
+    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph) {
         self.init()
         
         self.id = UUID().uuidString + name
         self.name = name
         self.damageType = damageType
         self.damage = damage
+        self.glyph = glyph
     }
     
     override static func primaryKey() -> String? {
@@ -33,13 +35,13 @@ class Spell: Object {
     }
     
     static func createBasicSpells() {
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50)
+        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateRandomGlyph())
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Spear", damageType: .cold, damage: 40)
+        let frostSpear = Spell(name: "Frost Spear", damageType: .cold, damage: 40, glyph: Glyph.generateRandomGlyph())
         frostSpear.unlocked = true
         
-        let fireStorm = Spell(name: "Firestorm", damageType: .fire, damage: 110)
+        let fireStorm = Spell(name: "Firestorm", damageType: .fire, damage: 110, glyph: Glyph.generateRandomGlyph())
         
         SpellStore.add(Spell: fireball)
         SpellStore.add(Spell: frostSpear)

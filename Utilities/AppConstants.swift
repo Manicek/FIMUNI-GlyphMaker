@@ -12,5 +12,5 @@ class AppConstants: NSObject {
 
     static let lineWidth: CGFloat = 3
     static let allowedOffsetMultiplier: CGFloat = 0.12
-    
+    static let matrixSize = 5
 }

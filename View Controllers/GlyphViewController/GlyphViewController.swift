@@ -14,6 +14,16 @@ class GlyphViewController: UIViewController {
         return view as! GlyphView
     }
     
+    fileprivate var glyph = Glyph.testGlyph
+    
+    func setup(with glyph: Glyph?) {
+        if let glyph = glyph {
+            self.glyph = glyph
+        } else {
+            self.glyph = Glyph.testGlyph
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,9 +31,6 @@ class GlyphViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        view = GlyphView()
+        view = GlyphView(glyph)
     }
-    
-    
-
 }

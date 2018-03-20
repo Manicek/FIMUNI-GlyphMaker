@@ -10,6 +10,19 @@ import UIKit
 
 class FrontMatrixView: UIView {
     
+    struct Const {
+        static let drawingTime: TimeInterval = 4
+    }
+    
+    weak var rowsManager: RowsManager? {
+        didSet {
+            guard let rows = rowsManager?.rows else {
+                return
+            }
+            areaSize = rows[0][0].height
+        }
+    }
+    
     fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
@@ -23,19 +36,11 @@ class FrontMatrixView: UIView {
     
     fileprivate var okPoints = 0
     fileprivate var nokPoints = 0
-
-    fileprivate var glyph = Glyph.testGlyph
     
-    var rows = [[CGRect]]() {
-        didSet {
-            areaSize = rows[0][0].height
-            createTestRectPaths()
-            setup(with: Glyph.testGlyph)
-            setNeedsDisplay()
-            print("Breakpoint indexes: \(glyph.breakpointsIndexes)")
-            print("expectedBeginAndEndAreas: \(expectedBeginAndEndAreas)")
-        }
-    }
+    fileprivate var drawingTimer: Timer?
+    fileprivate var drawingTimerCounter = 0
+    fileprivate var areaIndexTuples = [AreaIndexTuple]()
+    fileprivate var breakpointsIndexes = [Int]()
     
     init() {
         super.init(frame: CGRect())
@@ -49,37 +54,6 @@ class FrontMatrixView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func drawGlyph(_ glyph: Glyph) {
-        log.debug()
-        
-        let areasIndexes = glyph.areasIndexes
-        if areasIndexes.count == 0 {
-            return
-        }
-        
-        var iterator = areasIndexes.makeIterator()
-        
-        let currentIndex = iterator.next()!
-        
-        recreatePath()
-        
-        path.move(to: rows[currentIndex.x][currentIndex.y].center)
-        
-        for i in 1..<areasIndexes.count {
-            let nextTuple = iterator.next()!
-            
-            let nextPoint = rows[nextTuple.x][nextTuple.y].center
-            
-            if glyph.breakpointsIndexes.contains(i) {
-                path.move(to: nextPoint)
-            } else {
-                path.addLine(to: nextPoint)
-            }
-        }
-        
-        setNeedsDisplay()
-    }
-    
     func clear() {
         recreatePath()
         okPoints = 0
@@ -89,14 +63,57 @@ class FrontMatrixView: UIView {
     }
     
     func setup(with glyph: Glyph) {
-        self.glyph = glyph
-        expectedBeginAndEndAreas = [[CGRect]]()
-            
-        for tupleDuo in glyph.expectedBegindEndAreaIndexTuples() {
-            let firstTuple = tupleDuo.first!
-            let lastTuple = tupleDuo.last!
-            expectedBeginAndEndAreas.append([rows[firstTuple.x][firstTuple.y], rows[lastTuple.x][lastTuple.y]])
+        guard let rows = rowsManager?.rows else {
+            return
         }
+        
+        createTestRectPaths(for: glyph, rows: rows)
+        createExpectedBegindAndEndAreas(for: glyph, rows: rows)
+        setNeedsDisplay()
+    }
+    
+    func drawGlyph(_ glyph: Glyph) {
+        log.debug()
+        
+        drawingTimer?.invalidate()
+        drawingTimer = nil
+        drawingTimerCounter = 0
+        
+        if glyph.areasIndexes.isEmpty {
+            return
+        }
+        
+        recreatePath()
+        
+        areaIndexTuples = Array(glyph.areasIndexes)
+        breakpointsIndexes = Array(glyph.breakpointsIndexes)
+
+        drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime / TimeInterval(areaIndexTuples.count), target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
+    }
+
+    func drawingTimerUpdate() {
+        log.debug()
+        guard let rows = rowsManager?.rows, drawingTimerCounter != areaIndexTuples.count else {
+            drawingTimer?.invalidate()
+            drawingTimer = nil
+            return
+        }
+        
+        let nextTuple = areaIndexTuples[drawingTimerCounter]
+        
+        let nextPoint = rows[nextTuple.x][nextTuple.y].center
+        
+        if breakpointsIndexes.contains(drawingTimerCounter) || drawingTimerCounter == 0 {
+            path.move(to: nextPoint)
+            print("moving to \(nextPoint)")
+        } else {
+            path.addLine(to: nextPoint)
+            print("adding line to \(nextPoint)")
+        }
+        
+        setNeedsDisplay()
+        
+        drawingTimerCounter += 1
     }
     
     override func draw(_ rect: CGRect) {
@@ -121,14 +138,6 @@ class FrontMatrixView: UIView {
                 log.error("Not starting in begin area")
             }
         }
-    }
-    
-    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
-        log.debug()
-        
-        path.addLine(to: toPoint)
-        
-        setNeedsDisplay()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -169,15 +178,32 @@ class FrontMatrixView: UIView {
 
 fileprivate extension FrontMatrixView {
     
+    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+        log.debug()
+        
+        path.addLine(to: toPoint)
+        
+        setNeedsDisplay()
+    }
+    
     func recreatePath() {
+        log.debug()
         path = UIBezierPath()
         path.lineWidth = AppConstants.lineWidth
     }
     
-    func createTestRectPaths() {
+    func createExpectedBegindAndEndAreas(for glyph: Glyph, rows: [[CGRect]]) {
+        log.debug()
+        expectedBeginAndEndAreas = [[CGRect]]()
         
-        let glyph = Glyph.testGlyph
-        
+        for tupleDuo in glyph.expectedBegindEndAreaIndexTuples() {
+            let firstTuple = tupleDuo.first!
+            let lastTuple = tupleDuo.last!
+            expectedBeginAndEndAreas.append([rows[firstTuple.x][firstTuple.y], rows[lastTuple.x][lastTuple.y]])
+        }
+    }
+    
+    func createTestRectPaths(for glyph: Glyph, rows: [[CGRect]]) {
         log.debug()
         let areasIndexes = glyph.areasIndexes
         if areasIndexes.count == 0 {

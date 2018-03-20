@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SpellListTableViewManagerDelegate: class {
+    func pushRequest(_ vc: GlyphViewController)
+}
+
 class SpellListTableViewManager: NSObject {
     
     struct Const {
@@ -16,6 +20,8 @@ class SpellListTableViewManager: NSObject {
         static let fireSectionIndex = 0
         static let coldSectionIndex = 1
     }
+    
+    weak var delegate: SpellListTableViewManagerDelegate?
     
     weak var tableView: UITableView? {
         didSet {
@@ -56,7 +62,14 @@ class SpellListTableViewManager: NSObject {
 extension SpellListTableViewManager: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let glyphVC = GlyphViewController()
+        switch indexPath.section {
+        case Const.fireSectionIndex: glyphVC.setup(with: fireSpells[indexPath.row].glyph)
+        case Const.coldSectionIndex: glyphVC.setup(with: coldSpells[indexPath.row].glyph)
+        default: return
+        }
         
+        delegate?.pushRequest(glyphVC)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
