@@ -42,6 +42,13 @@ class SpellListTableViewManager: NSObject {
             coldSpells = [Spell]()
         }
         
+        for spell in SpellStore.getAllSpells()! {
+            print(spell.damageType.name)
+        }
+        
+        print("Fire: \(fireSpells.count)")
+        print("Cold: \(coldSpells.count)")
+        
         tableView?.reloadData()
     }
 }
@@ -65,14 +72,20 @@ extension SpellListTableViewManager: UITableViewDelegate {
         case Const.fireSectionIndex: return SpellListHeaderView(forType: .fire)
         case Const.coldSectionIndex: return SpellListHeaderView(forType: .cold)
         default: return nil
-        
+        }
     }
 }
 
 extension SpellListTableViewManager: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = SpellListTableViewCell()
+        switch indexPath.section {
+        case Const.fireSectionIndex: cell.configure(with: fireSpells[indexPath.row])
+        case Const.coldSectionIndex: cell.configure(with: coldSpells[indexPath.row])
+        default: break
+        }
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

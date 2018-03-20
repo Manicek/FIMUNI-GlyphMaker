@@ -10,6 +10,10 @@ import UIKit
 
 class SpellListView: UIView {
     
+    struct Const {
+        static let tableViewWidthMultiplier: CGFloat = 0.95
+    }
+    
     let tableView = UITableView()
 
     required init?(coder aDecoder: NSCoder) {
@@ -19,13 +23,12 @@ class SpellListView: UIView {
     init() {
         super.init(frame: CGRect())
         
-        backgroundColor = .white
+        backgroundColor = .clear
         
         tableView.backgroundColor = .clear
         
         addSubviewsAndSetupConstraints()
     }
-
 }
 
 fileprivate extension SpellListView {
@@ -38,7 +41,8 @@ fileprivate extension SpellListView {
         )
         
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.center.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(Const.tableViewWidthMultiplier)
         }
     }
 }

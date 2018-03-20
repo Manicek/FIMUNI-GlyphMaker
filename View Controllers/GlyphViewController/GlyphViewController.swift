@@ -10,6 +10,10 @@ import UIKit
 
 class GlyphViewController: UIViewController {
 
+    fileprivate var glyphView: GlyphView {
+        return view as! GlyphView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

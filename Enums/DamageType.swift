@@ -18,4 +18,11 @@ enum DamageType: Int {
         case .cold: return .coldBlue
         }
     }
+    
+    var name: String {
+        switch self {
+        case .fire: return "Fire"
+        case .cold: return "Cold"
+        }
+    }
 }

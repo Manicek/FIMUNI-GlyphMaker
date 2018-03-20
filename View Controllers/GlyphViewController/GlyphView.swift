@@ -10,6 +10,7 @@ import SnapKit
 
 class GlyphView: UIView {
     
+    fileprivate let backgroundImageView = BackgroundImageView()
     fileprivate let backgroundMatrixView = BackgroundMatrixView()
     fileprivate let frontMatrixView = FrontMatrixView()
     fileprivate let clearButton = UIButton()
@@ -24,7 +25,7 @@ class GlyphView: UIView {
     init() {
         super.init(frame: CGRect())
         
-        backgroundColor = .white
+        backgroundColor = .clear
         
         backgroundMatrixView.delegate = self
         
@@ -73,12 +74,17 @@ fileprivate extension GlyphView {
     func addSubviewsAndSetupConstraints() {
         addSubviews(
             [
+                backgroundImageView,
                 backgroundMatrixView,
                 frontMatrixView,
                 clearButton,
                 drawGlyphButton
             ]
         )
+        
+        backgroundImageView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         
         backgroundMatrixView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()

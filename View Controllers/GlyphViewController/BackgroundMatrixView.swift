@@ -25,7 +25,7 @@ class BackgroundMatrixView: UIView {
     init() {
         super.init(frame: CGRect())
         
-        backgroundColor = .white
+        backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {

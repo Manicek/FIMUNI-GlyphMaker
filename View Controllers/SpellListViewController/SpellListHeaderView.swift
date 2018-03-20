@@ -15,13 +15,19 @@ class SpellListHeaderView: UIView {
     init(forType type: DamageType) {
         super.init(frame: CGRect())
         
+        backgroundColor = .black
+        
+        titleLabel.text = type.name
+        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightHeavy)
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = type.color
+        
         addSubviewsAndSetupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }
 
 fileprivate extension SpellListHeaderView {

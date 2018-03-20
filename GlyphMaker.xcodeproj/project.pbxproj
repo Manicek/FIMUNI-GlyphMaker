@@ -30,6 +30,9 @@
 		96DA0C0E205EFA0900118AA6 /* SpellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C0D205EFA0900118AA6 /* SpellListTableViewCell.swift */; };
 		96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C0F205F00BF00118AA6 /* SpellListHeaderView.swift */; };
 		96DA0C13205F026700118AA6 /* DamageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C12205F026700118AA6 /* DamageType.swift */; };
+		96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C15205F1BB500118AA6 /* StartView.swift */; };
+		96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C17205F1BCB00118AA6 /* StartViewController.swift */; };
+		96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */; };
 		B891C92EA65128D28483CB82 /* Pods_GlyphMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		96DA0C0D205EFA0900118AA6 /* SpellListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListTableViewCell.swift; sourceTree = "<group>"; };
 		96DA0C0F205F00BF00118AA6 /* SpellListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHeaderView.swift; sourceTree = "<group>"; };
 		96DA0C12205F026700118AA6 /* DamageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageType.swift; sourceTree = "<group>"; };
+		96DA0C15205F1BB500118AA6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		96DA0C17205F1BCB00118AA6 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		DAC3EC2D5FBB41A80A665752 /* Pods-GlyphMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,7 @@
 		96A959A020597DC700E6A6B5 = {
 			isa = PBXGroup;
 			children = (
+				96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */,
 				96DA0C11205F025300118AA6 /* Enums */,
 				961A7D89205EA5320017046C /* Creatures */,
 				9642C35D205AF45D001252CA /* Gestures */,
@@ -140,6 +147,7 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				96DA0C14205F1B9E00118AA6 /* StartViewController */,
 				96DA0C06205EF8FF00118AA6 /* SpellListViewController */,
 				96DA0C05205EF8E900118AA6 /* GlyphViewController */,
 			);
@@ -196,6 +204,15 @@
 				96DA0C12205F026700118AA6 /* DamageType.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		96DA0C14205F1B9E00118AA6 /* StartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96DA0C15205F1BB500118AA6 /* StartView.swift */,
+				96DA0C17205F1BCB00118AA6 /* StartViewController.swift */,
+			);
+			path = StartViewController;
 			sourceTree = "<group>";
 		};
 		DF33170CDDC832C7EB4DF73D /* Frameworks */ = {
@@ -343,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
+				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
+				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
@@ -358,6 +377,7 @@
 				96DA0C0E205EFA0900118AA6 /* SpellListTableViewCell.swift in Sources */,
 				96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */,
 				96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */,
+				96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */,
 				9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */,
 				961A7D8B205EA5460017046C /* Creature.swift in Sources */,
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,

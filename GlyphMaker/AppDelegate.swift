@@ -38,13 +38,13 @@ fileprivate extension AppDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().barTintColor = .clear
         UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.black,
+            NSForegroundColorAttributeName : UIColor.white,
         ]
         
-        let navigationController = GlyphViewController()
+        let navigationController = UINavigationController(rootViewController: StartViewController())
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

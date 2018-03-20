@@ -15,7 +15,7 @@ class Spell: Object {
     private dynamic var damageTypeRaw = DamageType.fire.rawValue
     var damageType: DamageType {
         get { return DamageType(rawValue: damageTypeRaw)! }
-        set { damageTypeRaw = damageType.rawValue }
+        set { damageTypeRaw = newValue.rawValue }
     }
     dynamic var unlocked = false
     
