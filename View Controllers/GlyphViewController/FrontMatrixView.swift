@@ -11,7 +11,8 @@ import UIKit
 class FrontMatrixView: UIView {
     
     struct Const {
-        static let drawingTime: TimeInterval = 4
+        static let drawingTime: TimeInterval = 0.05
+        static let inBetweenPointsCount = 20
     }
     
     weak var rowsManager: RowsManager? {
@@ -41,6 +42,7 @@ class FrontMatrixView: UIView {
     fileprivate var drawingTimerCounter = 0
     fileprivate var areaIndexTuples = [AreaIndexTuple]()
     fileprivate var breakpointsIndexes = [Int]()
+    fileprivate var pointArray = [CGPoint]()
     
     init() {
         super.init(frame: CGRect())
@@ -83,32 +85,63 @@ class FrontMatrixView: UIView {
             return
         }
         
-        recreatePath()
-        
         areaIndexTuples = Array(glyph.areasIndexes)
         breakpointsIndexes = Array(glyph.breakpointsIndexes)
+        
+        recreatePath()
+        createPointArray(for: glyph)
 
-        drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime / TimeInterval(areaIndexTuples.count), target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
+        print("pointArray count: \(pointArray.count)")
+        print("breakpointIdnex: \(breakpointsIndexes)")
+        
+        drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
     }
 
+    func createPointArray(for glyph: Glyph) {
+        guard let rows = rowsManager?.rows else {
+            return
+        }
+        
+        let linesCount = areaIndexTuples.count - (1 + glyph.breakpointsIndexes.count)
+        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
+        var arrayIndex = 0
+
+        
+        for i in 0..<areaIndexTuples.count - 1 {
+            if !breakpointsIndexes.contains(i + 1) {
+                let fromTuple = areaIndexTuples[i]
+                let toTuple = areaIndexTuples[i + 1]
+                let fromPoint = rows[fromTuple.x][fromTuple.y].center
+                let toPoint = rows[toTuple.x][toTuple.y].center
+                let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCount)
+                let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCount)
+                var currentX = fromPoint.x
+                var currentY = fromPoint.y
+
+                for _ in 0..<Const.inBetweenPointsCount {
+                    pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
+                    currentX -= xDiff
+                    currentY -= yDiff
+                    arrayIndex += 1
+                }
+            }
+        }
+    }
+    
     func drawingTimerUpdate() {
-        log.debug()
-        guard let rows = rowsManager?.rows, drawingTimerCounter != areaIndexTuples.count else {
+        if drawingTimerCounter == pointArray.count {
             drawingTimer?.invalidate()
             drawingTimer = nil
             return
         }
         
-        let nextTuple = areaIndexTuples[drawingTimerCounter]
+        let condition = drawingTimerCounter % Const.inBetweenPointsCount == 0 && breakpointsIndexes.contains((drawingTimerCounter / Const.inBetweenPointsCount) + 1)
         
-        let nextPoint = rows[nextTuple.x][nextTuple.y].center
-        
-        if breakpointsIndexes.contains(drawingTimerCounter) || drawingTimerCounter == 0 {
+        let nextPoint = pointArray[drawingTimerCounter]
+        if condition || drawingTimerCounter == 0 {
             path.move(to: nextPoint)
-            print("moving to \(nextPoint)")
         } else {
             path.addLine(to: nextPoint)
-            print("adding line to \(nextPoint)")
         }
         
         setNeedsDisplay()
