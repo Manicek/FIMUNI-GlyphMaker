@@ -48,10 +48,6 @@ class SpellListTableViewManager: NSObject {
             coldSpells = [Spell]()
         }
         
-        for spell in SpellStore.getAllSpells()! {
-            print(spell.damageType.name)
-        }
-        
         print("Fire: \(fireSpells.count)")
         print("Cold: \(coldSpells.count)")
         

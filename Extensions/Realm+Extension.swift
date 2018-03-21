@@ -1,9 +1,9 @@
 //
 //  Realm+Extension.swift
-//  alberta
+//  GlyphMaker
 //
-//  Created by Patrik Hora on 13/12/2017.
-//  Copyright © 2017 Master Internet, s.r.o. All rights reserved.
+//  Created by Patrik Hora on 29/01/2018.
+//  Copyright © 2018 Manicek. All rights reserved.
 //
 
 import RealmSwift

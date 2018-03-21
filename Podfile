@@ -1,7 +1,6 @@
 platform :ios, '10.3'
 
 source 'https://github.com/CocoaPods/Specs.git'
-source 'git@git.i.masterinter.net:master_ios/podspecs.git'
 
 def core_pods
     pod 'SnapKit', '~> 3.2.0'

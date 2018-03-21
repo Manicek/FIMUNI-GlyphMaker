@@ -24,6 +24,8 @@ class FrontMatrixView: UIView {
         }
     }
     
+    fileprivate var glyph = Glyph.testGlyph
+    
     fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
@@ -44,6 +46,8 @@ class FrontMatrixView: UIView {
     fileprivate var breakpointsIndexes = [Int]()
     fileprivate var pointArray = [CGPoint]()
     
+    fileprivate var isAlreadySetup = false
+    
     init() {
         super.init(frame: CGRect())
         
@@ -56,76 +60,53 @@ class FrontMatrixView: UIView {
         super.init(coder: aDecoder)
     }
     
+    func setup(with glyph: Glyph) {
+        log.debug()
+        if isAlreadySetup {
+            return
+        }
+        isAlreadySetup = true
+        
+        guard let rows = rowsManager?.rows, !glyph.areasIndexes.isEmpty else {
+            return
+        }
+        
+        self.glyph = glyph
+        
+        areaIndexTuples = Array(glyph.areasIndexes)
+        breakpointsIndexes = Array(glyph.breakpointsIndexes)
+        
+        createExpectedBegindAndEndAreas(rows: rows)
+        createPointArrayAndTestRectPaths(rows: rows)
+        
+        print("pointArray count: \(pointArray.count)")
+        print("breakpointIndex: \(breakpointsIndexes)")
+        print("areasIndexes count: \(areaIndexTuples.count)")
+        print("testPaths count: \(testPaths.count)")
+        
+        setNeedsDisplay()
+    }
+    
     func clear() {
+        log.debug()
         recreatePath()
         okPoints = 0
         nokPoints = 0
         expectedBeginAndEndAreasIndex = 0
+        expectedPathIndex = 0
         setNeedsDisplay()
     }
     
-    func setup(with glyph: Glyph) {
-        guard let rows = rowsManager?.rows else {
-            return
-        }
-        
-        createTestRectPaths(for: glyph, rows: rows)
-        createExpectedBegindAndEndAreas(for: glyph, rows: rows)
-        setNeedsDisplay()
-    }
-    
-    func drawGlyph(_ glyph: Glyph) {
+    func drawGlyph() {
         log.debug()
         
         drawingTimer?.invalidate()
         drawingTimer = nil
         drawingTimerCounter = 0
         
-        if glyph.areasIndexes.isEmpty {
-            return
-        }
-        
-        areaIndexTuples = Array(glyph.areasIndexes)
-        breakpointsIndexes = Array(glyph.breakpointsIndexes)
-        
         recreatePath()
-        createPointArray(for: glyph)
-
-        print("pointArray count: \(pointArray.count)")
-        print("breakpointIdnex: \(breakpointsIndexes)")
         
         drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
-    }
-
-    func createPointArray(for glyph: Glyph) {
-        guard let rows = rowsManager?.rows else {
-            return
-        }
-        
-        let linesCount = areaIndexTuples.count - (1 + glyph.breakpointsIndexes.count)
-        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
-        var arrayIndex = 0
-
-        
-        for i in 0..<areaIndexTuples.count - 1 {
-            if !breakpointsIndexes.contains(i + 1) {
-                let fromTuple = areaIndexTuples[i]
-                let toTuple = areaIndexTuples[i + 1]
-                let fromPoint = rows[fromTuple.x][fromTuple.y].center
-                let toPoint = rows[toTuple.x][toTuple.y].center
-                let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCount)
-                let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCount)
-                var currentX = fromPoint.x
-                var currentY = fromPoint.y
-
-                for _ in 0..<Const.inBetweenPointsCount {
-                    pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
-                    currentX -= xDiff
-                    currentY -= yDiff
-                    arrayIndex += 1
-                }
-            }
-        }
     }
     
     func drawingTimerUpdate() {
@@ -168,7 +149,7 @@ class FrontMatrixView: UIView {
             path.move(to: firstPoint)
             
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].first!.contains(firstPoint) {
-                log.error("Not starting in begin area")
+                log.warning("Not starting in begin area")
             }
         }
     }
@@ -179,14 +160,23 @@ class FrontMatrixView: UIView {
             
             if testPaths[expectedPathIndex].contains(currentPoint) {
                 okPoints += 1
+                print("ok: \(okPoints)")
             } else if (expectedPathIndex + 1) < testPaths.count && testPaths[expectedPathIndex + 1].contains(currentPoint) {
                 okPoints += 1
                 expectedPathIndex += 1
+                print("ok: \(okPoints) moving to next: \(expectedPathIndex)")
             } else {
                 nokPoints += 1
+                var actual = [Int]()
+                for i in 0..<testPaths.count {
+                    if testPaths[i].contains(currentPoint) {
+                        actual.append(i)
+                    }
+                }
+                print("nok: \(nokPoints), expected: \(expectedPathIndex), actual: \(actual)")
             }
             
-            drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
+            drawLine(toPoint: currentPoint)
             lastPoint = currentPoint
         }
     }
@@ -195,7 +185,7 @@ class FrontMatrixView: UIView {
         log.debug()
         if let touch = touches.first {
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].last!.contains(touch.location(in: self)) {
-                log.error("Not ending in end area")
+                log.warning("Not ending in end area")
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {
@@ -211,11 +201,8 @@ class FrontMatrixView: UIView {
 
 fileprivate extension FrontMatrixView {
     
-    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
-        log.debug()
-        
+    func drawLine(toPoint: CGPoint) {
         path.addLine(to: toPoint)
-        
         setNeedsDisplay()
     }
     
@@ -225,7 +212,7 @@ fileprivate extension FrontMatrixView {
         path.lineWidth = AppConstants.lineWidth
     }
     
-    func createExpectedBegindAndEndAreas(for glyph: Glyph, rows: [[CGRect]]) {
+    func createExpectedBegindAndEndAreas(rows: [[CGRect]]) {
         log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
         
@@ -236,28 +223,36 @@ fileprivate extension FrontMatrixView {
         }
     }
     
-    func createTestRectPaths(for glyph: Glyph, rows: [[CGRect]]) {
+    func createPointArrayAndTestRectPaths(rows: [[CGRect]]) {
         log.debug()
-        let areasIndexes = glyph.areasIndexes
-        if areasIndexes.count == 0 {
-            return
-        }
         
-        var iterator = areasIndexes.makeIterator()
+        let linesCount = areaIndexTuples.count - (1 + breakpointsIndexes.count)
+        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
+        testPaths = [UIBezierPath]()
         
-        let currentIndex = iterator.next()!
+        var arrayIndex = 0
         
-        var lastPoint = rows[currentIndex.x][currentIndex.y].center
-        
-        for i in 1..<areasIndexes.count {
-            let nextTuple = iterator.next()!
-            
-            let nextPoint = rows[nextTuple.x][nextTuple.y].center
-            
-            if !glyph.breakpointsIndexes.contains(i) {
-                testPaths.append(createAreaPathBetweenPoints(lastPoint, nextPoint))
+        for i in 0..<areaIndexTuples.count - 1 {
+            if breakpointsIndexes.contains(i + 1) {
+                continue
             }
-            lastPoint = nextPoint
+            let fromTuple = areaIndexTuples[i]
+            let toTuple = areaIndexTuples[i + 1]
+            let fromPoint = rows[fromTuple.x][fromTuple.y].center
+            let toPoint = rows[toTuple.x][toTuple.y].center
+            let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCount)
+            let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCount)
+            var currentX = fromPoint.x
+            var currentY = fromPoint.y
+            
+            testPaths.append(createAreaPathBetweenPoints(fromPoint, toPoint))
+            
+            for _ in 0..<Const.inBetweenPointsCount {
+                pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
+                currentX -= xDiff
+                currentY -= yDiff
+                arrayIndex += 1
+            }
         }
     }
     

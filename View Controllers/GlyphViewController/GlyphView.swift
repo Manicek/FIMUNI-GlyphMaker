@@ -58,23 +58,15 @@ class GlyphView: UIView {
     }
     
     func clearButtonTapped() {
-        clear()
+        frontMatrixView.clear()
     }
 
     func drawGlyphButtonTapped() {
-        drawGlyph(glyph)
+        frontMatrixView.drawGlyph()
     }
 }
 
 fileprivate extension GlyphView {
-    
-    func drawGlyph(_ glyph: Glyph) {
-        frontMatrixView.drawGlyph(glyph)
-    }
-    
-    func clear() {
-        frontMatrixView.clear()
-    }
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

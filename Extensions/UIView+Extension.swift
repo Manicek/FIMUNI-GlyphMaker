@@ -1,6 +1,6 @@
 //
 //  UIView+Extension.swift
-//  Speed Test Rebirth
+//  GlyphMaker
 //
 //  Created by Patrik Hora on 29/01/2018.
 //  Copyright © 2018 Manicek. All rights reserved.

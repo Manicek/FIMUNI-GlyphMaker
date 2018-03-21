@@ -1,16 +1,16 @@
 //
 //  Logger.swift
-//  alberta
+//  GlyphMaker
 //
-//  Created by Stanislav Kasprik on 06/12/2017.
-//  Copyright © 2017 Stanislav Kasprik. All rights reserved.
+//  Created by Patrik Hora on 06/03/2018.
+//  Copyright © 2018 Manicek. All rights reserved.
 //
 
 import XCGLogger
 
 internal var log: XCGLogger = {
     let logger = XCGLogger.default
-    logger.setup(level: .debug, showLogIdentifier: false, showFunctionName: true, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: .debug)
+    logger.setup(level: .debug, showLogIdentifier: false, showFunctionName: true, showThreadName: false, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: .debug)
     
     // Add basic app info, version info etc, to the start of the logs
     logger.logAppDetails()
