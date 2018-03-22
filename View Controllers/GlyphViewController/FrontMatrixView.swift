@@ -29,7 +29,7 @@ class FrontMatrixView: UIView {
     fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
-    fileprivate var testPaths = [UIBezierPath]()
+    fileprivate var testPaths = [TestPath]()
     
     fileprivate var areaSize: CGFloat = 1
     
@@ -89,6 +89,9 @@ class FrontMatrixView: UIView {
     
     func clear() {
         log.debug()
+        drawingTimer?.invalidate()
+        drawingTimer = nil
+        drawingTimerCounter = 0
         recreatePath()
         okPoints = 0
         nokPoints = 0
@@ -159,14 +162,19 @@ class FrontMatrixView: UIView {
             let currentPoint = touch.location(in: self)
             
             if testPaths[expectedPathIndex].contains(currentPoint) {
-                okPoints += 1
+                let numberOfCrrectDirections = testPaths[expectedPathIndex].numberOfCorrectDirections(lastPoint: lastPoint, currentPoint: currentPoint)
+                if numberOfCrrectDirections == 0 {
+                    okPoints -= 2
+                } else {
+                    okPoints += 1 * numberOfCrrectDirections
+                }
                 print("ok: \(okPoints)")
             } else if (expectedPathIndex + 1) < testPaths.count && testPaths[expectedPathIndex + 1].contains(currentPoint) {
                 okPoints += 1
                 expectedPathIndex += 1
                 print("ok: \(okPoints) moving to next: \(expectedPathIndex)")
             } else {
-                nokPoints += 1
+                nokPoints += 2
                 var actual = [Int]()
                 for i in 0..<testPaths.count {
                     if testPaths[i].contains(currentPoint) {
@@ -228,7 +236,7 @@ fileprivate extension FrontMatrixView {
         
         let linesCount = areaIndexTuples.count - (1 + breakpointsIndexes.count)
         pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
-        testPaths = [UIBezierPath]()
+        testPaths = [TestPath]()
         
         var arrayIndex = 0
         
@@ -245,7 +253,7 @@ fileprivate extension FrontMatrixView {
             var currentX = fromPoint.x
             var currentY = fromPoint.y
             
-            testPaths.append(createAreaPathBetweenPoints(fromPoint, toPoint))
+            testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaSize: areaSize))
             
             for _ in 0..<Const.inBetweenPointsCount {
                 pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
@@ -254,41 +262,5 @@ fileprivate extension FrontMatrixView {
                 arrayIndex += 1
             }
         }
-    }
-    
-    func createAreaPathBetweenPoints(_ first: CGPoint, _ second: CGPoint) -> UIBezierPath {
-        let path = UIBezierPath()
-        path.lineWidth = AppConstants.lineWidth
-        
-        var offset = AppConstants.allowedOffsetMultiplier * areaSize
-        
-        let xDiff = fabs(first.x - second.x)
-        let yDiff = fabs(first.y - second.y)
-        
-        if xDiff != 1 && yDiff != 1 {
-            offset *= CGFloat(2).squareRoot()
-        }
-        
-        let diffSum = xDiff + yDiff
-        let xMultiplier = yDiff / diffSum * (first.x - second.x > 0 ? -1 : 1)
-        let yMultiplier = xDiff / diffSum * (first.y - second.y < 0 ? -1 : 1)
-        
-        if xMultiplier != 1 && yMultiplier != 1 {
-            offset *= CGFloat(2).squareRoot()
-        }
-        
-        let firstCorner1 = CGPoint(x: first.x + xMultiplier * offset, y: first.y + yMultiplier * offset)
-        let firstCorner2 = CGPoint(x: first.x - xMultiplier * offset, y: first.y - yMultiplier * offset)
-        
-        let secondCorner1 = CGPoint(x: second.x + xMultiplier * offset, y: second.y + yMultiplier * offset)
-        let secondCorner2 = CGPoint(x: second.x - xMultiplier * offset, y: second.y - yMultiplier * offset)
-        
-        path.move(to: firstCorner1)
-        path.addLine(to: firstCorner2)
-        path.addLine(to: secondCorner2)
-        path.addLine(to: secondCorner1)
-        path.close()
-        
-        return path
     }
 }
