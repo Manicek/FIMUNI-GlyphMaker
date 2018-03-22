@@ -21,7 +21,7 @@ class GlyphView: UIView {
     fileprivate var glyph: Glyph!
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     init(_ glyph: Glyph) {

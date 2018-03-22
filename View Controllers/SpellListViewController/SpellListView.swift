@@ -17,7 +17,7 @@ class SpellListView: UIView {
     let tableView = UITableView()
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     init() {
