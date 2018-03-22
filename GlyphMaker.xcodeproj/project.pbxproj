@@ -25,6 +25,11 @@
 		96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */; };
 		96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C92059A25500E6A6B5 /* Defaults.swift */; };
 		96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959CA2059A25500E6A6B5 /* Logger.swift */; };
+		96D17CB520640C750004CC05 /* BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB420640C750004CC05 /* BattleView.swift */; };
+		96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB620640C820004CC05 /* BattleViewController.swift */; };
+		96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB8206411140004CC05 /* HealthBarView.swift */; };
+		96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CBA206411C20004CC05 /* RemainingTimeView.swift */; };
+		96D17CBD206414FA0004CC05 /* SpellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CBC206414FA0004CC05 /* SpellButton.swift */; };
 		96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C03205EE0E200118AA6 /* Spell.swift */; };
 		96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C07205EF91600118AA6 /* SpellListViewController.swift */; };
 		96DA0C0A205EF92E00118AA6 /* SpellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C09205EF92E00118AA6 /* SpellListView.swift */; };
@@ -61,6 +66,11 @@
 		96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
 		96A959C92059A25500E6A6B5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		96A959CA2059A25500E6A6B5 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		96D17CB420640C750004CC05 /* BattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleView.swift; sourceTree = "<group>"; };
+		96D17CB620640C820004CC05 /* BattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		96D17CB8206411140004CC05 /* HealthBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarView.swift; sourceTree = "<group>"; };
+		96D17CBA206411C20004CC05 /* RemainingTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeView.swift; sourceTree = "<group>"; };
+		96D17CBC206414FA0004CC05 /* SpellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellButton.swift; sourceTree = "<group>"; };
 		96DA0C03205EE0E200118AA6 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		96DA0C07205EF91600118AA6 /* SpellListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListViewController.swift; sourceTree = "<group>"; };
 		96DA0C09205EF92E00118AA6 /* SpellListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListView.swift; sourceTree = "<group>"; };
@@ -152,6 +162,7 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				96D17CB320640C5C0004CC05 /* BattleViewController */,
 				96DA0C14205F1B9E00118AA6 /* StartViewController */,
 				96DA0C06205EF8FF00118AA6 /* SpellListViewController */,
 				96DA0C05205EF8E900118AA6 /* GlyphViewController */,
@@ -178,6 +189,18 @@
 				960D855C205BF9A90034F709 /* AppConstants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		96D17CB320640C5C0004CC05 /* BattleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96D17CB420640C750004CC05 /* BattleView.swift */,
+				96D17CB620640C820004CC05 /* BattleViewController.swift */,
+				96D17CB8206411140004CC05 /* HealthBarView.swift */,
+				96D17CBA206411C20004CC05 /* RemainingTimeView.swift */,
+				96D17CBC206414FA0004CC05 /* SpellButton.swift */,
+			);
+			path = BattleViewController;
 			sourceTree = "<group>";
 		};
 		96DA0C05205EF8E900118AA6 /* GlyphViewController */ = {
@@ -365,16 +388,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */,
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
+				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
+				96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */,
 				964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
 				96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */,
+				96D17CB520640C750004CC05 /* BattleView.swift in Sources */,
 				96A959C02059913000E6A6B5 /* BackgroundMatrixView.swift in Sources */,
 				96DA0C13205F026700118AA6 /* DamageType.swift in Sources */,
 				9606DD362061188E00778F76 /* RowsManager.swift in Sources */,
+				96D17CBD206414FA0004CC05 /* SpellButton.swift in Sources */,
 				96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */,
 				96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,

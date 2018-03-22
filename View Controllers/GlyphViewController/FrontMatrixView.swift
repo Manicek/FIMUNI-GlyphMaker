@@ -47,6 +47,7 @@ class FrontMatrixView: UIView {
     fileprivate var pointArray = [CGPoint]()
     
     fileprivate var isAlreadySetup = false
+    fileprivate var shouldDisplayTestPaths = true
     
     init() {
         super.init(frame: CGRect())
@@ -133,11 +134,23 @@ class FrontMatrixView: UIView {
         drawingTimerCounter += 1
     }
     
+    func hideTestPaths() {
+        shouldDisplayTestPaths = false
+        setNeedsDisplay()
+    }
+    
+    func showTestPaths() {
+        shouldDisplayTestPaths = true
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect) {
         
-        UIColor.green.setFill()
-        for testPath in testPaths {
-            testPath.fill()
+        if shouldDisplayTestPaths {
+            UIColor.green.setFill()
+            for testPath in testPaths {
+                testPath.fill()
+            }
         }
         
         UIColor.red.setStroke()

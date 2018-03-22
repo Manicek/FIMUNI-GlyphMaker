@@ -33,6 +33,6 @@ class StartViewController: UIViewController {
     }
     
     func fightButtonTapped() {
-        log.debug("Not implemented")
+        navigationController?.present(BattleViewController(), animated: true, completion: nil)
     }
 }

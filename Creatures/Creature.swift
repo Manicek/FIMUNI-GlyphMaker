@@ -70,6 +70,8 @@ class Creature: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    static let testCreature = Creature(name: "Test", type: .wolf, level: 1)
 }
 
 struct CreatureStore {
