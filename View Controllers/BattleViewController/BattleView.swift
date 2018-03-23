@@ -13,10 +13,10 @@ class BattleView: UIView {
     fileprivate let rowsManager = RowsManager()
 
     fileprivate let healthBarView = HealthBarView()
-    fileprivate let remainingTimeView = RemainingTimeView()
+    let remainingTimeView = RemainingTimeView()
     
     fileprivate let frontMatrixView = FrontMatrixView()
-    fileprivate let spellButton = SpellButton()
+    let spellButton = SpellButton()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -26,9 +26,7 @@ class BattleView: UIView {
         super.init(frame: CGRect())
         
         backgroundColor = .white
-    
-        spellButton.addTarget(self, action: #selector(spellButtonTapped), for: .touchUpInside)
-        
+            
         healthBarView.progress = 1
         remainingTimeView.progress = 1
         
@@ -43,10 +41,6 @@ class BattleView: UIView {
         frontMatrixView.rowsManager = rowsManager
         
         frontMatrixView.setup(with: Glyph.testGlyph)
-    }
-    
-    func spellButtonTapped() {
-        
     }
 }
 
@@ -69,8 +63,8 @@ fileprivate extension BattleView {
         }
         
         spellButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(20)
-            make.right.equalToSuperview().inset(20)
+            make.bottom.equalTo(remainingTimeView.snp.top)
+            make.centerX.equalToSuperview()
             make.width.height.equalTo(50)
         }
         
@@ -83,9 +77,7 @@ fileprivate extension BattleView {
         
         remainingTimeView.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().inset(20)
-            make.right.equalTo(spellButton.snp.left).offset(-20)
-            make.height.equalTo(20)
-            make.width.equalToSuperview().multipliedBy(0.6)
+            make.height.width.centerX.equalTo(healthBarView)
         }
     }
 }
