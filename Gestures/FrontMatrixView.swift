@@ -67,9 +67,9 @@ class FrontMatrixView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with glyph: Glyph) {
+    func setup(with glyph: Glyph, forcefully: Bool = false) {
         log.debug()
-        if isAlreadySetup {
+        if isAlreadySetup && !forcefully {
             return
         }
         isAlreadySetup = true
@@ -217,7 +217,7 @@ class FrontMatrixView: UIView {
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {
-            delegate?.finishedGlyphWithResults(okPointsPercentage: 100 * Double(okPoints) / Double(nokPoints + okPoints))
+            delegate?.finishedGlyphWithResults(okPointsPercentage: Double(okPoints) / Double(nokPoints + okPoints))
         } else {
             expectedBeginAndEndAreasIndex += 1
         }

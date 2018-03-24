@@ -32,7 +32,7 @@ enum CreatureType: Int {
     
     var fireResistance: Double {
         switch self {
-        case .beardedDragon: return 75
+        case .beardedDragon: return 0.75
         case .wolf: return 0
         }
     }
@@ -40,7 +40,7 @@ enum CreatureType: Int {
     var coldResistance: Double {
         switch self {
         case .beardedDragon: return 0
-        case .wolf: return 20
+        case .wolf: return 0.20
         }
     }
 }
@@ -55,6 +55,7 @@ class Creature: Object {
     }
     dynamic var health: Double = 100
     dynamic var level = 1
+    dynamic var alive = true
     
     var fireResistance: Double {
         return type.fireResistance
@@ -76,6 +77,19 @@ class Creature: Object {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func receiveDamage(_ damage: Double, ofType type: DamageType) {
+        var resistance = 0.0
+        switch type {
+        case .fire: resistance = fireResistance
+        case .cold: resistance = coldResistance
+        }
+        health -= damage * (1 - resistance)
+        if health <= 0 {
+            health = 0
+            alive = false
+        }
     }
     
     static let testCreature = Creature(name: "Test", type: .wolf, level: 1)

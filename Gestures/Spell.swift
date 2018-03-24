@@ -8,10 +8,19 @@
 
 import RealmSwift
 
+class SpellImageStore: NSObject {
+    static let images = [#imageLiteral(resourceName: "fireball"), #imageLiteral(resourceName: "frostGrasp"), #imageLiteral(resourceName: "inferno")]
+    static let defaultImage = #imageLiteral(resourceName: "nothing")
+}
+
 class Spell: Object {
     dynamic var id = ""
     dynamic var name = ""
     dynamic var damage: Double = 0
+    dynamic var imageIndex = 0
+    var image: UIImage {
+        return imageIndex < SpellImageStore.images.count ? SpellImageStore.images[imageIndex] : SpellImageStore.defaultImage
+    }
     private dynamic var damageTypeRaw = DamageType.fire.rawValue
     var damageType: DamageType {
         get { return DamageType(rawValue: damageTypeRaw)! }
@@ -20,7 +29,7 @@ class Spell: Object {
     dynamic var glyph: Glyph? = nil
     dynamic var unlocked = false
     
-    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph) {
+    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph, imageIndex: Int) {
         self.init()
         
         self.id = UUID().uuidString + name
@@ -28,6 +37,7 @@ class Spell: Object {
         self.damageType = damageType
         self.damage = damage
         self.glyph = glyph
+        self.imageIndex = imageIndex
     }
     
     override static func primaryKey() -> String? {
@@ -35,13 +45,13 @@ class Spell: Object {
     }
     
     static func createBasicSpells() {
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateRandomGlyph())
+        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateRandomGlyph(), imageIndex: 0)
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Spear", damageType: .cold, damage: 40, glyph: Glyph.generateRandomGlyph())
+        let frostSpear = Spell(name: "Frost Grasph", damageType: .cold, damage: 40, glyph: Glyph.generateRandomGlyph(), imageIndex: 1)
         frostSpear.unlocked = true
         
-        let fireStorm = Spell(name: "Firestorm", damageType: .fire, damage: 110, glyph: Glyph.generateRandomGlyph())
+        let fireStorm = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateRandomGlyph(), imageIndex: 2)
         
         SpellStore.add(Spell: fireball)
         SpellStore.add(Spell: frostSpear)
@@ -61,6 +71,12 @@ struct SpellStore {
         guard let realm = Realm.defaultRealm() else { return nil }
         
         return realm.objects(Spell.self)
+    }
+    
+    static func getAllUnlockedSpells() -> Results<Spell>? {
+        guard let realm = Realm.defaultRealm() else { return nil }
+
+        return realm.objects(Spell.self).filter("unlocked == true")
     }
     
     static func getSpells(ofType type: DamageType) -> Results<Spell>? {

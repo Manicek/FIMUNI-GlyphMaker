@@ -22,11 +22,20 @@ class BattleViewController: UIViewController {
         return view as! BattleView
     }
     
-    fileprivate var currentGlyph = Glyph.testGlyph
+    fileprivate var currentSpell: Spell? {
+        didSet {
+            guard let spell = currentSpell, let glyph = spell.glyph else {
+                return
+            }
+            battleView.frontMatrixView.setup(with: glyph, forcefully: true)
+        }
+    }
     fileprivate var creature = Creature.testCreature
     
     fileprivate var remainingTimeTimer: Timer?
     fileprivate var remainingTimeTimerCounter: TimeInterval = 0
+    
+    fileprivate var unlockedSpells = [Spell]()
     
     func setup(with creature: Creature) {
         self.creature = creature
@@ -41,19 +50,26 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        battleView.spellButton.addTarget(self, action: #selector(spellButtonTapped), for: .touchUpInside)
-        
         battleView.frontMatrixView.delegate = self
         
         battleView.setup(with: creature)
+        
+        if let results = SpellStore.getAllUnlockedSpells() {
+            unlockedSpells = Array(results)
+            for spell in unlockedSpells {
+                let button = SpellButton(spell)
+                button.addTarget(self, action: #selector(spellButtonTapped(_:)), for: .touchUpInside)
+                battleView.spellButtonsStackView.addArrangedSubview(button)
+                button.snp.remakeConstraints { (make) in
+                    make.height.equalTo(battleView.spellButtonsStackView)
+                    make.width.equalTo(button.snp.height)
+                }
+            }
+        }
     }
     
-    func spellButtonTapped() {
-        remainingTimeTimer?.invalidate()
-        remainingTimeTimer = nil
-        remainingTimeTimerCounter = 0
-        battleView.remainingTimeView.progress = 1
-        remainingTimeTimer = Timer.scheduledTimer(timeInterval: Const.remainingTimeTimerInterval, target: self, selector: #selector(remainingTimeTimerUpdate), userInfo: nil, repeats: true)
+    func spellButtonTapped(_ sender: SpellButton) {
+        currentSpell = sender.spell
     }
     
     func remainingTimeTimerUpdate() {
@@ -70,7 +86,27 @@ class BattleViewController: UIViewController {
 
 extension BattleViewController: FrontMatrixViewDelegate {
     func finishedGlyphWithResults(okPointsPercentage: Double) {
-        log.debug("ratio: \(okPointsPercentage)")
+        log.debug("ratio: \(100 * okPointsPercentage)")
+        
+        if okPointsPercentage > AppConstants.minimumPercentageToPass {
+            if let spell = currentSpell {
+                creature.receiveDamage(spell.damage * okPointsPercentage, ofType: spell.damageType)
+            }
+        } else {
+            // TODO tell user he failed
+        }
+        
         battleView.frontMatrixView.clear()
+    }
+}
+
+fileprivate extension BattleViewController {
+    
+    func restartRemainingTimeTimer() {
+        remainingTimeTimer?.invalidate()
+        remainingTimeTimer = nil
+        remainingTimeTimerCounter = 0
+        battleView.remainingTimeView.progress = 1
+        remainingTimeTimer = Timer.scheduledTimer(timeInterval: Const.remainingTimeTimerInterval, target: self, selector: #selector(remainingTimeTimerUpdate), userInfo: nil, repeats: true)
     }
 }

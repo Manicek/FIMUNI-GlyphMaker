@@ -18,7 +18,7 @@ class BattleView: UIView {
     fileprivate let creatureImageView = UIImageView()
     
     let frontMatrixView = FrontMatrixView()
-    let spellButton = SpellButton()
+    let spellButtonsStackView = UIStackView()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,6 +35,11 @@ class BattleView: UIView {
         frontMatrixView.layer.borderWidth = 1
         frontMatrixView.layer.borderColor = UIColor.black.cgColor
         
+        spellButtonsStackView.spacing = 10
+        spellButtonsStackView.axis = .horizontal
+        spellButtonsStackView.distribution = .equalSpacing
+        spellButtonsStackView.alignment = .center
+        
         addSubviewsAndSetupConstraints()
     }
     
@@ -44,8 +49,6 @@ class BattleView: UIView {
         rowsManager.createRowsForFrame(frontMatrixView.frame)
         
         frontMatrixView.rowsManager = rowsManager
-        
-        frontMatrixView.setup(with: Glyph.testGlyph)
     }
     
     func setup(with creature: Creature) {
@@ -62,7 +65,7 @@ fileprivate extension BattleView {
                 frontMatrixView,
                 healthBarView,
                 remainingTimeView,
-                spellButton
+                spellButtonsStackView
             ]
         )
         
@@ -76,10 +79,11 @@ fileprivate extension BattleView {
             make.edges.equalTo(frontMatrixView)
         }
         
-        spellButton.snp.makeConstraints { (make) in
+        spellButtonsStackView.snp.makeConstraints { (make) in
             make.bottom.equalTo(remainingTimeView.snp.top)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(50)
+            make.height.equalTo(50)
+            make.width.equalTo(remainingTimeView)
         }
         
         healthBarView.snp.makeConstraints { (make) in

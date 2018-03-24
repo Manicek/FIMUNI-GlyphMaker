@@ -9,11 +9,14 @@
 import UIKit
 
 class SpellButton: UIButton {
+    
+    fileprivate(set) var spell: Spell!
 
-    init() {
+    init(_ spell: Spell) {
         super.init(frame: CGRect())
+        self.spell = spell
         
-        setImage(#imageLiteral(resourceName: "fireball"), for: .normal)
+        setImage(spell.image, for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {
