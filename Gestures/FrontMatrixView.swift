@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FrontMatrixViewDelegate: class {
+    func finishedGlyphWithResults(okPointsPercentage: Double)
+}
+
 class FrontMatrixView: UIView {
     
     struct Const {
@@ -23,6 +27,8 @@ class FrontMatrixView: UIView {
             areaSize = rows[0][0].height
         }
     }
+    
+    weak var delegate: FrontMatrixViewDelegate?
     
     fileprivate var glyph = Glyph.testGlyph
     
@@ -77,13 +83,14 @@ class FrontMatrixView: UIView {
         areaIndexTuples = Array(glyph.areasIndexes)
         breakpointsIndexes = Array(glyph.breakpointsIndexes)
         
-        createExpectedBegindAndEndAreas(rows: rows)
+        createExpectedBeginAndEndAreas(rows: rows)
         createPointArrayAndTestRectPaths(rows: rows)
         
         print("pointArray count: \(pointArray.count)")
         print("breakpointIndex: \(breakpointsIndexes)")
         print("areasIndexes count: \(areaIndexTuples.count)")
         print("testPaths count: \(testPaths.count)")
+        print("expectedBeginAndEndAreas count: \(expectedBeginAndEndAreas.count)")
         
         setNeedsDisplay()
     }
@@ -210,7 +217,7 @@ class FrontMatrixView: UIView {
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {
-            expectedBeginAndEndAreasIndex = 0
+            delegate?.finishedGlyphWithResults(okPointsPercentage: 100 * Double(okPoints) / Double(nokPoints + okPoints))
         } else {
             expectedBeginAndEndAreasIndex += 1
         }
@@ -233,7 +240,7 @@ fileprivate extension FrontMatrixView {
         path.lineWidth = AppConstants.lineWidth
     }
     
-    func createExpectedBegindAndEndAreas(rows: [[CGRect]]) {
+    func createExpectedBeginAndEndAreas(rows: [[CGRect]]) {
         log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
         

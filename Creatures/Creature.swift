@@ -16,6 +16,13 @@ enum CreatureType: Int {
         return baseHealth * Double(level)
     }
     
+    var image: UIImage {
+        switch self {
+        case .beardedDragon: return #imageLiteral(resourceName: "beardedDragon1")
+        case .wolf: return #imageLiteral(resourceName: "wolf")
+        }
+    }
+    
     var baseHealth: Double {
         switch self {
         case .beardedDragon: return 150

@@ -32,16 +32,20 @@ class BattleViewController: UIViewController {
         self.creature = creature
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        battleView.spellButton.addTarget(self, action: #selector(spellButtonTapped), for: .touchUpInside)
-    }
-    
     override func loadView() {
         super.loadView()
         
         view = BattleView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        battleView.spellButton.addTarget(self, action: #selector(spellButtonTapped), for: .touchUpInside)
+        
+        battleView.frontMatrixView.delegate = self
+        
+        battleView.setup(with: creature)
     }
     
     func spellButtonTapped() {
@@ -61,5 +65,12 @@ class BattleViewController: UIViewController {
         }
         battleView.remainingTimeView.progress -= Const.progressUpdate
         remainingTimeTimerCounter += Const.remainingTimeTimerInterval
+    }
+}
+
+extension BattleViewController: FrontMatrixViewDelegate {
+    func finishedGlyphWithResults(okPointsPercentage: Double) {
+        log.debug("ratio: \(okPointsPercentage)")
+        battleView.frontMatrixView.clear()
     }
 }

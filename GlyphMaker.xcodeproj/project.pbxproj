@@ -116,6 +116,9 @@
 		9642C35D205AF45D001252CA /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
+				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
+				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
+				9645F9EE2063C2EA006E4776 /* TestPath.swift */,
 				9642C35E205AF46C001252CA /* Glyph.swift */,
 				96DA0C03205EE0E200118AA6 /* Spell.swift */,
 			);
@@ -125,7 +128,6 @@
 		96A959A020597DC700E6A6B5 = {
 			isa = PBXGroup;
 			children = (
-				9645F9EE2063C2EA006E4776 /* TestPath.swift */,
 				96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */,
 				96DA0C11205F025300118AA6 /* Enums */,
 				961A7D89205EA5320017046C /* Creatures */,
@@ -207,8 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */,
-				96A959BF2059913000E6A6B5 /* BackgroundMatrixView.swift */,
-				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
 				964954E5205AA1790089A37D /* GlyphView.swift */,
 				9606DD352061188E00778F76 /* RowsManager.swift */,
 			);
