@@ -14,4 +14,5 @@ class AppConstants: NSObject {
     static let allowedOffsetMultiplier: CGFloat = 0.15
     static let matrixSize = 5
     static let minimumPercentageToPass: Double = 80
+    static var randomizer: Int = 23//Utils.randomInt(25) //TODO deterministic somehow
 }
