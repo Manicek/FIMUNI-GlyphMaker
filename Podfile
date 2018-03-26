@@ -6,6 +6,7 @@ def core_pods
     pod 'SnapKit', '~> 3.2.0'
     pod 'XCGLogger', '~> 5.0.5' # Swift 3.0-3.2
     pod 'RealmSwift'
+    pod 'Simple-KeychainSwift'
 end
 
 target 'GlyphMaker' do
