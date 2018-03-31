@@ -23,12 +23,11 @@ internal var log: XCGLogger = {
     logger.dateFormatter = defaultDateFormatter
     
     logger.levelDescriptions = [
-        .verbose: "💜", // Very verbose messages, long, unnecessary info. Message body, buffers, etc.
+        .verbose: "💜", // Very verbose messages, long, unnecessary info
         .debug : "💙", // Standard debug messages. UI clicks, steps in functions
-        .info: "ℹ️", // Connection or status change messages. E.G received Offer, received message, state changed from offline to online...
-        .warning: "⚠️", // Warning messages, state changed to offline
-        .error : "🛑", // all errors where app will survive, screen might need to close etc.
-        .severe : "‼️ FATAL:" ] // This will crash app.
+        .warning: "⚠️", // Warning messages
+        .error : "🛑", // Errors
+        .severe : "‼️ FATAL:" ] // Crashes.
     
     return logger
 }()

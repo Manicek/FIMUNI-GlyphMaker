@@ -43,6 +43,9 @@
 		96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C15205F1BB500118AA6 /* StartView.swift */; };
 		96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C17205F1BCB00118AA6 /* StartViewController.swift */; };
 		96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */; };
+		96FD3951206E56A3006390DF /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD3950206E56A3006390DF /* UIViewController+Extension.swift */; };
+		96FD3957206E7431006390DF /* HealthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD3956206E7431006390DF /* HealthLabel.swift */; };
+		96FD3959206E7443006390DF /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD3958206E7443006390DF /* BaseLabel.swift */; };
 		B891C92EA65128D28483CB82 /* Pods_GlyphMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		96DA0C15205F1BB500118AA6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		96DA0C17205F1BCB00118AA6 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		96FD3950206E56A3006390DF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		96FD3956206E7431006390DF /* HealthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLabel.swift; sourceTree = "<group>"; };
+		96FD3958206E7443006390DF /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		DAC3EC2D5FBB41A80A665752 /* Pods-GlyphMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +142,7 @@
 		96A959A020597DC700E6A6B5 = {
 			isa = PBXGroup;
 			children = (
+				96FD3952206E73DC006390DF /* UI Classes */,
 				96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */,
 				96DA0C11205F025300118AA6 /* Enums */,
 				961A7D89205EA5320017046C /* Creatures */,
@@ -187,6 +194,7 @@
 				96A959C22059A1D300E6A6B5 /* UIColor+Extension.swift */,
 				96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */,
 				9642C360205B00FA001252CA /* CGRect+Extension.swift */,
+				96FD3950206E56A3006390DF /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,9 +215,6 @@
 			children = (
 				96D17CB420640C750004CC05 /* BattleView.swift */,
 				96D17CB620640C820004CC05 /* BattleViewController.swift */,
-				96D17CB8206411140004CC05 /* HealthBarView.swift */,
-				96D17CBA206411C20004CC05 /* RemainingTimeView.swift */,
-				96D17CBC206414FA0004CC05 /* SpellButton.swift */,
 			);
 			path = BattleViewController;
 			sourceTree = "<group>";
@@ -251,6 +256,42 @@
 				96DA0C17205F1BCB00118AA6 /* StartViewController.swift */,
 			);
 			path = StartViewController;
+			sourceTree = "<group>";
+		};
+		96FD3952206E73DC006390DF /* UI Classes */ = {
+			isa = PBXGroup;
+			children = (
+				96FD3955206E7406006390DF /* Buttons */,
+				96FD3954206E7400006390DF /* Labels */,
+				96FD3953206E73E5006390DF /* ProgressViews */,
+			);
+			path = "UI Classes";
+			sourceTree = "<group>";
+		};
+		96FD3953206E73E5006390DF /* ProgressViews */ = {
+			isa = PBXGroup;
+			children = (
+				96D17CB8206411140004CC05 /* HealthBarView.swift */,
+				96D17CBA206411C20004CC05 /* RemainingTimeView.swift */,
+			);
+			path = ProgressViews;
+			sourceTree = "<group>";
+		};
+		96FD3954206E7400006390DF /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				96FD3956206E7431006390DF /* HealthLabel.swift */,
+				96FD3958206E7443006390DF /* BaseLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		96FD3955206E7406006390DF /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				96D17CBC206414FA0004CC05 /* SpellButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		DF33170CDDC832C7EB4DF73D /* Frameworks */ = {
@@ -401,6 +442,7 @@
 			files = (
 				96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */,
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
+				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
 				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
@@ -417,6 +459,7 @@
 				9606DD362061188E00778F76 /* RowsManager.swift in Sources */,
 				96D17CBD206414FA0004CC05 /* SpellButton.swift in Sources */,
 				96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */,
+				96FD3951206E56A3006390DF /* UIViewController+Extension.swift in Sources */,
 				96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,
 				96DA0C0A205EF92E00118AA6 /* SpellListView.swift in Sources */,
@@ -427,6 +470,7 @@
 				962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */,
 				96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */,
 				96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */,
+				96FD3959206E7443006390DF /* BaseLabel.swift in Sources */,
 				9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */,
 				961A7D8B205EA5460017046C /* Creature.swift in Sources */,
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,

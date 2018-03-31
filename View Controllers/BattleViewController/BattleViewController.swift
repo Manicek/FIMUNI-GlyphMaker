@@ -90,10 +90,13 @@ extension BattleViewController: FrontMatrixViewDelegate {
         
         if okPointsPercentage > AppConstants.minimumPercentageToPass {
             if let spell = currentSpell {
-                creature.receiveDamage(spell.damage * okPointsPercentage, ofType: spell.damageType)
+                let damage = spell.damage * okPointsPercentage
+                let dealtDamage = creature.receiveDamage(damage, ofType: spell.damageType)
+                showBasicAlert(message: String(format: "You dealt %.0f damage, the creature resisted %.0f", dealtDamage, damage - dealtDamage), title: "Success!")
+                battleView.setRemainingHealth(current: creature.health, max: creature.maxHealth)
             }
         } else {
-            // TODO tell user he failed
+            showBasicAlert(message: "You dun goofd", title: "Failure!")
         }
         
         battleView.frontMatrixView.clear()

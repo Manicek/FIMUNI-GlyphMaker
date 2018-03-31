@@ -53,6 +53,7 @@ class Creature: Object {
         get { return CreatureType(rawValue: typeRaw)! }
         set { typeRaw = type.rawValue }
     }
+    dynamic var maxHealth: Double = 100
     dynamic var health: Double = 100
     dynamic var level = 1
     dynamic var alive = true
@@ -73,23 +74,27 @@ class Creature: Object {
         self.type = type
         self.level = level > 0 ? level : 1
         self.health = type.healthForLevel(self.level)
+        self.maxHealth = health
     }
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    func receiveDamage(_ damage: Double, ofType type: DamageType) {
+    func receiveDamage(_ damage: Double, ofType type: DamageType) -> Double {
         var resistance = 0.0
         switch type {
         case .fire: resistance = fireResistance
         case .cold: resistance = coldResistance
         }
-        health -= damage * (1 - resistance)
+        let finalDamage = damage * (1 - resistance)
+        health -= finalDamage
         if health <= 0 {
             health = 0
             alive = false
         }
+        
+        return finalDamage
     }
     
     static let testCreature = Creature(name: "Test", type: .wolf, level: 1)

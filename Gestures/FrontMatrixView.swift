@@ -154,7 +154,7 @@ class FrontMatrixView: UIView {
     override func draw(_ rect: CGRect) {
         
         if shouldDisplayTestPaths {
-            UIColor.green.setFill()
+            UIColor.lightGray.setFill()
             for testPath in testPaths {
                 testPath.fill()
             }
@@ -172,6 +172,7 @@ class FrontMatrixView: UIView {
             path.move(to: firstPoint)
             
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].first!.contains(firstPoint) {
+                nokPoints += 100
                 log.warning("Not starting in begin area")
             }
         }
@@ -214,6 +215,7 @@ class FrontMatrixView: UIView {
         if let touch = touches.first {
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].last!.contains(touch.location(in: self)) {
                 log.warning("Not ending in end area")
+                nokPoints += 100
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {

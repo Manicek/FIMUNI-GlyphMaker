@@ -14,17 +14,19 @@ class AppConstants: NSObject {
     static let lineWidth: CGFloat = 3
     static let allowedOffsetMultiplier: CGFloat = 0.15
     static let matrixSize = 5
-    static let minimumPercentageToPass: Double = 80
+    static let minimumPercentageToPass: Double = 0.80 // Value between 0 and 1
     static var randomizer: Int {
         if let alreadyLoadedValue = loadedRandomizer {
             return alreadyLoadedValue
         }
         if let value: Int = Keychain.value(forKey: "randomizer") {
+            log.debug("Loading randomizer with value \(value) from Keychain")
             loadedRandomizer = value
             return value
         } else {
-            let value = UIDevice.current.identifierForVendor!.uuidString.hashValue
+            let value = abs(UIDevice.current.identifierForVendor!.uuidString.hashValue)
             Keychain.set(value, forKey: "randomizer")
+            log.debug("Generating randomizer with value \(value) and saving it to Keychain")
             return value
         }
     }

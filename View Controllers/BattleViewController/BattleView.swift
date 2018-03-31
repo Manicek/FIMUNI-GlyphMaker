@@ -13,6 +13,7 @@ class BattleView: UIView {
     fileprivate let rowsManager = RowsManager()
 
     fileprivate let healthBarView = HealthBarView()
+    fileprivate let healthLabel = HealthLabel()
     let remainingTimeView = RemainingTimeView()
     
     fileprivate let creatureImageView = UIImageView()
@@ -30,6 +31,7 @@ class BattleView: UIView {
         backgroundColor = .white
             
         healthBarView.progress = 1
+        
         remainingTimeView.progress = 1
         
         frontMatrixView.layer.borderWidth = 1
@@ -53,6 +55,12 @@ class BattleView: UIView {
     
     func setup(with creature: Creature) {
         creatureImageView.image = creature.type.image
+        healthLabel.healthValue = creature.maxHealth
+    }
+    
+    func setRemainingHealth(current: Double, max: Double) {
+        healthBarView.progress = Float(current / max)
+        healthLabel.healthValue = current
     }
 }
 
@@ -64,6 +72,7 @@ fileprivate extension BattleView {
                 creatureImageView,
                 frontMatrixView,
                 healthBarView,
+                healthLabel,
                 remainingTimeView,
                 spellButtonsStackView
             ]
@@ -91,6 +100,11 @@ fileprivate extension BattleView {
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
             make.width.equalToSuperview().multipliedBy(0.75)
+        }
+        
+        healthLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(healthBarView.snp.top).offset(-5)
+            make.centerX.equalTo(healthBarView)
         }
         
         remainingTimeView.snp.makeConstraints { (make) in
