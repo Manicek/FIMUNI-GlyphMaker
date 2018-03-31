@@ -10,11 +10,8 @@ import SnapKit
 
 class GlyphView: UIView {
     
-    fileprivate let rowsManager = RowsManager()
-    
     fileprivate let backgroundImageView = BackgroundImageView()
-    fileprivate let backgroundMatrixView = BackgroundMatrixView()
-    fileprivate let frontMatrixView = FrontMatrixView()
+    fileprivate let matrixView = MatrixView()
     fileprivate let clearButton = UIButton()
     fileprivate let drawGlyphButton = UIButton()
     
@@ -48,21 +45,17 @@ class GlyphView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        rowsManager.createRowsForFrame(backgroundMatrixView.frame)
-        
-        backgroundMatrixView.rowsManager = rowsManager
-        frontMatrixView.rowsManager = rowsManager
-        
-        frontMatrixView.setup(with: glyph)
+
+        matrixView.createRows()
+        matrixView.setup(with: glyph)
     }
     
     func clearButtonTapped() {
-        frontMatrixView.clear()
+        matrixView.clear()
     }
 
     func drawGlyphButtonTapped() {
-        frontMatrixView.drawGlyph()
+        matrixView.drawGlyph()
     }
 }
 
@@ -72,8 +65,7 @@ fileprivate extension GlyphView {
         addSubviews(
             [
                 backgroundImageView,
-                backgroundMatrixView,
-                frontMatrixView,
+                matrixView,
                 clearButton,
                 drawGlyphButton
             ]
@@ -83,14 +75,10 @@ fileprivate extension GlyphView {
             make.edges.equalToSuperview()
         }
         
-        backgroundMatrixView.snp.makeConstraints { (make) in
+        matrixView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(backgroundMatrixView.snp.width)
-        }
-        
-        frontMatrixView.snp.makeConstraints { (make) in
-            make.edges.equalTo(backgroundMatrixView)
+            make.height.equalTo(matrixView.snp.width)
         }
         
         clearButton.snp.makeConstraints { (make) in

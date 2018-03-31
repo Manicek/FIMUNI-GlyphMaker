@@ -10,16 +10,14 @@ import UIKit
 
 class BattleView: UIView {
     
-    fileprivate let rowsManager = RowsManager()
-
     fileprivate let healthBarView = HealthBarView()
     fileprivate let healthLabel = HealthLabel()
     let remainingTimeView = RemainingTimeView()
     
     fileprivate let creatureImageView = UIImageView()
     
-    let frontMatrixView = FrontMatrixView()
-    let spellButtonsStackView = UIStackView()
+    let matrixView = MatrixView()
+    fileprivate let spellButtonsStackView = UIStackView()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -34,8 +32,8 @@ class BattleView: UIView {
         
         remainingTimeView.progress = 1
         
-        frontMatrixView.layer.borderWidth = 1
-        frontMatrixView.layer.borderColor = UIColor.black.cgColor
+        matrixView.layer.borderWidth = 1
+        matrixView.layer.borderColor = UIColor.black.cgColor
         
         spellButtonsStackView.spacing = 10
         spellButtonsStackView.axis = .horizontal
@@ -48,9 +46,7 @@ class BattleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        rowsManager.createRowsForFrame(frontMatrixView.frame)
-        
-        frontMatrixView.rowsManager = rowsManager
+        matrixView.createRows()
     }
     
     func setup(with creature: Creature) {
@@ -62,6 +58,14 @@ class BattleView: UIView {
         healthBarView.progress = Float(current / max)
         healthLabel.healthValue = current
     }
+    
+    func addSpellButton(_ button: SpellButton) {
+        spellButtonsStackView.addArrangedSubview(button)
+        button.snp.remakeConstraints { (make) in
+            make.height.equalTo(spellButtonsStackView)
+            make.width.equalTo(button.snp.height)
+        }
+    }
 }
 
 fileprivate extension BattleView {
@@ -70,7 +74,7 @@ fileprivate extension BattleView {
         addSubviews(
             [
                 creatureImageView,
-                frontMatrixView,
+                matrixView,
                 healthBarView,
                 healthLabel,
                 remainingTimeView,
@@ -78,25 +82,24 @@ fileprivate extension BattleView {
             ]
         )
         
-        frontMatrixView.snp.makeConstraints { (make) in
+        matrixView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(frontMatrixView.snp.width)
+            make.height.equalTo(matrixView.snp.width)
         }
         
         creatureImageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(frontMatrixView)
+            make.edges.equalTo(matrixView)
         }
         
         spellButtonsStackView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(remainingTimeView.snp.top)
+            make.bottom.equalTo(remainingTimeView.snp.top).offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
-            make.width.equalTo(remainingTimeView)
         }
         
         healthBarView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(frontMatrixView.snp.top).offset(-5)
+            make.bottom.equalTo(matrixView.snp.top).offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
             make.width.equalToSuperview().multipliedBy(0.75)

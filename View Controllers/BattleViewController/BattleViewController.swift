@@ -27,7 +27,7 @@ class BattleViewController: UIViewController {
             guard let spell = currentSpell, let glyph = spell.glyph else {
                 return
             }
-            battleView.frontMatrixView.setup(with: glyph, forcefully: true)
+            battleView.matrixView.setup(with: glyph, forcefully: true)
         }
     }
     fileprivate var creature = Creature.testCreature
@@ -50,7 +50,7 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        battleView.frontMatrixView.delegate = self
+        battleView.matrixView.delegate = self
         
         battleView.setup(with: creature)
         
@@ -59,11 +59,7 @@ class BattleViewController: UIViewController {
             for spell in unlockedSpells {
                 let button = SpellButton(spell)
                 button.addTarget(self, action: #selector(spellButtonTapped(_:)), for: .touchUpInside)
-                battleView.spellButtonsStackView.addArrangedSubview(button)
-                button.snp.remakeConstraints { (make) in
-                    make.height.equalTo(battleView.spellButtonsStackView)
-                    make.width.equalTo(button.snp.height)
-                }
+                battleView.addSpellButton(button)
             }
         }
     }
@@ -84,7 +80,7 @@ class BattleViewController: UIViewController {
     }
 }
 
-extension BattleViewController: FrontMatrixViewDelegate {
+extension BattleViewController: MatrixViewDelegate {
     func finishedGlyphWithResults(okPointsPercentage: Double) {
         log.debug("ratio: \(100 * okPointsPercentage)")
         
@@ -99,7 +95,7 @@ extension BattleViewController: FrontMatrixViewDelegate {
             showBasicAlert(message: "You dun goofd", title: "Failure!")
         }
         
-        battleView.frontMatrixView.clear()
+        battleView.matrixView.clear()
     }
 }
 

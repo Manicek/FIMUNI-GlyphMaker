@@ -1,5 +1,5 @@
 //
-//  FrontMatrixView.swift
+//  MatrixView.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 15/03/2018.
@@ -8,27 +8,20 @@
 
 import UIKit
 
-protocol FrontMatrixViewDelegate: class {
+protocol MatrixViewDelegate: class {
     func finishedGlyphWithResults(okPointsPercentage: Double)
 }
 
-class FrontMatrixView: UIView {
+class MatrixView: UIView {
     
     struct Const {
         static let drawingTime: TimeInterval = 0.05
         static let inBetweenPointsCount = 20
     }
     
-    weak var rowsManager: RowsManager? {
-        didSet {
-            guard let rows = rowsManager?.rows else {
-                return
-            }
-            areaSize = rows[0][0].height
-        }
-    }
+    var rows = [[CGRect]]()
     
-    weak var delegate: FrontMatrixViewDelegate?
+    weak var delegate: MatrixViewDelegate?
     
     fileprivate var glyph = Glyph.testGlyph
     
@@ -36,8 +29,6 @@ class FrontMatrixView: UIView {
     fileprivate var lastPoint = CGPoint.zero
     
     fileprivate var testPaths = [TestPath]()
-    
-    fileprivate var areaSize: CGFloat = 1
     
     fileprivate var expectedPathIndex = 0
     fileprivate var expectedBeginAndEndAreasIndex = 0
@@ -67,6 +58,22 @@ class FrontMatrixView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func createRows() {
+        let size = frame.width / CGFloat(AppConstants.matrixSize)
+        
+        for _ in 0..<AppConstants.matrixSize {
+            rows.append([CGRect]())
+        }
+        
+        for i in 0..<rows.count {
+            rows[i].append(CGRect(x: 0, y: CGFloat(i) * size, width: size, height: size))
+            for j in 1..<AppConstants.matrixSize {
+                let previousArea = rows[i][j - 1]
+                rows[i].append(CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size))
+            }
+        }
+    }
+    
     func setup(with glyph: Glyph, forcefully: Bool = false) {
         log.debug()
         if isAlreadySetup && !forcefully {
@@ -74,17 +81,13 @@ class FrontMatrixView: UIView {
         }
         isAlreadySetup = true
         
-        guard let rows = rowsManager?.rows, !glyph.areasIndexes.isEmpty else {
-            return
-        }
-        
         self.glyph = glyph
         
         areaIndexTuples = Array(glyph.areasIndexes)
         breakpointsIndexes = Array(glyph.breakpointsIndexes)
         
-        createExpectedBeginAndEndAreas(rows: rows)
-        createPointArrayAndTestRectPaths(rows: rows)
+        createExpectedBeginAndEndAreas()
+        createPointArrayAndTestRectPaths()
         
         print("pointArray count: \(pointArray.count)")
         print("breakpointIndex: \(breakpointsIndexes)")
@@ -229,7 +232,7 @@ class FrontMatrixView: UIView {
     }
 }
 
-fileprivate extension FrontMatrixView {
+fileprivate extension MatrixView {
     
     func drawLine(toPoint: CGPoint) {
         path.addLine(to: toPoint)
@@ -242,7 +245,7 @@ fileprivate extension FrontMatrixView {
         path.lineWidth = AppConstants.lineWidth
     }
     
-    func createExpectedBeginAndEndAreas(rows: [[CGRect]]) {
+    func createExpectedBeginAndEndAreas() {
         log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
         
@@ -253,7 +256,7 @@ fileprivate extension FrontMatrixView {
         }
     }
     
-    func createPointArrayAndTestRectPaths(rows: [[CGRect]]) {
+    func createPointArrayAndTestRectPaths() {
         log.debug()
         
         let linesCount = areaIndexTuples.count - (1 + breakpointsIndexes.count)
@@ -275,7 +278,7 @@ fileprivate extension FrontMatrixView {
             var currentX = fromPoint.x
             var currentY = fromPoint.y
             
-            testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaSize: areaSize))
+            testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaSize: rows[0][0].height))
             
             for _ in 0..<Const.inBetweenPointsCount {
                 pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
