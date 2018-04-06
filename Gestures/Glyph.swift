@@ -74,23 +74,12 @@ class Glyph: Object {
     static let testGlyph = Glyph(name: "Test", difficulty: .easy, areasIndexes:
             [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(2, 1), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3), AreaIndexTuple(4, 3), AreaIndexTuple(3, 2)], breakpointsIndexes: [4])
     
-    static func generateRandomGlyph() -> Glyph {
-        let name = "\(Date())"
-        let difficulty = GlyphDifficulty.easy
-        let numberOfPoints = Utils.randomInt(6) + 3
-        let breakpointIndex = Utils.randomInt(numberOfPoints - 1)
-        var areasIndexes = [AreaIndexTuple]()
-        for _ in 0..<numberOfPoints {
-            areasIndexes.append(AreaIndexTuple(Utils.randomInt(AppConstants.matrixSize), Utils.randomInt(AppConstants.matrixSize)))
-        }
-        return Glyph(name: name, difficulty: difficulty, areasIndexes: areasIndexes, breakpointsIndexes: [breakpointIndex])
-    }
-    
-    static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty) -> Glyph {
+    static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty, variant: Int) -> Glyph {
         var tuples = [AreaIndexTuple]()
         var areasIndexes = [AreaIndexTuple]()
         var blockedLines = [Line]()
-        var lastIndex = AppConstants.randomizer % difficulty.tuplesCount
+        let randomizer = AppConstants.randomizer + variant
+        var lastIndex = randomizer % difficulty.tuplesCount
         
         for x in 0..<AppConstants.matrixSize {
             for y in 0..<AppConstants.matrixSize {
@@ -105,19 +94,15 @@ class Glyph: Object {
                 continue
             }
             
-            lastIndex = (lastIndex + AppConstants.randomizer) % tuples.count
+            lastIndex = (lastIndex + randomizer) % tuples.count
             
             var candidateTuple = tuples[lastIndex]
             var candidateLine = Line(from: areasIndexes.last!, to: candidateTuple)
             
-            while true {
-                if candidateLine.overlapsAnyLineIn(blockedLines) {
-                    lastIndex = (lastIndex + 1 == tuples.count) ? 0 : (lastIndex + 1)
-                    candidateTuple = tuples[lastIndex]
-                    candidateLine = Line(from: areasIndexes.last!, to: candidateTuple)
-                } else {
-                    break
-                }
+            while candidateLine.overlapsAnyLineIn(blockedLines) {
+                lastIndex = (lastIndex + 1 == tuples.count) ? 0 : (lastIndex + 1)
+                candidateTuple = tuples[lastIndex]
+                candidateLine = Line(from: areasIndexes.last!, to: candidateTuple)
             }
             
             areasIndexes.append(candidateTuple)

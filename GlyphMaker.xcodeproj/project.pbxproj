@@ -15,7 +15,7 @@
 		9642C35F205AF46C001252CA /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C35E205AF46C001252CA /* Glyph.swift */; };
 		9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C360205B00FA001252CA /* CGRect+Extension.swift */; };
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
-		964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* FrontMatrixView.swift */; };
+		964954E4205AA0AF0089A37D /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* MatrixView.swift */; };
 		964954E6205AA1790089A37D /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* GlyphView.swift */; };
 		96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AC20597DC800E6A6B5 /* AppDelegate.swift */; };
 		96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */; };
@@ -58,7 +58,7 @@
 		9642C35E205AF46C001252CA /* Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
 		9642C360205B00FA001252CA /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
-		964954E3205AA0AF0089A37D /* FrontMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontMatrixView.swift; sourceTree = "<group>"; };
+		964954E3205AA0AF0089A37D /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
 		964954E5205AA1790089A37D /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
 		96A959A920597DC800E6A6B5 /* GlyphMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlyphMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A959AC20597DC800E6A6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		9642C35D205AF45D001252CA /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
-				964954E3205AA0AF0089A37D /* FrontMatrixView.swift */,
+				964954E3205AA0AF0089A37D /* MatrixView.swift */,
 				9645F9EE2063C2EA006E4776 /* TestPath.swift */,
 				9642C35E205AF46C001252CA /* Glyph.swift */,
 				96DA0C03205EE0E200118AA6 /* Spell.swift */,
@@ -443,7 +443,7 @@
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				962CDE9820692C67001CC996 /* AreaIndexTuple.swift in Sources */,
 				96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */,
-				964954E4205AA0AF0089A37D /* FrontMatrixView.swift in Sources */,
+				964954E4205AA0AF0089A37D /* MatrixView.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
 				962CDE9620692B0D001CC996 /* Line.swift in Sources */,
 				96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */,
