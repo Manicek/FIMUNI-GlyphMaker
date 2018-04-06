@@ -44,18 +44,18 @@ class Spell: Object {
         return "id"
     }
     
-    static func createBasicSpells() {// TODO different spells ons ame difficulty - variants
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(.normal, variant: 0), imageIndex: 0)
+    static func createBasicSpells() {
+        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(.easy, variant: 0), imageIndex: 0)
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(.normal, variant: 1), imageIndex: 1)
+        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(.easy, variant: 1), imageIndex: 1)
         frostSpear.unlocked = true
         
-        let fireStorm = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(.hard, variant: 0), imageIndex: 2)
+        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(.hard, variant: 0), imageIndex: 2)
         
         SpellStore.add(Spell: fireball)
         SpellStore.add(Spell: frostSpear)
-        SpellStore.add(Spell: fireStorm)
+        SpellStore.add(Spell: inferno)
     }
 }
 

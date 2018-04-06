@@ -11,10 +11,10 @@ import Simple_KeychainSwift
 
 class AppConstants: NSObject {
 
-    static let lineWidth: CGFloat = 3
-    static let allowedOffsetMultiplier: CGFloat = 0.15
+    static let lineWidth: CGFloat = 6
+    static let allowedOffsetMultiplier: CGFloat = 0.2
     static let matrixSize = 5
-    static let minimumPercentageToPass: Double = 0.80 // Value between 0 and 1
+    static let minimumPercentageToPass: Double = 0.65 // Value between 0 and 1
     static var randomizer: Int {
         if let alreadyLoadedValue = loadedRandomizer {
             return alreadyLoadedValue

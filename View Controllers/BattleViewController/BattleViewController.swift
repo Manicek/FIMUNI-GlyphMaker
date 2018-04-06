@@ -11,11 +11,9 @@ import UIKit
 class BattleViewController: UIViewController {
     
     struct Const {
-        static let timeForSpell: TimeInterval = 6
+        static let timeForFight: TimeInterval = 15
         static let remainingTimeTimerInterval: TimeInterval = 0.1
-        static var progressUpdate: Float {
-            return Float(remainingTimeTimerInterval / timeForSpell)
-        }
+        static let progressUpdate = Float(remainingTimeTimerInterval / timeForFight)
     }
     
     fileprivate var battleView: BattleView {
@@ -64,15 +62,24 @@ class BattleViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        startRemainingTimeTimer()
+    }
+    
     func spellButtonTapped(_ sender: SpellButton) {
         currentSpell = sender.spell
     }
     
     func remainingTimeTimerUpdate() {
-        if remainingTimeTimerCounter == Const.timeForSpell {
-            remainingTimeTimer?.invalidate()
-            remainingTimeTimer = nil
-            remainingTimeTimerCounter = 0
+        if remainingTimeTimerCounter >= Const.timeForFight {
+            if creature.alive {
+                showBasicAlert(message: "You got rekt", title: "Dead")
+            } else{
+                showBasicAlert(message: "You are a winrar", title: "GG")
+            }
+            stopRemainingTimeTimer()
             return
         }
         battleView.remainingTimeView.progress -= Const.progressUpdate
@@ -101,11 +108,14 @@ extension BattleViewController: MatrixViewDelegate {
 
 fileprivate extension BattleViewController {
     
-    func restartRemainingTimeTimer() {
-        remainingTimeTimer?.invalidate()
-        remainingTimeTimer = nil
+    func startRemainingTimeTimer() {
         remainingTimeTimerCounter = 0
         battleView.remainingTimeView.progress = 1
         remainingTimeTimer = Timer.scheduledTimer(timeInterval: Const.remainingTimeTimerInterval, target: self, selector: #selector(remainingTimeTimerUpdate), userInfo: nil, repeats: true)
+    }
+    
+    func stopRemainingTimeTimer() {
+        remainingTimeTimer?.invalidate()
+        remainingTimeTimer = nil
     }
 }

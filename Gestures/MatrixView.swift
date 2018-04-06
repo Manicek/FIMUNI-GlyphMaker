@@ -29,6 +29,7 @@ class MatrixView: UIView {
     fileprivate var lastPoint = CGPoint.zero
     
     fileprivate var testPaths = [TestPath]()
+    fileprivate var matrixAreas = [UIView]()
     
     fileprivate var expectedPathIndex = 0
     fileprivate var expectedBeginAndEndAreasIndex = 0
@@ -45,6 +46,7 @@ class MatrixView: UIView {
     
     fileprivate var isAlreadySetup = false
     fileprivate var shouldDisplayTestPaths = true
+    fileprivate var shouldDisplayMatrix = false
     
     init() {
         super.init(frame: CGRect())
@@ -59,19 +61,31 @@ class MatrixView: UIView {
     }
     
     func createRows() {
+        if rows.count != 0 {
+            log.debug("Matrix rows already created")
+            return
+        }
         let size = frame.width / CGFloat(AppConstants.matrixSize)
         
-        for _ in 0..<AppConstants.matrixSize {
+        for i in 0..<AppConstants.matrixSize {
             rows.append([CGRect]())
+            print("Creating row \(i)")
         }
         
         for i in 0..<rows.count {
-            rows[i].append(CGRect(x: 0, y: CGFloat(i) * size, width: size, height: size))
+            let newFrame = CGRect(x: 0, y: CGFloat(i) * size, width: size, height: size)
+            rows[i].append(newFrame)
+            matrixAreas.append(MatrixArea(frame: newFrame))
+            print("Creating area \(0)")
             for j in 1..<AppConstants.matrixSize {
+                print("Creating area \(j)")
                 let previousArea = rows[i][j - 1]
-                rows[i].append(CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size))
+                let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size)
+                rows[i].append(nextArea)
+                matrixAreas.append(MatrixArea(frame: nextArea))
             }
         }
+        addSubviews(matrixAreas)
     }
     
     func setup(with glyph: Glyph, forcefully: Bool = false) {
@@ -154,6 +168,16 @@ class MatrixView: UIView {
         setNeedsDisplay()
     }
     
+    func showMatrix() {
+        shouldDisplayMatrix = true
+        setNeedsDisplay()
+    }
+    
+    func hideMatrix() {
+        shouldDisplayMatrix = false
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect) {
         
         if shouldDisplayTestPaths {
@@ -163,12 +187,20 @@ class MatrixView: UIView {
             }
         }
         
+        for area in matrixAreas {
+            area.isHidden = !shouldDisplayMatrix
+        }
+
         UIColor.red.setStroke()
         path.stroke()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         log.debug()
+        if !isAlreadySetup {
+            log.warning("Touching before setting up")
+            return
+        }
         if let touch = touches.first {
             let firstPoint = touch.location(in: self)
             lastPoint = firstPoint
@@ -182,6 +214,9 @@ class MatrixView: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !isAlreadySetup {
+            return
+        }
         if let touch = touches.first {
             let currentPoint = touch.location(in: self)
             
@@ -215,6 +250,9 @@ class MatrixView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         log.debug()
+        if !isAlreadySetup {
+            return
+        }
         if let touch = touches.first {
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].last!.contains(touch.location(in: self)) {
                 log.warning("Not ending in end area")

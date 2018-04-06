@@ -34,6 +34,8 @@ class BattleView: UIView {
         
         matrixView.layer.borderWidth = 1
         matrixView.layer.borderColor = UIColor.black.cgColor
+        matrixView.hideTestPaths()
+        matrixView.showMatrix()
         
         spellButtonsStackView.spacing = 10
         spellButtonsStackView.axis = .horizontal
