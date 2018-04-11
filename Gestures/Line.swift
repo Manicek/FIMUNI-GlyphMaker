@@ -9,10 +9,10 @@
 import Foundation
 
 class Line: NSObject {
-    fileprivate var from: AreaIndexTuple
-    fileprivate var to: AreaIndexTuple
+    fileprivate var from: AreaCoordinate
+    fileprivate var to: AreaCoordinate
     
-    init(from: AreaIndexTuple, to: AreaIndexTuple) {
+    init(from: AreaCoordinate, to: AreaCoordinate) {
         self.from = from
         self.to = to
         
@@ -62,12 +62,12 @@ class Line: NSObject {
             
             if yDiff > 0 {
                 while y != yDiff {
-                    subLines.append(Line(from: AreaIndexTuple(from.x, from.y + y), to: AreaIndexTuple(from.x, from.y + y + 1)))
+                    subLines.append(Line(from: AreaCoordinate(from.x, from.y + y), to: AreaCoordinate(from.x, from.y + y + 1)))
                     y += 1
                 }
             } else if yDiff < 0 {
                 while y != yDiff {
-                    subLines.append(Line(from: AreaIndexTuple(from.x, from.y + y), to: AreaIndexTuple(from.x, from.y + y - 1)))
+                    subLines.append(Line(from: AreaCoordinate(from.x, from.y + y), to: AreaCoordinate(from.x, from.y + y - 1)))
                     y -= 1
                 }
             }
@@ -76,12 +76,12 @@ class Line: NSObject {
             
             if xDiff > 0 {
                 while x != xDiff {
-                    subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y), to: AreaIndexTuple(from.x + x + 1, from.y)))
+                    subLines.append(Line(from: AreaCoordinate(from.x + x, from.y), to: AreaCoordinate(from.x + x + 1, from.y)))
                     x += 1
                 }
             } else if xDiff < 0 {
                 while x != xDiff {
-                    subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y), to: AreaIndexTuple(from.x + x - 1, from.y)))
+                    subLines.append(Line(from: AreaCoordinate(from.x + x, from.y), to: AreaCoordinate(from.x + x - 1, from.y)))
                     x -= 1
                 }
             }
@@ -92,13 +92,13 @@ class Line: NSObject {
             if xDiff > 0 {
                 if yDiff > 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y + y), to: AreaIndexTuple(from.x + x + 1, from.y + y + 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x + 1, from.y + y + 1)))
                         y += 1
                         x += 1
                     }
                 } else if yDiff < 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y + y), to: AreaIndexTuple(from.x + x + 1, from.y + y - 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x + 1, from.y + y - 1)))
                         y -= 1
                         x += 1
                     }
@@ -106,13 +106,13 @@ class Line: NSObject {
             } else if xDiff < 0 {
                 if yDiff > 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y + y), to: AreaIndexTuple(from.x + x - 1, from.y + y + 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x - 1, from.y + y + 1)))
                         y += 1
                         x -= 1
                     }
                 } else if yDiff < 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: AreaIndexTuple(from.x + x, from.y + y), to: AreaIndexTuple(from.x + x - 1, from.y + y - 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x - 1, from.y + y - 1)))
                         y -= 1
                         x -= 1
                     }

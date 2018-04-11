@@ -40,7 +40,7 @@ class MatrixView: UIView {
     
     fileprivate var drawingTimer: Timer?
     fileprivate var drawingTimerCounter = 0
-    fileprivate var areaIndexTuples = [AreaIndexTuple]()
+    fileprivate var areaCoordinates = [AreaCoordinate]()
     fileprivate var breakpointsIndexes = [Int]()
     fileprivate var pointArray = [CGPoint]()
     
@@ -97,7 +97,7 @@ class MatrixView: UIView {
         
         self.glyph = glyph
         
-        areaIndexTuples = Array(glyph.areasIndexes)
+        areaCoordinates = Array(glyph.areasCoordinates)
         breakpointsIndexes = Array(glyph.breakpointsIndexes)
         
         createExpectedBeginAndEndAreas()
@@ -105,7 +105,7 @@ class MatrixView: UIView {
         
         print("pointArray count: \(pointArray.count)")
         print("breakpointIndex: \(breakpointsIndexes)")
-        print("areasIndexes count: \(areaIndexTuples.count)")
+        print("areasCoordinates count: \(areaCoordinates.count)")
         print("testPaths count: \(testPaths.count)")
         print("expectedBeginAndEndAreas count: \(expectedBeginAndEndAreas.count)")
         
@@ -287,30 +287,30 @@ fileprivate extension MatrixView {
         log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
         
-        for tupleDuo in glyph.expectedBegindEndAreaIndexTuples() {
-            let firstTuple = tupleDuo.first!
-            let lastTuple = tupleDuo.last!
-            expectedBeginAndEndAreas.append([rows[firstTuple.x][firstTuple.y], rows[lastTuple.x][lastTuple.y]])
+        for tuple in glyph.expectedBeginEndAreaCoordinates() {
+            let firstCoordinate = tuple.0
+            let lastCoordinate = tuple.1
+            expectedBeginAndEndAreas.append([rows[firstCoordinate.x][firstCoordinate.y], rows[lastCoordinate.x][lastCoordinate.y]])
         }
     }
     
     func createPointArrayAndTestRectPaths() {
         log.debug()
         
-        let linesCount = areaIndexTuples.count - (1 + breakpointsIndexes.count)
+        let linesCount = areaCoordinates.count - (1 + breakpointsIndexes.count)
         pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
         testPaths = [TestPath]()
         
         var arrayIndex = 0
         
-        for i in 0..<areaIndexTuples.count - 1 {
+        for i in 0..<areaCoordinates.count - 1 {
             if breakpointsIndexes.contains(i + 1) {
                 continue
             }
-            let fromTuple = areaIndexTuples[i]
-            let toTuple = areaIndexTuples[i + 1]
-            let fromPoint = rows[fromTuple.x][fromTuple.y].center
-            let toPoint = rows[toTuple.x][toTuple.y].center
+            let fromCoordinate = areaCoordinates[i]
+            let toCoordinate = areaCoordinates[i + 1]
+            let fromPoint = rows[fromCoordinate.x][fromCoordinate.y].center
+            let toPoint = rows[toCoordinate.x][toCoordinate.y].center
             let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCount)
             let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCount)
             var currentX = fromPoint.x

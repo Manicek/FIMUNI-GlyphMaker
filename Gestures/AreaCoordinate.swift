@@ -1,5 +1,5 @@
 //
-//  AreaIndexTuple.swift
+//  AreaCoordinate.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 26/03/2018.
@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class AreaIndexTuple: Object {
+class AreaCoordinate: Object {
     dynamic var id = ""
     dynamic var x = 0
     dynamic var y = 0
@@ -29,10 +29,10 @@ class AreaIndexTuple: Object {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        guard let otherTuple = object as? AreaIndexTuple else {
+        guard let otherCoordinate = object as? AreaCoordinate else {
             return false
         }
         
-        return otherTuple.x == self.x && otherTuple.y == self.y
+        return otherCoordinate.x == self.x && otherCoordinate.y == self.y
     }
 }

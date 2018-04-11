@@ -11,7 +11,7 @@
 		961A7D8B205EA5460017046C /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961A7D8A205EA5460017046C /* Creature.swift */; };
 		962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A3F122067D0CD0083A8B2 /* Utils.swift */; };
 		962CDE9620692B0D001CC996 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9520692B0D001CC996 /* Line.swift */; };
-		962CDE9820692C67001CC996 /* AreaIndexTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9720692C67001CC996 /* AreaIndexTuple.swift */; };
+		962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9720692C67001CC996 /* AreaCoordinate.swift */; };
 		9642C35F205AF46C001252CA /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C35E205AF46C001252CA /* Glyph.swift */; };
 		9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C360205B00FA001252CA /* CGRect+Extension.swift */; };
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
@@ -55,7 +55,7 @@
 		961A7D8A205EA5460017046C /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		962A3F122067D0CD0083A8B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		962CDE9520692B0D001CC996 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
-		962CDE9720692C67001CC996 /* AreaIndexTuple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaIndexTuple.swift; sourceTree = "<group>"; };
+		962CDE9720692C67001CC996 /* AreaCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCoordinate.swift; sourceTree = "<group>"; };
 		9642C35E205AF46C001252CA /* Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
 		9642C360205B00FA001252CA /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				9642C35E205AF46C001252CA /* Glyph.swift */,
 				96DA0C03205EE0E200118AA6 /* Spell.swift */,
 				962CDE9520692B0D001CC996 /* Line.swift */,
-				962CDE9720692C67001CC996 /* AreaIndexTuple.swift */,
+				962CDE9720692C67001CC996 /* AreaCoordinate.swift */,
 				96E9FAA62077825800B31060 /* MatrixArea.swift */,
 			);
 			path = Gestures;
@@ -445,7 +445,7 @@
 				96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */,
 				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
-				962CDE9820692C67001CC996 /* AreaIndexTuple.swift in Sources */,
+				962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */,
 				96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */,
 				964954E4205AA0AF0089A37D /* MatrixView.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,

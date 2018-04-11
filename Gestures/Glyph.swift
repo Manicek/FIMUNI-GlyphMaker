@@ -13,10 +13,10 @@ enum GlyphDifficulty: Int {
     case normal = 1
     case hard = 2
     
-    var tuplesCount: Int {
+    var coordinatesCount: Int {
         switch self {
         case .easy: return 5
-        case .normal: return 9
+        case .normal: return 8
         case .hard: return 13
         }
     }
@@ -24,7 +24,7 @@ enum GlyphDifficulty: Int {
     var breakpointsIndexes: [Int] {
         switch self {
         case .easy: return []
-        case .normal: return [5]
+        case .normal: return [4]
         case .hard: return [7]
         }
     }
@@ -32,24 +32,22 @@ enum GlyphDifficulty: Int {
 
 class Glyph: Object {
     dynamic var id = ""
-    dynamic var name = ""
     private dynamic var difficultyRaw = GlyphDifficulty.easy.rawValue
     var difficulty: GlyphDifficulty {
         get { return GlyphDifficulty(rawValue: difficultyRaw)! }
         set { difficultyRaw = difficulty.rawValue }
     }
-    let areasIndexes = List<AreaIndexTuple>()
+    let areasCoordinates = List<AreaCoordinate>()
     let breakpointsIndexes = List<Int>()
     
-    convenience init(name: String, difficulty: GlyphDifficulty, areasIndexes: [AreaIndexTuple], breakpointsIndexes: [Int]) {
+    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
         self.init()
 
-        self.id = UUID().uuidString + name
-        self.name = name
+        self.id = UUID().uuidString
         self.difficulty = difficulty
-        self.areasIndexes.append(objectsIn: areasIndexes)
+        self.areasCoordinates.append(objectsIn: areasCoordinates)
         
-        let notTooBigOrSmallBreakpointsIndexes = breakpointsIndexes.filter( {$0 < areasIndexes.count - 1 && $0 > 1} ).sorted()
+        let notTooBigOrSmallBreakpointsIndexes = breakpointsIndexes.filter( {$0 < areasCoordinates.count - 1 && $0 > 1} ).sorted()
         
         var checkedBreakpointsIndexes = [Int]()
         if !notTooBigOrSmallBreakpointsIndexes.isEmpty {
@@ -71,64 +69,79 @@ class Glyph: Object {
         return "id"
     }
     
-    static let testGlyph = Glyph(name: "Test", difficulty: .easy, areasIndexes:
-            [AreaIndexTuple(2, 1), AreaIndexTuple(0, 2), AreaIndexTuple(2, 3), AreaIndexTuple(2, 1), AreaIndexTuple(3, 1), AreaIndexTuple(3, 3), AreaIndexTuple(4, 3), AreaIndexTuple(3, 2)], breakpointsIndexes: [4])
+    static let testGlyph = Glyph(difficulty: .easy, areasCoordinates:
+            [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
+    /**
+     - parameter difficulty: decides length of glyph and breakpoints
+     - parameter variant: enables different glyphs of same difficulty
+     
+     - returns: generated glyph
+    */
     static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty, variant: Int) -> Glyph {
-        var tuples = [AreaIndexTuple]()
-        var areasIndexes = [AreaIndexTuple]()
+        var coordinates = [AreaCoordinate]()
+        var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
         let randomizer = AppConstants.randomizer + variant
-        var lastIndex = randomizer % difficulty.tuplesCount
+        var lastIndex = randomizer % difficulty.coordinatesCount
         
         for x in 0..<AppConstants.matrixSize {
             for y in 0..<AppConstants.matrixSize {
-                tuples.append(AreaIndexTuple(x, y))
+                coordinates.append(AreaCoordinate(x, y))
             }
         }
         
-        areasIndexes.append(tuples[lastIndex])
+        areasCoordinates.append(coordinates[lastIndex])
         
-        for i in 1..<difficulty.tuplesCount {
+        for i in 1..<difficulty.coordinatesCount {
             if difficulty.breakpointsIndexes.contains(i) {
                 continue
             }
             
-            lastIndex = (lastIndex + randomizer) % tuples.count
+            lastIndex = (lastIndex + randomizer) % coordinates.count
             
-            var candidateTuple = tuples[lastIndex]
-            var candidateLine = Line(from: areasIndexes.last!, to: candidateTuple)
+            var candidateCoordinate = coordinates[lastIndex]
+            var candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
             
             while candidateLine.overlapsAnyLineIn(blockedLines) {
-                lastIndex = (lastIndex + 1 == tuples.count) ? 0 : (lastIndex + 1)
-                candidateTuple = tuples[lastIndex]
-                candidateLine = Line(from: areasIndexes.last!, to: candidateTuple)
+                lastIndex = (lastIndex + 1 == coordinates.count) ? 0 : (lastIndex + 1)
+                candidateCoordinate = coordinates[lastIndex]
+                candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
             }
             
-            areasIndexes.append(candidateTuple)
+            areasCoordinates.append(candidateCoordinate)
             blockedLines.append(candidateLine)
         }
         
-        return Glyph(name: "\(Date())", difficulty: difficulty, areasIndexes: areasIndexes, breakpointsIndexes: difficulty.breakpointsIndexes)
+        return Glyph(difficulty: difficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: difficulty.breakpointsIndexes)
     }
     
-    func expectedBegindEndAreaIndexTuples() -> [[AreaIndexTuple]] {
-        if areasIndexes.isEmpty {
+    /**
+     - returns: array of coordinate tuples representing expected first and last areas of all gesture parts
+     ### Example: ###
+     
+     for glyph going from coordinate **c1** to **c2**,
+     then breaking and going from **c3** to **c4**,
+     the func returns [(**c1**, **c2**), (**c3**, **c4**)]
+     
+    */
+    func expectedBeginEndAreaCoordinates() -> [(AreaCoordinate, AreaCoordinate)] {
+        if areasCoordinates.isEmpty {
             return []
         }
 
         if breakpointsIndexes.isEmpty {
-            return [[areasIndexes.first!, areasIndexes.last!]]
+            return [(areasCoordinates.first!, areasCoordinates.last!)]
         }
         
-        var tuples = [[AreaIndexTuple]]()
-        var beginTuple = areasIndexes.first!
+        var coordinates = [(AreaCoordinate, AreaCoordinate)]()
+        var beginCoordinate = areasCoordinates.first!
         for index in breakpointsIndexes {
-            tuples.append([beginTuple, areasIndexes[index - 1]])
-            beginTuple = areasIndexes[index]
+            coordinates.append((beginCoordinate, areasCoordinates[index - 1]))
+            beginCoordinate = areasCoordinates[index]
         }
-        tuples.append([beginTuple, areasIndexes.last!])
-        return tuples
+        coordinates.append((beginCoordinate, areasCoordinates.last!))
+        return coordinates
     }
 }
 
