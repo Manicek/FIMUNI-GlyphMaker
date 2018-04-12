@@ -50,6 +50,7 @@ class BattleViewController: UIViewController {
         
         battleView.matrixView.delegate = self
         
+        creature = Creature.getRandomCreature()
         battleView.setup(with: creature)
         
         if let results = SpellStore.getAllUnlockedSpells() {
@@ -60,12 +61,19 @@ class BattleViewController: UIViewController {
                 battleView.addSpellButton(button)
             }
         }
+        
+        battleView.runButton.addTarget(self, action: #selector(runButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         startRemainingTimeTimer()
+    }
+    
+    func runButtonTapped() {
+        stopRemainingTimeTimer()
+        dismiss(animated: true, completion: nil)
     }
     
     func spellButtonTapped(_ sender: SpellButton) {

@@ -12,6 +12,8 @@ enum CreatureType: Int {
     case beardedDragon = 0
     case wolf = 1
     
+    static let allValues: [CreatureType] = [.beardedDragon, .wolf]
+    
     func healthForLevel(_ level: Int) -> Double {
         return baseHealth * Double(level)
     }
@@ -51,7 +53,7 @@ class Creature: Object {
     private dynamic var typeRaw = CreatureType.wolf.rawValue
     var type: CreatureType {
         get { return CreatureType(rawValue: typeRaw)! }
-        set { typeRaw = type.rawValue }
+        set { typeRaw = newValue.rawValue }
     }
     dynamic var maxHealth: Double = 100
     dynamic var health: Double = 100
@@ -98,6 +100,12 @@ class Creature: Object {
     }
     
     static let testCreature = Creature(name: "Test", type: .wolf, level: 1)
+    
+    static func getRandomCreature() -> Creature {
+        return Creature(name: "",
+                        type: CreatureType(rawValue: Utils.randomInt(CreatureType.allValues.count))!,
+                        level: Utils.randomInt(3))
+    }
 }
 
 struct CreatureStore {

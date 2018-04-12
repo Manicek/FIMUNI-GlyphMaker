@@ -16,6 +16,8 @@ class BattleView: UIView {
     
     fileprivate let creatureImageView = UIImageView()
     
+    let runButton = RegularButton("Run")
+    
     let matrixView = MatrixView()
     fileprivate let spellButtonsStackView = UIStackView()
     
@@ -32,9 +34,7 @@ class BattleView: UIView {
         
         remainingTimeView.progress = 1
         
-        matrixView.layer.borderWidth = 1
-        matrixView.layer.borderColor = UIColor.black.cgColor
-        matrixView.hideTestPaths()
+        //matrixView.hideTestPaths()
         matrixView.showMatrix()
         
         spellButtonsStackView.spacing = 10
@@ -79,6 +79,7 @@ fileprivate extension BattleView {
                 matrixView,
                 healthBarView,
                 healthLabel,
+                runButton,
                 remainingTimeView,
                 spellButtonsStackView
             ]
@@ -110,6 +111,11 @@ fileprivate extension BattleView {
         healthLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(healthBarView.snp.top).offset(-5)
             make.centerX.equalTo(healthBarView)
+        }
+        
+        runButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(healthLabel.snp.top).offset(-10)
+            make.centerX.equalToSuperview()
         }
         
         remainingTimeView.snp.makeConstraints { (make) in

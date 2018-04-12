@@ -11,13 +11,15 @@ import UIKit
 class StartView: UIView {
 
     struct Const {
-        static let buttonSize: CGFloat = 65
-        static let buttonInset: CGFloat = 10
+        static let buttonSize: CGFloat = 80
+        static let buttonInset: CGFloat = 20
     }
     
     fileprivate let backgroundImageView = BackgroundImageView()
-    let schoolButton = UIButton()
-    let fightButton = UIButton()
+    let spellsButton = DiamondButton("Spells")
+    let fightButton = DiamondButton("Fight")
+    let creaturesButton = DiamondButton("Creatures")
+    let createButton = DiamondButton("Create")
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -28,15 +30,10 @@ class StartView: UIView {
         
         backgroundColor = .clear
         
-        schoolButton.setTitle("School", for: .normal)
-        schoolButton.setTitleColor(.black, for: .normal)
-        schoolButton.backgroundColor = .green
-        schoolButton.layer.cornerRadius = Const.buttonSize / 2
-        
-        fightButton.setTitle("Fight", for: .normal)
-        fightButton.setTitleColor(.black, for: .normal)
+        spellsButton.backgroundColor = .red
+        creaturesButton.backgroundColor = .green
         fightButton.backgroundColor = .blue
-        fightButton.layer.cornerRadius = Const.buttonSize / 2
+        createButton.backgroundColor = .white
         
         addSubviewsAndSetupConstraints()
     }
@@ -48,8 +45,10 @@ fileprivate extension StartView {
         addSubviews(
             [
                 backgroundImageView,
-                schoolButton,
-                fightButton
+                spellsButton,
+                creaturesButton,
+                fightButton,
+                createButton
             ]
         )
         
@@ -57,16 +56,28 @@ fileprivate extension StartView {
             make.edges.equalToSuperview()
         }
         
-        schoolButton.snp.makeConstraints { (make) in
+        spellsButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.height.width.equalTo(Const.buttonSize)
             make.right.equalTo(self.snp.centerX).offset(-Const.buttonInset)
+        }
+        
+        creaturesButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(Const.buttonSize)
+            make.bottom.equalTo(self.snp.centerY).offset(-Const.buttonInset)
         }
         
         fightButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.height.width.equalTo(Const.buttonSize)
             make.left.equalTo(self.snp.centerX).offset(Const.buttonInset)
+        }
+        
+        createButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(Const.buttonSize)
+            make.top.equalTo(self.snp.centerY).offset(Const.buttonInset)
         }
     }
 }

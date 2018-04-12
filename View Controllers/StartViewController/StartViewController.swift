@@ -17,8 +17,10 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startView.schoolButton.addTarget(self, action: #selector(schoolButtonTapped), for: .touchUpInside)
+        startView.spellsButton.addTarget(self, action: #selector(spellsButtonTapped), for: .touchUpInside)
         startView.fightButton.addTarget(self, action: #selector(fightButtonTapped), for: .touchUpInside)
+        startView.creaturesButton.addTarget(self, action: #selector(creaturesButtonTapped), for: .touchUpInside)
+        startView.createButton.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
 
     }
     
@@ -28,11 +30,19 @@ class StartViewController: UIViewController {
         view = StartView()
     }
 
-    func schoolButtonTapped() {
+    func spellsButtonTapped() {
         navigationController?.pushViewController(SpellListViewController(), animated: true)
     }
     
     func fightButtonTapped() {
-        navigationController?.present(BattleViewController(), animated: true, completion: nil)
+        navigationController?.present(BattleViewController(), animated: true)
+    }
+    
+    func creaturesButtonTapped() {
+        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+    }
+    
+    func createButtonTapped() {
+        navigationController?.pushViewController(CreationViewController(), animated: true)
     }
 }

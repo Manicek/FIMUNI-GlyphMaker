@@ -53,6 +53,7 @@ class MatrixView: UIView {
         
         recreatePath()
         
+        isUserInteractionEnabled = false
         backgroundColor = .clear
     }
     
@@ -67,18 +68,15 @@ class MatrixView: UIView {
         }
         let size = frame.width / CGFloat(AppConstants.matrixSize)
         
-        for i in 0..<AppConstants.matrixSize {
+        for _ in 0..<AppConstants.matrixSize {
             rows.append([CGRect]())
-            print("Creating row \(i)")
         }
         
         for i in 0..<rows.count {
             let newFrame = CGRect(x: 0, y: CGFloat(i) * size, width: size, height: size)
             rows[i].append(newFrame)
             matrixAreas.append(MatrixArea(frame: newFrame))
-            print("Creating area \(0)")
             for j in 1..<AppConstants.matrixSize {
-                print("Creating area \(j)")
                 let previousArea = rows[i][j - 1]
                 let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size)
                 rows[i].append(nextArea)
@@ -109,6 +107,7 @@ class MatrixView: UIView {
         print("testPaths count: \(testPaths.count)")
         print("expectedBeginAndEndAreas count: \(expectedBeginAndEndAreas.count)")
         
+        isUserInteractionEnabled = true
         setNeedsDisplay()
     }
     
@@ -179,7 +178,6 @@ class MatrixView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        
         if shouldDisplayTestPaths {
             UIColor.lightGray.setFill()
             for testPath in testPaths {
@@ -197,10 +195,6 @@ class MatrixView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         log.debug()
-        if !isAlreadySetup {
-            log.warning("Touching before setting up")
-            return
-        }
         if let touch = touches.first {
             let firstPoint = touch.location(in: self)
             lastPoint = firstPoint
@@ -208,15 +202,12 @@ class MatrixView: UIView {
             
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].first!.contains(firstPoint) {
                 nokPoints += 100
-                log.warning("Not starting in begin area")
+                log.warning("Not starting in expected area")
             }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !isAlreadySetup {
-            return
-        }
         if let touch = touches.first {
             let currentPoint = touch.location(in: self)
             
@@ -234,13 +225,7 @@ class MatrixView: UIView {
                 print("ok: \(okPoints) moving to next: \(expectedPathIndex)")
             } else {
                 nokPoints += 2
-                var actual = [Int]()
-                for i in 0..<testPaths.count {
-                    if testPaths[i].contains(currentPoint) {
-                        actual.append(i)
-                    }
-                }
-                print("nok: \(nokPoints), expected: \(expectedPathIndex), actual: \(actual)")
+                print("nok: \(nokPoints), expected: \(expectedPathIndex)")
             }
             
             drawLine(toPoint: currentPoint)
@@ -250,12 +235,9 @@ class MatrixView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         log.debug()
-        if !isAlreadySetup {
-            return
-        }
         if let touch = touches.first {
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].last!.contains(touch.location(in: self)) {
-                log.warning("Not ending in end area")
+                log.warning("Not ending in expected area")
                 nokPoints += 100
             }
         }

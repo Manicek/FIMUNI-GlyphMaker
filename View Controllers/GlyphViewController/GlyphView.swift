@@ -12,8 +12,8 @@ class GlyphView: UIView {
     
     fileprivate let backgroundImageView = BackgroundImageView()
     fileprivate let matrixView = MatrixView()
-    fileprivate let clearButton = UIButton()
-    fileprivate let drawGlyphButton = UIButton()
+    fileprivate let clearButton = RegularButton("Clear")
+    fileprivate let drawGlyphButton = RegularButton("Draw")
     
     fileprivate var glyph: Glyph!
 
@@ -28,17 +28,9 @@ class GlyphView: UIView {
 
         backgroundColor = .clear
                 
-        clearButton.setTitle("Clear", for: .normal)
-        clearButton.setTitleColor(.black, for: .normal)
         clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
-        clearButton.layer.borderColor = UIColor.black.cgColor
-        clearButton.layer.borderWidth = 2
         
-        drawGlyphButton.setTitle("Draw", for: .normal)
-        drawGlyphButton.setTitleColor(.black, for: .normal)
         drawGlyphButton.addTarget(self, action: #selector(drawGlyphButtonTapped), for: .touchUpInside)
-        drawGlyphButton.layer.borderColor = UIColor.black.cgColor
-        drawGlyphButton.layer.borderWidth = 2
         
         addSubviewsAndSetupConstraints()
     }

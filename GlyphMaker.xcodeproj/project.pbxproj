@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		960D855D205BF9A90034F709 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D855C205BF9A90034F709 /* AppConstants.swift */; };
+		9617360D207F4E1D008B01AE /* CreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617360C207F4E1D008B01AE /* CreationView.swift */; };
+		9617360F207F4E2C008B01AE /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617360E207F4E2C008B01AE /* CreationViewController.swift */; };
+		96173611207F68BA008B01AE /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173610207F68BA008B01AE /* RegularButton.swift */; };
+		96173613207F6A18008B01AE /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173612207F6A18008B01AE /* UIFont+Extension.swift */; };
+		9617361E207F6ADD008B01AE /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96173618207F6ADD008B01AE /* SFUIText-Medium.ttf */; };
+		9617361F207F6ADD008B01AE /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96173619207F6ADD008B01AE /* SFUIText-Semibold.ttf */; };
+		96173620207F6ADD008B01AE /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361A207F6ADD008B01AE /* SFUIText-Light.ttf */; };
+		96173621207F6ADD008B01AE /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361B207F6ADD008B01AE /* SFUIText-Regular.ttf */; };
+		96173622207F6ADD008B01AE /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361C207F6ADD008B01AE /* SFUIText-Bold.ttf */; };
+		96173623207F6ADD008B01AE /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */; };
+		96173625207F6F96008B01AE /* DiamondButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173624207F6F96008B01AE /* DiamondButton.swift */; };
 		961A7D8B205EA5460017046C /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961A7D8A205EA5460017046C /* Creature.swift */; };
 		962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A3F122067D0CD0083A8B2 /* Utils.swift */; };
 		962CDE9620692B0D001CC996 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9520692B0D001CC996 /* Line.swift */; };
@@ -52,6 +63,17 @@
 		3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlyphMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FEB70DCEB8BB4B2292638F /* Pods-GlyphMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		960D855C205BF9A90034F709 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		9617360C207F4E1D008B01AE /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
+		9617360E207F4E2C008B01AE /* CreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
+		96173610207F68BA008B01AE /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
+		96173612207F6A18008B01AE /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		96173618207F6ADD008B01AE /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Medium.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Medium.ttf"; sourceTree = SOURCE_ROOT; };
+		96173619207F6ADD008B01AE /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Semibold.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Semibold.ttf"; sourceTree = SOURCE_ROOT; };
+		9617361A207F6ADD008B01AE /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Light.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		9617361B207F6ADD008B01AE /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Regular.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		9617361C207F6ADD008B01AE /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Heavy.ttf"; sourceTree = SOURCE_ROOT; };
+		96173624207F6F96008B01AE /* DiamondButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondButton.swift; sourceTree = "<group>"; };
 		961A7D8A205EA5460017046C /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		962A3F122067D0CD0083A8B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		962CDE9520692B0D001CC996 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
@@ -115,6 +137,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9617360B207F4DED008B01AE /* CreationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9617360C207F4E1D008B01AE /* CreationView.swift */,
+				9617360E207F4E2C008B01AE /* CreationViewController.swift */,
+			);
+			path = CreationViewController;
+			sourceTree = "<group>";
+		};
+		96173616207F6AA0008B01AE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96173617207F6AC7008B01AE /* Fonts */,
+				96A959B320597DC800E6A6B5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		96173617207F6AC7008B01AE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9617361C207F6ADD008B01AE /* SFUIText-Bold.ttf */,
+				9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */,
+				9617361A207F6ADD008B01AE /* SFUIText-Light.ttf */,
+				96173618207F6ADD008B01AE /* SFUIText-Medium.ttf */,
+				9617361B207F6ADD008B01AE /* SFUIText-Regular.ttf */,
+				96173619207F6ADD008B01AE /* SFUIText-Semibold.ttf */,
+			);
+			name = Fonts;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		961A7D89205EA5320017046C /* Creatures */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,8 +220,8 @@
 		96A959AB20597DC800E6A6B5 /* GlyphMaker */ = {
 			isa = PBXGroup;
 			children = (
+				96173616207F6AA0008B01AE /* Resources */,
 				96A959AC20597DC800E6A6B5 /* AppDelegate.swift */,
-				96A959B320597DC800E6A6B5 /* Assets.xcassets */,
 				96A959B520597DC800E6A6B5 /* LaunchScreen.storyboard */,
 				96A959B820597DC800E6A6B5 /* Info.plist */,
 			);
@@ -177,6 +231,7 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9617360B207F4DED008B01AE /* CreationViewController */,
 				96D17CB320640C5C0004CC05 /* BattleViewController */,
 				96DA0C14205F1B9E00118AA6 /* StartViewController */,
 				96DA0C06205EF8FF00118AA6 /* SpellListViewController */,
@@ -193,6 +248,7 @@
 				96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */,
 				9642C360205B00FA001252CA /* CGRect+Extension.swift */,
 				96FD3950206E56A3006390DF /* UIViewController+Extension.swift */,
+				96173612207F6A18008B01AE /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -287,6 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				96D17CBC206414FA0004CC05 /* SpellButton.swift */,
+				96173610207F68BA008B01AE /* RegularButton.swift */,
+				96173624207F6F96008B01AE /* DiamondButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -361,7 +419,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96173622207F6ADD008B01AE /* SFUIText-Bold.ttf in Resources */,
+				96173620207F6ADD008B01AE /* SFUIText-Light.ttf in Resources */,
 				96A959B720597DC800E6A6B5 /* LaunchScreen.storyboard in Resources */,
+				9617361F207F6ADD008B01AE /* SFUIText-Semibold.ttf in Resources */,
+				96173623207F6ADD008B01AE /* SFUIText-Heavy.ttf in Resources */,
+				96173621207F6ADD008B01AE /* SFUIText-Regular.ttf in Resources */,
+				9617361E207F6ADD008B01AE /* SFUIText-Medium.ttf in Resources */,
 				96A959B420597DC800E6A6B5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,12 +501,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96173625207F6F96008B01AE /* DiamondButton.swift in Sources */,
 				96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */,
+				96173611207F68BA008B01AE /* RegularButton.swift in Sources */,
 				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
 				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
+				9617360F207F4E2C008B01AE /* CreationViewController.swift in Sources */,
 				96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */,
+				9617360D207F4E1D008B01AE /* CreationView.swift in Sources */,
 				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */,
@@ -472,6 +540,7 @@
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,
 				9642C35F205AF46C001252CA /* Glyph.swift in Sources */,
 				9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */,
+				96173613207F6A18008B01AE /* UIFont+Extension.swift in Sources */,
 				964954E6205AA1790089A37D /* GlyphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
