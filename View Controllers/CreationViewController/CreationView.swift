@@ -10,7 +10,7 @@ import UIKit
 
 class CreationView: UIView {
     
-    fileprivate let matrixView = MatrixView()
+    fileprivate let rowsView = RowsView()
     fileprivate let resetButton = RegularButton("Reset")
     fileprivate let doneButton = RegularButton("Done")
     fileprivate let breakpointButton = RegularButton("Breakpoint")
@@ -23,8 +23,7 @@ class CreationView: UIView {
         
         backgroundColor = .white
         
-        matrixView.hideTestPaths()
-        matrixView.showMatrix()
+        rowsView.showMatrix()
         
         addSubviewsAndSetupConstraints()
     }
@@ -36,20 +35,17 @@ class CreationView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        matrixView.createRows()
+        rowsView.createRows()
     }
 
     func resetButtonTapped() {
         breakpoints = [Int]()
         coordinates = [AreaCoordinate]()
-        
-        matrixView.clear()
     }
     
     func breakpointButtonTapped() {
         breakpoints.append(coordinates.count)
     }
-    
 }
 
 fileprivate extension CreationView {
@@ -57,14 +53,17 @@ fileprivate extension CreationView {
     func addSubviewsAndSetupConstraints() {
         addSubviews(
             [
-                matrixView
+                rowsView,
+                doneButton,
+                resetButton,
+                breakpointButton
             ]
         )
         
-        matrixView.snp.makeConstraints { (make) in
+        rowsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(matrixView.snp.width)
+            make.height.equalTo(rowsView.snp.width)
         }
     }
 }

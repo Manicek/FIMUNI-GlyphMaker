@@ -20,6 +20,8 @@
 		96173623207F6ADD008B01AE /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */; };
 		96173625207F6F96008B01AE /* DiamondButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173624207F6F96008B01AE /* DiamondButton.swift */; };
 		961A7D8B205EA5460017046C /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961A7D8A205EA5460017046C /* Creature.swift */; };
+		961CD5752080B9560050A30F /* RowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961CD5742080B9560050A30F /* RowsView.swift */; };
+		961CD5772080BCA40050A30F /* ShowHideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961CD5762080BCA40050A30F /* ShowHideButton.swift */; };
 		962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A3F122067D0CD0083A8B2 /* Utils.swift */; };
 		962CDE9620692B0D001CC996 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9520692B0D001CC996 /* Line.swift */; };
 		962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9720692C67001CC996 /* AreaCoordinate.swift */; };
@@ -27,9 +29,9 @@
 		9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C360205B00FA001252CA /* CGRect+Extension.swift */; };
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
 		964954E4205AA0AF0089A37D /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* MatrixView.swift */; };
-		964954E6205AA1790089A37D /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* GlyphView.swift */; };
+		964954E6205AA1790089A37D /* SchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* SchoolView.swift */; };
 		96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AC20597DC800E6A6B5 /* AppDelegate.swift */; };
-		96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */; };
+		96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */; };
 		96A959B420597DC800E6A6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B320597DC800E6A6B5 /* Assets.xcassets */; };
 		96A959B720597DC800E6A6B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B520597DC800E6A6B5 /* LaunchScreen.storyboard */; };
 		96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C22059A1D300E6A6B5 /* UIColor+Extension.swift */; };
@@ -75,6 +77,8 @@
 		9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Heavy.ttf"; sourceTree = SOURCE_ROOT; };
 		96173624207F6F96008B01AE /* DiamondButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondButton.swift; sourceTree = "<group>"; };
 		961A7D8A205EA5460017046C /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
+		961CD5742080B9560050A30F /* RowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowsView.swift; sourceTree = "<group>"; };
+		961CD5762080BCA40050A30F /* ShowHideButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideButton.swift; sourceTree = "<group>"; };
 		962A3F122067D0CD0083A8B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		962CDE9520692B0D001CC996 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		962CDE9720692C67001CC996 /* AreaCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCoordinate.swift; sourceTree = "<group>"; };
@@ -82,10 +86,10 @@
 		9642C360205B00FA001252CA /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
 		964954E3205AA0AF0089A37D /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
-		964954E5205AA1790089A37D /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
+		964954E5205AA1790089A37D /* SchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolView.swift; sourceTree = "<group>"; };
 		96A959A920597DC800E6A6B5 /* GlyphMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlyphMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A959AC20597DC800E6A6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphViewController.swift; sourceTree = "<group>"; };
+		96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
 		96A959B320597DC800E6A6B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96A959B620597DC800E6A6B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96A959B820597DC800E6A6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				962CDE9520692B0D001CC996 /* Line.swift */,
 				962CDE9720692C67001CC996 /* AreaCoordinate.swift */,
 				96E9FAA62077825800B31060 /* MatrixArea.swift */,
+				961CD5742080B9560050A30F /* RowsView.swift */,
 			);
 			path = Gestures;
 			sourceTree = "<group>";
@@ -235,7 +240,7 @@
 				96D17CB320640C5C0004CC05 /* BattleViewController */,
 				96DA0C14205F1B9E00118AA6 /* StartViewController */,
 				96DA0C06205EF8FF00118AA6 /* SpellListViewController */,
-				96DA0C05205EF8E900118AA6 /* GlyphViewController */,
+				96DA0C05205EF8E900118AA6 /* SchoolViewController */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -273,13 +278,13 @@
 			path = BattleViewController;
 			sourceTree = "<group>";
 		};
-		96DA0C05205EF8E900118AA6 /* GlyphViewController */ = {
+		96DA0C05205EF8E900118AA6 /* SchoolViewController */ = {
 			isa = PBXGroup;
 			children = (
-				96A959AE20597DC800E6A6B5 /* GlyphViewController.swift */,
-				964954E5205AA1790089A37D /* GlyphView.swift */,
+				96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */,
+				964954E5205AA1790089A37D /* SchoolView.swift */,
 			);
-			path = GlyphViewController;
+			path = SchoolViewController;
 			sourceTree = "<group>";
 		};
 		96DA0C06205EF8FF00118AA6 /* SpellListViewController */ = {
@@ -345,6 +350,7 @@
 				96D17CBC206414FA0004CC05 /* SpellButton.swift */,
 				96173610207F68BA008B01AE /* RegularButton.swift */,
 				96173624207F6F96008B01AE /* DiamondButton.swift */,
+				961CD5762080BCA40050A30F /* ShowHideButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -504,7 +510,7 @@
 				96173625207F6F96008B01AE /* DiamondButton.swift in Sources */,
 				96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */,
 				96173611207F68BA008B01AE /* RegularButton.swift in Sources */,
-				96A959AF20597DC800E6A6B5 /* GlyphViewController.swift in Sources */,
+				96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */,
 				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
@@ -515,6 +521,7 @@
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */,
 				96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */,
+				961CD5772080BCA40050A30F /* ShowHideButton.swift in Sources */,
 				964954E4205AA0AF0089A37D /* MatrixView.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
 				962CDE9620692B0D001CC996 /* Line.swift in Sources */,
@@ -526,6 +533,7 @@
 				96FD3951206E56A3006390DF /* UIViewController+Extension.swift in Sources */,
 				96DA0C04205EE0E200118AA6 /* Spell.swift in Sources */,
 				96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */,
+				961CD5752080B9560050A30F /* RowsView.swift in Sources */,
 				96DA0C0A205EF92E00118AA6 /* SpellListView.swift in Sources */,
 				96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */,
 				96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */,
@@ -541,7 +549,7 @@
 				9642C35F205AF46C001252CA /* Glyph.swift in Sources */,
 				9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */,
 				96173613207F6A18008B01AE /* UIFont+Extension.swift in Sources */,
-				964954E6205AA1790089A37D /* GlyphView.swift in Sources */,
+				964954E6205AA1790089A37D /* SchoolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

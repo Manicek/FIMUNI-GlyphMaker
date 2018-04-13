@@ -1,5 +1,5 @@
 //
-//  GlyphViewController.swift
+//  SchoolViewController.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 14/03/2018.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class GlyphViewController: UIViewController {
+class SchoolViewController: UIViewController {
 
-    fileprivate var glyphView: GlyphView {
-        return view as! GlyphView
+    fileprivate var glyphView: SchoolView {
+        return view as! SchoolView
     }
     
     fileprivate var glyph = Glyph.testGlyph
@@ -31,6 +31,6 @@ class GlyphViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        view = GlyphView(glyph)
+        view = SchoolView(glyph)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GlyphView.swift
+//  SchoolView.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 15/03/2018.
@@ -8,12 +8,14 @@
 
 import SnapKit
 
-class GlyphView: UIView {
+class SchoolView: UIView {
     
     fileprivate let backgroundImageView = BackgroundImageView()
     fileprivate let matrixView = MatrixView()
     fileprivate let clearButton = RegularButton("Clear")
     fileprivate let drawGlyphButton = RegularButton("Draw")
+    fileprivate let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
+    fileprivate let showHideMatrixButton = ShowHideButton(status: .hide, what: "matrix")
     
     fileprivate var glyph: Glyph!
 
@@ -29,8 +31,9 @@ class GlyphView: UIView {
         backgroundColor = .clear
                 
         clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
-        
         drawGlyphButton.addTarget(self, action: #selector(drawGlyphButtonTapped), for: .touchUpInside)
+        showHideTestPathsButton.addTarget(self, action: #selector(showHideTestPathsButtonTapped), for: .touchUpInside)
+        showHideMatrixButton.addTarget(self, action: #selector(showHideMatrixButtonTapped), for: .touchUpInside)
         
         addSubviewsAndSetupConstraints()
     }
@@ -49,9 +52,17 @@ class GlyphView: UIView {
     func drawGlyphButtonTapped() {
         matrixView.drawGlyph()
     }
+    
+    func showHideTestPathsButtonTapped() {
+        
+    }
+    
+    func showHideMatrixButtonTapped() {
+        
+    }
 }
 
-fileprivate extension GlyphView {
+fileprivate extension SchoolView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(
