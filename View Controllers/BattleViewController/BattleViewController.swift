@@ -25,7 +25,7 @@ class BattleViewController: UIViewController {
             guard let spell = currentSpell, let glyph = spell.glyph else {
                 return
             }
-            battleView.matrixView.setup(with: glyph, forcefully: true)
+            battleView.glyphView.setup(with: glyph, forcefully: true)
         }
     }
     fileprivate var creature = Creature.testCreature
@@ -48,7 +48,7 @@ class BattleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        battleView.matrixView.delegate = self
+        battleView.glyphView.delegate = self
         
         creature = Creature.getRandomCreature()
         battleView.setup(with: creature)
@@ -95,7 +95,7 @@ class BattleViewController: UIViewController {
     }
 }
 
-extension BattleViewController: MatrixViewDelegate {
+extension BattleViewController: GlyphViewDelegate {
     func finishedGlyphWithResults(okPointsPercentage: Double) {
         log.debug("ratio: \(100 * okPointsPercentage)")
         
@@ -110,7 +110,7 @@ extension BattleViewController: MatrixViewDelegate {
             showBasicAlert(message: "You dun goofd", title: "Failure!")
         }
         
-        battleView.matrixView.clear()
+        battleView.glyphView.clear()
     }
 }
 

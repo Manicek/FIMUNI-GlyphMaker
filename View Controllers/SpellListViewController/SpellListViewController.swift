@@ -47,7 +47,7 @@ class SpellListViewController: UIViewController {
 }
 
 extension SpellListViewController: SpellListTableViewManagerDelegate {
-    func pushRequest(_ vc: GlyphViewController) {
+    func pushRequest(_ vc: SchoolViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
 }

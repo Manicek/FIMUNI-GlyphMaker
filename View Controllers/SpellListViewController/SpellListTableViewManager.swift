@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SpellListTableViewManagerDelegate: class {
-    func pushRequest(_ vc: GlyphViewController)
+    func pushRequest(_ vc: SchoolViewController)
 }
 
 class SpellListTableViewManager: NSObject {
@@ -58,14 +58,14 @@ class SpellListTableViewManager: NSObject {
 extension SpellListTableViewManager: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let glyphVC = GlyphViewController()
+        let schoolVC = SchoolViewController()
         switch indexPath.section {
-        case Const.fireSectionIndex: glyphVC.setup(with: fireSpells[indexPath.row].glyph)
-        case Const.coldSectionIndex: glyphVC.setup(with: coldSpells[indexPath.row].glyph)
+        case Const.fireSectionIndex: schoolVC.setup(with: fireSpells[indexPath.row].glyph)
+        case Const.coldSectionIndex: schoolVC.setup(with: coldSpells[indexPath.row].glyph)
         default: return
         }
         
-        delegate?.pushRequest(glyphVC)
+        delegate?.pushRequest(schoolVC)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

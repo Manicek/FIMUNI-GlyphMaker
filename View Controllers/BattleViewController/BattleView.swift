@@ -18,7 +18,7 @@ class BattleView: UIView {
     
     let runButton = RegularButton("Run")
     
-    let matrixView = MatrixView()
+    let glyphView = GlyphView()
     fileprivate let spellButtonsStackView = UIStackView()
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,8 +34,8 @@ class BattleView: UIView {
         
         remainingTimeView.progress = 1
         
-        //matrixView.hideTestPaths()
-        matrixView.showMatrix()
+        //glyphView.hideTestPaths()
+        glyphView.showMatrix()
         
         spellButtonsStackView.spacing = 10
         spellButtonsStackView.axis = .horizontal
@@ -48,7 +48,7 @@ class BattleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        matrixView.createRows()
+        glyphView.createRows()
     }
     
     func setup(with creature: Creature) {
@@ -76,7 +76,7 @@ fileprivate extension BattleView {
         addSubviews(
             [
                 creatureImageView,
-                matrixView,
+                glyphView,
                 healthBarView,
                 healthLabel,
                 runButton,
@@ -85,14 +85,14 @@ fileprivate extension BattleView {
             ]
         )
         
-        matrixView.snp.makeConstraints { (make) in
+        glyphView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(matrixView.snp.width)
+            make.height.equalTo(glyphView.snp.width)
         }
         
         creatureImageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(matrixView)
+            make.edges.equalTo(glyphView)
         }
         
         spellButtonsStackView.snp.makeConstraints { (make) in
@@ -102,7 +102,7 @@ fileprivate extension BattleView {
         }
         
         healthBarView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(matrixView.snp.top).offset(-5)
+            make.bottom.equalTo(glyphView.snp.top).offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
             make.width.equalToSuperview().multipliedBy(0.75)

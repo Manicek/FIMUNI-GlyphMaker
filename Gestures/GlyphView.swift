@@ -1,5 +1,5 @@
 //
-//  MatrixView.swift
+//  GlyphView.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 15/03/2018.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol MatrixViewDelegate: class {
+protocol GlyphViewDelegate: class {
     func finishedGlyphWithResults(okPointsPercentage: Double)
 }
 
-class MatrixView: RowsView {
+class GlyphView: RowsView {
     
     struct Const {
         static let drawingTime: TimeInterval = 0.05
         static let inBetweenPointsCount = 20
     }
     
-    weak var delegate: MatrixViewDelegate?
+    weak var delegate: GlyphViewDelegate?
     
     fileprivate var glyph = Glyph.testGlyph
     
@@ -209,7 +209,7 @@ class MatrixView: RowsView {
     }
 }
 
-fileprivate extension MatrixView {
+fileprivate extension GlyphView {
     
     func drawLine(toPoint: CGPoint) {
         path.addLine(to: toPoint)

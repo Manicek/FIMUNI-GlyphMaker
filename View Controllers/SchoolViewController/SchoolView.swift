@@ -11,7 +11,7 @@ import SnapKit
 class SchoolView: UIView {
     
     fileprivate let backgroundImageView = BackgroundImageView()
-    fileprivate let matrixView = MatrixView()
+    fileprivate let glyphView = GlyphView()
     fileprivate let clearButton = RegularButton("Clear")
     fileprivate let drawGlyphButton = RegularButton("Draw")
     fileprivate let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
@@ -41,16 +41,16 @@ class SchoolView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        matrixView.createRows()
-        matrixView.setup(with: glyph)
+        glyphView.createRows()
+        glyphView.setup(with: glyph)
     }
     
     func clearButtonTapped() {
-        matrixView.clear()
+        glyphView.clear()
     }
 
     func drawGlyphButtonTapped() {
-        matrixView.drawGlyph()
+        glyphView.drawGlyph()
     }
     
     func showHideTestPathsButtonTapped() {
@@ -68,7 +68,7 @@ fileprivate extension SchoolView {
         addSubviews(
             [
                 backgroundImageView,
-                matrixView,
+                glyphView,
                 clearButton,
                 drawGlyphButton
             ]
@@ -78,10 +78,10 @@ fileprivate extension SchoolView {
             make.edges.equalToSuperview()
         }
         
-        matrixView.snp.makeConstraints { (make) in
+        glyphView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(matrixView.snp.width)
+            make.height.equalTo(glyphView.snp.width)
         }
         
         clearButton.snp.makeConstraints { (make) in
