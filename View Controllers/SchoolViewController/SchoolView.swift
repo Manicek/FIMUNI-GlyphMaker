@@ -54,11 +54,25 @@ class SchoolView: UIView {
     }
     
     func showHideTestPathsButtonTapped() {
-        
+        switch showHideTestPathsButton.status {
+        case .hide:
+            showHideTestPathsButton.setStatus(.show)
+            glyphView.hideTestPaths()
+        case .show:
+            showHideTestPathsButton.setStatus(.hide)
+            glyphView.showTestPaths()
+        }
     }
     
     func showHideMatrixButtonTapped() {
-        
+        switch showHideMatrixButton.status {
+        case .hide:
+            showHideMatrixButton.setStatus(.show)
+            glyphView.hideMatrix()
+        case .show:
+            showHideMatrixButton.setStatus(.hide)
+            glyphView.showMatrix()
+        }
     }
 }
 
@@ -70,7 +84,9 @@ fileprivate extension SchoolView {
                 backgroundImageView,
                 glyphView,
                 clearButton,
-                drawGlyphButton
+                drawGlyphButton,
+                showHideTestPathsButton,
+                showHideMatrixButton
             ]
         )
         
@@ -92,6 +108,16 @@ fileprivate extension SchoolView {
         drawGlyphButton.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().inset(20)
             make.right.equalTo(self.snp.centerX).offset(-20)
+        }
+        
+        showHideTestPathsButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(drawGlyphButton.snp.top).offset(-10)
+            make.right.equalTo(drawGlyphButton)
+        }
+        
+        showHideMatrixButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(clearButton.snp.top).offset(-10)
+            make.left.equalTo(clearButton)
         }
     }
 }
