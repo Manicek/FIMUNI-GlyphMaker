@@ -9,9 +9,13 @@
 import UIKit
 
 class MatrixArea: UIView {
+    
+    fileprivate(set) var coordinate = AreaCoordinate(-1, -1)
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, coordinate: AreaCoordinate) {
         super.init(frame: frame)
+        
+        self.coordinate = coordinate
         
         layer.borderWidth = 1
         layer.borderColor = UIColor.green.cgColor

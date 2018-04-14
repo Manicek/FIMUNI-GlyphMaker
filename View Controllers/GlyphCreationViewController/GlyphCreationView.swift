@@ -11,7 +11,7 @@ import UIKit
 class GlyphCreationView: UIView {
     
     fileprivate let backgroundImageView = BackgroundImageView()
-    fileprivate let rowsView = RowsView()
+    let rowsView = RowsView()
     
     let resetButton = RegularButton("Reset")
     let doneButton = RegularButton("Done")

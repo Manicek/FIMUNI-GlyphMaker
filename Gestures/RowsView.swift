@@ -10,8 +10,8 @@ import UIKit
 
 class RowsView: UIView {
 
-    var rows = [[CGRect]]()
-    fileprivate var matrixAreas = [UIView]()
+    fileprivate(set) var rows = [[CGRect]]()
+    fileprivate(set) var matrixAreas = [MatrixArea]()
     
     func createRows() {
         if rows.count != 0 {
@@ -24,16 +24,19 @@ class RowsView: UIView {
             rows.append([CGRect]())
         }
         
-        for i in 0..<rows.count {
-            let newFrame = CGRect(x: 0, y: CGFloat(i) * size, width: size, height: size)
-            rows[i].append(newFrame)
-            matrixAreas.append(MatrixArea(frame: newFrame))
-            for j in 1..<AppConstants.matrixSize {
-                let previousArea = rows[i][j - 1]
+        for x in 0..<rows.count {
+            let newFrame = CGRect(x: 0, y: CGFloat(x) * size, width: size, height: size)
+            rows[x].append(newFrame)
+            matrixAreas.append(MatrixArea(frame: newFrame, coordinate: AreaCoordinate(x, 0)))
+            for y in 1..<AppConstants.matrixSize {
+                let previousArea = rows[x][y - 1]
                 let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size)
-                rows[i].append(nextArea)
-                matrixAreas.append(MatrixArea(frame: nextArea))
+                rows[x].append(nextArea)
+                matrixAreas.append(MatrixArea(frame: nextArea, coordinate: AreaCoordinate(x, y)))
             }
+        }
+        for area in matrixAreas {
+            print(area.coordinate)
         }
         addSubviews(matrixAreas)
     }

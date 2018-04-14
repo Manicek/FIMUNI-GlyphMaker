@@ -13,6 +13,10 @@ class AreaCoordinate: Object {
     dynamic var x = 0
     dynamic var y = 0
     
+    override var description: String {
+        return "(\(x),\(y))"
+    }
+    
     convenience init(_ x: Int, _ y: Int) {
         self.init()
         self.id = UUID().uuidString

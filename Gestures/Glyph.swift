@@ -41,7 +41,6 @@ class Glyph: Object {
     let breakpointsIndexes = List<Int>()
     
     convenience init(areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
-        
         var closestDifficulty = GlyphDifficulty.normal
         
         switch areasCoordinates.count {

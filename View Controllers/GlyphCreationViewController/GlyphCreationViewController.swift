@@ -17,6 +17,8 @@ class GlyphCreationViewController: UIViewController {
     fileprivate var breakpoints = [Int]()
     fileprivate var coordinates = [AreaCoordinate]()
     
+    fileprivate var areaTapGestureRecognizer = UITapGestureRecognizer()
+    
     override func loadView() {
         super.loadView()
         
@@ -31,6 +33,18 @@ class GlyphCreationViewController: UIViewController {
         glyphCreationView.breakpointButton.addTarget(self, action: #selector(breakpointButtonTapped), for: .touchUpInside)
         glyphCreationView.undoButton.addTarget(self, action: #selector(undoButtonTapped), for: .touchUpInside)
         glyphCreationView.redoButton.addTarget(self, action: #selector(redoButtonTapped), for: .touchUpInside)
+        
+        areaTapGestureRecognizer.addTarget(self, action: #selector(areaTapped))
+        glyphCreationView.rowsView.addGestureRecognizer(areaTapGestureRecognizer)
+    }
+    
+    func areaTapped() {
+        for area in glyphCreationView.rowsView.matrixAreas {
+            if (area.frame.contains(areaTapGestureRecognizer.location(in: glyphCreationView.rowsView))) {
+                coordinates.append(area.coordinate)
+                break
+            }
+        }
     }
     
     func resetButtonTapped() {
@@ -40,7 +54,7 @@ class GlyphCreationViewController: UIViewController {
     
     func doneButtonTapped() {
         let glyph = Glyph(areasCoordinates: coordinates, breakpointsIndexes: breakpoints)
-        
+        log.debug(glyph)
     }
     
     func breakpointButtonTapped() {
