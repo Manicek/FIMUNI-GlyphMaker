@@ -43,6 +43,6 @@ class StartViewController: UIViewController {
     }
     
     func createButtonTapped() {
-        navigationController?.pushViewController(CreationViewController(), animated: true)
+        navigationController?.pushViewController(GlyphCreationViewController(), animated: true)
     }
 }

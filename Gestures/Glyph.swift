@@ -40,6 +40,20 @@ class Glyph: Object {
     let areasCoordinates = List<AreaCoordinate>()
     let breakpointsIndexes = List<Int>()
     
+    convenience init(areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
+        
+        var closestDifficulty = GlyphDifficulty.normal
+        
+        switch areasCoordinates.count {
+        case ...6: closestDifficulty = .easy
+        case 7...10: closestDifficulty = .normal
+        case 11...: closestDifficulty = .hard
+        default: break
+        }
+        
+        self.init(difficulty: closestDifficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
+    }
+    
     convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
         self.init()
 
