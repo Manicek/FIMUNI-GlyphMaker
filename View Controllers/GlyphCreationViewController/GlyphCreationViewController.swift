@@ -67,6 +67,9 @@ class GlyphCreationViewController: UIViewController {
         breakpoints = [Int]()
         coordinates = [AreaCoordinate]()
         lastActionWasAddingBreakpoint = false
+        lastArea.updateHighlighted(false)
+        lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
+        blockedLines = [Line]()
         glyphCreationView.createAndDrawPath(coordinates: coordinates, breakpoints: breakpoints)
     }
     
