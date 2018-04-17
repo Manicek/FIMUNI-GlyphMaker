@@ -54,6 +54,7 @@
 		96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C15205F1BB500118AA6 /* StartView.swift */; };
 		96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C17205F1BCB00118AA6 /* StartViewController.swift */; };
 		96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */; };
+		96DDCC852085F50C008DBA57 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDCC842085F50C008DBA57 /* UIBezierPath+Extension.swift */; };
 		96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9FAA62077825800B31060 /* MatrixArea.swift */; };
 		96FD3951206E56A3006390DF /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD3950206E56A3006390DF /* UIViewController+Extension.swift */; };
 		96FD3957206E7431006390DF /* HealthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD3956206E7431006390DF /* HealthLabel.swift */; };
@@ -113,6 +114,7 @@
 		96DA0C15205F1BB500118AA6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		96DA0C17205F1BCB00118AA6 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		96DDCC842085F50C008DBA57 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		96E9FAA62077825800B31060 /* MatrixArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixArea.swift; sourceTree = "<group>"; };
 		96FD3950206E56A3006390DF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		96FD3956206E7431006390DF /* HealthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLabel.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				9642C360205B00FA001252CA /* CGRect+Extension.swift */,
 				96FD3950206E56A3006390DF /* UIViewController+Extension.swift */,
 				96173612207F6A18008B01AE /* UIFont+Extension.swift */,
+				96DDCC842085F50C008DBA57 /* UIBezierPath+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
+				96DDCC852085F50C008DBA57 /* UIBezierPath+Extension.swift in Sources */,
 				9617360F207F4E2C008B01AE /* GlyphCreationViewController.swift in Sources */,
 				96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */,
 				9617360D207F4E1D008B01AE /* GlyphCreationView.swift in Sources */,

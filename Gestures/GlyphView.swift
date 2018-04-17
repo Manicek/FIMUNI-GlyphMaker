@@ -16,14 +16,13 @@ class GlyphView: RowsView {
     
     struct Const {
         static let drawingTime: TimeInterval = 0.05
-        static let inBetweenPointsCount = 20
+        static let inBetweenPointsCountForDrawing = 20
     }
     
     weak var delegate: GlyphViewDelegate?
     
     fileprivate var glyph = Glyph.testGlyph
     
-    fileprivate var path = UIBezierPath()
     fileprivate var lastPoint = CGPoint.zero
     
     fileprivate var testPaths = [TestPath]()
@@ -44,13 +43,10 @@ class GlyphView: RowsView {
     fileprivate var isAlreadySetup = false
     fileprivate var shouldDisplayTestPaths = true
     
-    init() {
-        super.init(frame: CGRect())
-        
-        recreatePath()
+    override init() {
+        super.init()
         
         isUserInteractionEnabled = false
-        backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,7 +83,7 @@ class GlyphView: RowsView {
         drawingTimer?.invalidate()
         drawingTimer = nil
         drawingTimerCounter = 0
-        recreatePath()
+        path = UIBezierPath.newPath()
         okPoints = 0
         nokPoints = 0
         expectedBeginAndEndAreasIndex = 0
@@ -102,7 +98,7 @@ class GlyphView: RowsView {
         drawingTimer = nil
         drawingTimerCounter = 0
         
-        recreatePath()
+        path = UIBezierPath.newPath()
         
         drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
     }
@@ -114,10 +110,10 @@ class GlyphView: RowsView {
             return
         }
         
-        let condition = drawingTimerCounter % Const.inBetweenPointsCount == 0 && breakpointsIndexes.contains((drawingTimerCounter / Const.inBetweenPointsCount) + 1)
+        let shouldMove = drawingTimerCounter % Const.inBetweenPointsCountForDrawing == 0 && breakpointsIndexes.contains((drawingTimerCounter / Const.inBetweenPointsCountForDrawing) + 1)
         
         let nextPoint = pointArray[drawingTimerCounter]
-        if condition || drawingTimerCounter == 0 {
+        if shouldMove || drawingTimerCounter == 0 {
             path.move(to: nextPoint)
         } else {
             path.addLine(to: nextPoint)
@@ -216,12 +212,6 @@ fileprivate extension GlyphView {
         setNeedsDisplay()
     }
     
-    func recreatePath() {
-        log.debug()
-        path = UIBezierPath()
-        path.lineWidth = AppConstants.lineWidth
-    }
-    
     func createExpectedBeginAndEndAreas() {
         log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
@@ -237,7 +227,7 @@ fileprivate extension GlyphView {
         log.debug()
         
         let linesCount = areaCoordinates.count - (1 + breakpointsIndexes.count)
-        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCount)
+        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCountForDrawing)
         testPaths = [TestPath]()
         
         var arrayIndex = 0
@@ -250,14 +240,14 @@ fileprivate extension GlyphView {
             let toCoordinate = areaCoordinates[i + 1]
             let fromPoint = rows[fromCoordinate.x][fromCoordinate.y].center
             let toPoint = rows[toCoordinate.x][toCoordinate.y].center
-            let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCount)
-            let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCount)
+            let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCountForDrawing)
+            let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCountForDrawing)
             var currentX = fromPoint.x
             var currentY = fromPoint.y
             
             testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaSize: rows[0][0].height))
             
-            for _ in 0..<Const.inBetweenPointsCount {
+            for _ in 0..<Const.inBetweenPointsCountForDrawing {
                 pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
                 currentX -= xDiff
                 currentY -= yDiff

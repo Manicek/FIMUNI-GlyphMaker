@@ -13,6 +13,20 @@ class RowsView: UIView {
     fileprivate(set) var rows = [[CGRect]]()
     fileprivate(set) var matrixAreas = [MatrixArea]()
     
+    var path = UIBezierPath()
+    
+    init() {
+        super.init(frame: CGRect())
+        
+        path = UIBezierPath.newPath()
+        
+        backgroundColor = .clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func createRows() {
         if rows.count != 0 {
             log.debug("Matrix rows already created")
@@ -39,6 +53,11 @@ class RowsView: UIView {
             print(area.coordinate)
         }
         addSubviews(matrixAreas)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        UIColor.red.setStroke()
+        path.stroke()
     }
     
     func showMatrix() {

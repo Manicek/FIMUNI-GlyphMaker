@@ -16,8 +16,6 @@ class GlyphCreationView: UIView {
     let resetButton = RegularButton("Reset")
     let doneButton = RegularButton("Done")
     let breakpointButton = RegularButton("Breakpoint")
-    let undoButton = RegularButton("Undo")
-    let redoButton = RegularButton("Redo")
     
     init() {
         super.init(frame: CGRect())
@@ -38,6 +36,24 @@ class GlyphCreationView: UIView {
         
         rowsView.createRows()
     }
+    
+    func createAndDrawPath(coordinates: [AreaCoordinate], breakpoints: [Int]) {
+        rowsView.path = UIBezierPath.newPath()
+        
+        if !coordinates.isEmpty {
+            rowsView.path.move(to: rowsView.rows[coordinates.first!.x][coordinates.first!.y].center)
+            
+            for i in 1..<coordinates.count {
+                if breakpoints.contains(i) {
+                    rowsView.path.move(to: rowsView.rows[coordinates[i].x][coordinates[i].y].center)
+                } else {
+                    rowsView.path.addLine(to: rowsView.rows[coordinates[i].x][coordinates[i].y].center)
+                }
+            }
+        }
+        
+        rowsView.setNeedsDisplay()
+    }
 }
 
 fileprivate extension GlyphCreationView {
@@ -49,9 +65,7 @@ fileprivate extension GlyphCreationView {
                 rowsView,
                 resetButton,
                 breakpointButton,
-                doneButton,
-                undoButton,
-                redoButton
+                doneButton
             ]
         )
         
@@ -78,16 +92,6 @@ fileprivate extension GlyphCreationView {
         doneButton.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().inset(20)
             make.right.equalToSuperview().inset(20)
-        }
-        
-        undoButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(rowsView.snp.top).offset(-20)
-            make.right.equalTo(self.snp.centerX).offset(-20)
-        }
-        
-        redoButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(rowsView.snp.top).offset(-20)
-            make.left.equalTo(self.snp.centerX).offset(20)
         }
     }
 }

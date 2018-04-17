@@ -17,11 +17,21 @@ class MatrixArea: UIView {
         
         self.coordinate = coordinate
         
+        backgroundColor = .clear
+        
         layer.borderWidth = 1
         layer.borderColor = UIColor.green.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateHighlighted(_ highlighted: Bool) {
+        if highlighted {
+            backgroundColor = UIColor.white.withAlphaComponent(0.25)
+        } else {
+            backgroundColor = .clear
+        }
     }
 }
