@@ -36,20 +36,20 @@ extension UIFont {
         if let font = UIFont(name: "SFUIText-Medium", size: ofSize) {
             return font
         }
-        return UIFont.systemFont(ofSize: ofSize, weight: UIFontWeightMedium)
+        return UIFont.systemFont(ofSize: ofSize, weight: .medium)
     }
     
     class func regularFont(ofSize: CGFloat) -> UIFont {
         if let font = UIFont(name: "SFUIText-Regular", size: ofSize) {
             return font
         }
-        return UIFont.systemFont(ofSize: ofSize, weight: UIFontWeightRegular)
+        return UIFont.systemFont(ofSize: ofSize, weight: .regular)
     }
     
     class func lightFont(ofSize: CGFloat) -> UIFont {
         if let font = UIFont(name: "SFUIText-Light", size: ofSize) {
             return font
         }
-        return UIFont.systemFont(ofSize: ofSize, weight: UIFontWeightLight)
+        return UIFont.systemFont(ofSize: ofSize, weight: .light)
     }
 }

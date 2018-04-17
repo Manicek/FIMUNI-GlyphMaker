@@ -32,8 +32,8 @@ class SpellListTableViewManager: NSObject {
         }
     }
     
-    fileprivate var fireSpells = [Spell]()
-    fileprivate var coldSpells = [Spell]()
+    private var fireSpells = [Spell]()
+    private var coldSpells = [Spell]()
     
     func reload() {
         if let fireResults = SpellStore.getSpells(ofType: .fire) {

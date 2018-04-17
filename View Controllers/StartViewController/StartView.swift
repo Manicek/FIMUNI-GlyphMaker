@@ -15,7 +15,7 @@ class StartView: UIView {
         static let buttonInset: CGFloat = 20
     }
     
-    fileprivate let backgroundImageView = BackgroundImageView()
+    private let backgroundImageView = BackgroundImageView()
     let spellsButton = DiamondButton("Spells")
     let fightButton = DiamondButton("Fight")
     let creaturesButton = DiamondButton("Creatures")
@@ -39,7 +39,7 @@ class StartView: UIView {
     }
 }
 
-fileprivate extension StartView {
+private extension StartView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

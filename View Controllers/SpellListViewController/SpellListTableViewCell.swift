@@ -11,8 +11,8 @@ import UIKit
 class SpellListTableViewCell: UITableViewCell {
     static let cellIdentifier = "SpellListTableViewCell"
     
-    fileprivate let nameLabel = UILabel()
-    fileprivate let damageLabel = UILabel()
+    private let nameLabel = UILabel()
+    private let damageLabel = UILabel()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,7 +38,7 @@ class SpellListTableViewCell: UITableViewCell {
     }
 }
 
-fileprivate extension SpellListTableViewCell {
+private extension SpellListTableViewCell {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

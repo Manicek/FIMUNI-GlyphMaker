@@ -10,11 +10,11 @@ import UIKit
 
 class SchoolViewController: UIViewController {
 
-    fileprivate var glyphView: SchoolView {
+    private var glyphView: SchoolView {
         return view as! SchoolView
     }
     
-    fileprivate var glyph = Glyph.testGlyph
+    private var glyph = Glyph.testGlyph
     
     func setup(with glyph: Glyph?) {
         if let glyph = glyph {

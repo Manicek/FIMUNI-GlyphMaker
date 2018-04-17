@@ -31,5 +31,5 @@ class AppConstants: NSObject {
         }
     }
     
-    fileprivate static var loadedRandomizer: Int?
+    private static var loadedRandomizer: Int?
 }

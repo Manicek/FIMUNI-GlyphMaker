@@ -10,7 +10,7 @@ import UIKit
 
 class GlyphCreationView: UIView {
     
-    fileprivate let backgroundImageView = BackgroundImageView()
+    private let backgroundImageView = BackgroundImageView()
     let rowsView = RowsView()
     
     let resetButton = RegularButton("Reset")
@@ -56,7 +56,7 @@ class GlyphCreationView: UIView {
     }
 }
 
-fileprivate extension GlyphCreationView {
+private extension GlyphCreationView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

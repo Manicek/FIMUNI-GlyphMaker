@@ -21,27 +21,27 @@ class GlyphView: RowsView {
     
     weak var delegate: GlyphViewDelegate?
     
-    fileprivate var glyph = Glyph.testGlyph
+    private var glyph = Glyph.testGlyph
     
-    fileprivate var lastPoint = CGPoint.zero
+    private var lastPoint = CGPoint.zero
     
-    fileprivate var testPaths = [TestPath]()
+    private var testPaths = [TestPath]()
     
-    fileprivate var expectedPathIndex = 0
-    fileprivate var expectedBeginAndEndAreasIndex = 0
-    fileprivate var expectedBeginAndEndAreas = [[CGRect]]()
+    private var expectedPathIndex = 0
+    private var expectedBeginAndEndAreasIndex = 0
+    private var expectedBeginAndEndAreas = [[CGRect]]()
     
-    fileprivate var okPoints = 0
-    fileprivate var nokPoints = 0
+    private var okPoints = 0
+    private var nokPoints = 0
     
-    fileprivate var drawingTimer: Timer?
-    fileprivate var drawingTimerCounter = 0
-    fileprivate var areaCoordinates = [AreaCoordinate]()
-    fileprivate var breakpointsIndexes = [Int]()
-    fileprivate var pointArray = [CGPoint]()
+    private var drawingTimer: Timer?
+    private var drawingTimerCounter = 0
+    private var areaCoordinates = [AreaCoordinate]()
+    private var breakpointsIndexes = [Int]()
+    private var pointArray = [CGPoint]()
     
-    fileprivate var isAlreadySetup = false
-    fileprivate var shouldDisplayTestPaths = true
+    private var isAlreadySetup = false
+    private var shouldDisplayTestPaths = true
     
     override init() {
         super.init()
@@ -103,7 +103,7 @@ class GlyphView: RowsView {
         drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
     }
     
-    func drawingTimerUpdate() {
+    @objc func drawingTimerUpdate() {
         if drawingTimerCounter == pointArray.count {
             drawingTimer?.invalidate()
             drawingTimer = nil
@@ -205,7 +205,7 @@ class GlyphView: RowsView {
     }
 }
 
-fileprivate extension GlyphView {
+private extension GlyphView {
     
     func drawLine(toPoint: CGPoint) {
         path.addLine(to: toPoint)

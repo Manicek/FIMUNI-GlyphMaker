@@ -10,7 +10,7 @@ import UIKit
 
 class MatrixArea: UIView {
     
-    fileprivate(set) var coordinate = AreaCoordinate(-1, -1)
+    private(set) var coordinate = AreaCoordinate(-1, -1)
 
     init(frame: CGRect, coordinate: AreaCoordinate) {
         super.init(frame: frame)

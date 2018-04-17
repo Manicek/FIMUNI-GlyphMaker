@@ -9,9 +9,9 @@
 import RealmSwift
 
 class AreaCoordinate: Object {
-    dynamic var id = ""
-    dynamic var x = 0
-    dynamic var y = 0
+    @objc dynamic var id = ""
+    @objc dynamic var x = 0
+    @objc dynamic var y = 0
     
     override var description: String {
         return "(\(x),\(y))"

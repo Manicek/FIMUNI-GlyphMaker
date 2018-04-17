@@ -16,11 +16,11 @@ class BattleViewController: UIViewController {
         static let progressUpdate = Float(remainingTimeTimerInterval / timeForFight)
     }
     
-    fileprivate var battleView: BattleView {
+    private var battleView: BattleView {
         return view as! BattleView
     }
     
-    fileprivate var currentSpell: Spell? {
+    private var currentSpell: Spell? {
         didSet {
             guard let spell = currentSpell, let glyph = spell.glyph else {
                 return
@@ -28,12 +28,12 @@ class BattleViewController: UIViewController {
             battleView.glyphView.setup(with: glyph, forcefully: true)
         }
     }
-    fileprivate var creature = Creature.testCreature
+    private var creature = Creature.testCreature
     
-    fileprivate var remainingTimeTimer: Timer?
-    fileprivate var remainingTimeTimerCounter: TimeInterval = 0
+    private var remainingTimeTimer: Timer?
+    private var remainingTimeTimerCounter: TimeInterval = 0
     
-    fileprivate var unlockedSpells = [Spell]()
+    private var unlockedSpells = [Spell]()
     
     func setup(with creature: Creature) {
         self.creature = creature
@@ -71,16 +71,16 @@ class BattleViewController: UIViewController {
         startRemainingTimeTimer()
     }
     
-    func runButtonTapped() {
+    @objc func runButtonTapped() {
         stopRemainingTimeTimer()
         dismiss(animated: true, completion: nil)
     }
     
-    func spellButtonTapped(_ sender: SpellButton) {
+    @objc func spellButtonTapped(_ sender: SpellButton) {
         currentSpell = sender.spell
     }
     
-    func remainingTimeTimerUpdate() {
+    @objc func remainingTimeTimerUpdate() {
         if remainingTimeTimerCounter >= Const.timeForFight {
             if creature.alive {
                 showBasicAlert(message: "You got rekt", title: "Dead")
@@ -114,7 +114,7 @@ extension BattleViewController: GlyphViewDelegate {
     }
 }
 
-fileprivate extension BattleViewController {
+private extension BattleViewController {
     
     func startRemainingTimeTimer() {
         remainingTimeTimerCounter = 0

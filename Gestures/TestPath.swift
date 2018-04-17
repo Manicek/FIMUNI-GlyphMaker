@@ -10,8 +10,8 @@ import UIKit
 
 class TestPath: UIBezierPath {
     
-    fileprivate var startPoint = CGPoint.zero
-    fileprivate var goalPoint = CGPoint.zero
+    private var startPoint = CGPoint.zero
+    private var goalPoint = CGPoint.zero
 
     init(startPoint: CGPoint, goalPoint: CGPoint, areaSize: CGFloat) {
         super.init()

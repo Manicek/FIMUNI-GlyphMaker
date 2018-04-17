@@ -10,9 +10,9 @@ import UIKit
 
 class SpellListViewController: UIViewController {
 
-    fileprivate let backgroundImageView = BackgroundImageView()
-    fileprivate let spellListView = SpellListView()
-    fileprivate let tableViewManager = SpellListTableViewManager()
+    private let backgroundImageView = BackgroundImageView()
+    private let spellListView = SpellListView()
+    private let tableViewManager = SpellListTableViewManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

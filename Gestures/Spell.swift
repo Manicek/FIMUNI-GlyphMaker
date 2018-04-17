@@ -14,20 +14,20 @@ class SpellImageStore: NSObject {
 }
 
 class Spell: Object {
-    dynamic var id = ""
-    dynamic var name = ""
-    dynamic var damage: Double = 0
-    dynamic var imageIndex = 0
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+    @objc dynamic var damage: Double = 0
+    @objc dynamic var imageIndex = 0
     var image: UIImage {
         return imageIndex < SpellImageStore.images.count ? SpellImageStore.images[imageIndex] : SpellImageStore.defaultImage
     }
-    private dynamic var damageTypeRaw = DamageType.fire.rawValue
+    @objc private dynamic var damageTypeRaw = DamageType.fire.rawValue
     var damageType: DamageType {
         get { return DamageType(rawValue: damageTypeRaw)! }
         set { damageTypeRaw = newValue.rawValue }
     }
-    dynamic var glyph: Glyph? = nil
-    dynamic var unlocked = false
+    @objc dynamic var glyph: Glyph? = nil
+    @objc dynamic var unlocked = false
     
     convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph, imageIndex: Int) {
         self.init()

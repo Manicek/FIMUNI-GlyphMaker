@@ -31,7 +31,7 @@ class SpellListView: UIView {
     }
 }
 
-fileprivate extension SpellListView {
+private extension SpellListView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

@@ -10,18 +10,18 @@ import UIKit
 
 class GlyphCreationViewController: UIViewController {
 
-    fileprivate var glyphCreationView: GlyphCreationView {
+    private var glyphCreationView: GlyphCreationView {
         return view as! GlyphCreationView
     }
     
-    fileprivate var breakpoints = [Int]()
-    fileprivate var coordinates = [AreaCoordinate]()
+    private var breakpoints = [Int]()
+    private var coordinates = [AreaCoordinate]()
     
-    fileprivate var areaTapGestureRecognizer = UITapGestureRecognizer()
+    private var areaTapGestureRecognizer = UITapGestureRecognizer()
     
-    fileprivate var lastActionWasAddingBreakpoint = false
-    fileprivate var lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
-    fileprivate var blockedLines = [Line]()
+    private var lastActionWasAddingBreakpoint = false
+    private var lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
+    private var blockedLines = [Line]()
     
     override func loadView() {
         super.loadView()
@@ -40,7 +40,7 @@ class GlyphCreationViewController: UIViewController {
         glyphCreationView.rowsView.addGestureRecognizer(areaTapGestureRecognizer)
     }
     
-    func areaTapped() {
+    @objc func areaTapped() {
         for area in glyphCreationView.rowsView.matrixAreas {
             if (area.frame.contains(areaTapGestureRecognizer.location(in: glyphCreationView.rowsView))) {
                 if area != lastArea {
@@ -63,7 +63,7 @@ class GlyphCreationViewController: UIViewController {
         }
     }
     
-    func resetButtonTapped() {
+    @objc func resetButtonTapped() {
         breakpoints = [Int]()
         coordinates = [AreaCoordinate]()
         lastActionWasAddingBreakpoint = false
@@ -73,12 +73,12 @@ class GlyphCreationViewController: UIViewController {
         glyphCreationView.createAndDrawPath(coordinates: coordinates, breakpoints: breakpoints)
     }
     
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         let glyph = Glyph(areasCoordinates: coordinates, breakpointsIndexes: breakpoints)
         log.debug(glyph)
     }
     
-    func breakpointButtonTapped() {
+    @objc func breakpointButtonTapped() {
         if lastActionWasAddingBreakpoint {
             return
         }

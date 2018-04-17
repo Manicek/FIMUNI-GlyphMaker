@@ -10,7 +10,7 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-    fileprivate var startView: StartView {
+    private var startView: StartView {
         return view as! StartView
     }
     
@@ -30,19 +30,19 @@ class StartViewController: UIViewController {
         view = StartView()
     }
 
-    func spellsButtonTapped() {
+    @objc func spellsButtonTapped() {
         navigationController?.pushViewController(SpellListViewController(), animated: true)
     }
     
-    func fightButtonTapped() {
+    @objc func fightButtonTapped() {
         navigationController?.present(BattleViewController(), animated: true)
     }
     
-    func creaturesButtonTapped() {
+    @objc func creaturesButtonTapped() {
         //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
     }
     
-    func createButtonTapped() {
+    @objc func createButtonTapped() {
         navigationController?.pushViewController(GlyphCreationViewController(), animated: true)
     }
 }

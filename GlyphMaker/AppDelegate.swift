@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-fileprivate extension AppDelegate {
+private extension AppDelegate {
     
     func performFirstLaunchSetup() {
         Defaults.setupForFirstLaunch()
@@ -41,7 +41,7 @@ fileprivate extension AppDelegate {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().barTintColor = .clear
         UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.white,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
         ]
         
         let navigationController = UINavigationController(rootViewController: StartViewController())

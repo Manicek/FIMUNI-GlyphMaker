@@ -10,14 +10,14 @@ import SnapKit
 
 class SchoolView: UIView {
     
-    fileprivate let backgroundImageView = BackgroundImageView()
-    fileprivate let glyphView = GlyphView()
-    fileprivate let clearButton = RegularButton("Clear")
-    fileprivate let drawGlyphButton = RegularButton("Draw")
-    fileprivate let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
-    fileprivate let showHideMatrixButton = ShowHideButton(status: .hide, what: "matrix")
+    private let backgroundImageView = BackgroundImageView()
+    private let glyphView = GlyphView()
+    private let clearButton = RegularButton("Clear")
+    private let drawGlyphButton = RegularButton("Draw")
+    private let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
+    private let showHideMatrixButton = ShowHideButton(status: .hide, what: "matrix")
     
-    fileprivate var glyph: Glyph!
+    private var glyph: Glyph!
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -45,15 +45,15 @@ class SchoolView: UIView {
         glyphView.setup(with: glyph)
     }
     
-    func clearButtonTapped() {
+    @objc func clearButtonTapped() {
         glyphView.clear()
     }
 
-    func drawGlyphButtonTapped() {
+    @objc func drawGlyphButtonTapped() {
         glyphView.drawGlyph()
     }
     
-    func showHideTestPathsButtonTapped() {
+    @objc func showHideTestPathsButtonTapped() {
         switch showHideTestPathsButton.status {
         case .hide:
             showHideTestPathsButton.setStatus(.show)
@@ -64,7 +64,7 @@ class SchoolView: UIView {
         }
     }
     
-    func showHideMatrixButtonTapped() {
+    @objc func showHideMatrixButtonTapped() {
         switch showHideMatrixButton.status {
         case .hide:
             showHideMatrixButton.setStatus(.show)
@@ -76,7 +76,7 @@ class SchoolView: UIView {
     }
 }
 
-fileprivate extension SchoolView {
+private extension SchoolView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

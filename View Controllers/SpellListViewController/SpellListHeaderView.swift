@@ -10,7 +10,7 @@ import UIKit
 
 class SpellListHeaderView: UIView {
     
-    fileprivate let titleLabel = UILabel()
+    private let titleLabel = UILabel()
 
     init(forType type: DamageType) {
         super.init(frame: CGRect())
@@ -18,7 +18,7 @@ class SpellListHeaderView: UIView {
         backgroundColor = .black
         
         titleLabel.text = type.name
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightHeavy)
+        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         titleLabel.textAlignment = .center
         titleLabel.textColor = type.color
         
@@ -30,7 +30,7 @@ class SpellListHeaderView: UIView {
     }
 }
 
-fileprivate extension SpellListHeaderView {
+private extension SpellListHeaderView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

@@ -9,8 +9,8 @@
 import Foundation
 
 class Line: NSObject {
-    fileprivate var from: AreaCoordinate
-    fileprivate var to: AreaCoordinate
+    private var from: AreaCoordinate
+    private var to: AreaCoordinate
     
     init(from: AreaCoordinate, to: AreaCoordinate) {
         self.from = from

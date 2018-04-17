@@ -22,8 +22,8 @@ enum ShowHideStatus {
 
 class ShowHideButton: RegularButton {
     
-    fileprivate(set) var status = ShowHideStatus.show
-    fileprivate var whatString = ""
+    private(set) var status = ShowHideStatus.show
+    private var whatString = ""
 
     init(status: ShowHideStatus, what: String) {
         super.init(status.string + " " + what)

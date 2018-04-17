@@ -10,8 +10,8 @@ import UIKit
 
 class RowsView: UIView {
 
-    fileprivate(set) var rows = [[CGRect]]()
-    fileprivate(set) var matrixAreas = [MatrixArea]()
+    private(set) var rows = [[CGRect]]()
+    private(set) var matrixAreas = [MatrixArea]()
     
     var path = UIBezierPath()
     

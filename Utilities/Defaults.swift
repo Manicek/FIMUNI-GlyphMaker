@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate struct DefaultsKey {
+private struct DefaultsKey {
     
     static let appHasBeenLaunchedBefore = "appHasBeenLaunchedBefore"
 }

@@ -16,8 +16,8 @@ class RemainingTimeView: UIView {
         static let microOffset = 1
     }
     
-    fileprivate let leftProgressView = UIProgressView()
-    fileprivate let rightProgressView = UIProgressView()
+    private let leftProgressView = UIProgressView()
+    private let rightProgressView = UIProgressView()
     var progress: Float = 0 {
         didSet {
             leftProgressView.progress = progress
@@ -48,7 +48,7 @@ class RemainingTimeView: UIView {
     }
 }
 
-fileprivate extension RemainingTimeView {
+private extension RemainingTimeView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(

@@ -31,8 +31,8 @@ enum GlyphDifficulty: Int {
 }
 
 class Glyph: Object {
-    dynamic var id = ""
-    private dynamic var difficultyRaw = GlyphDifficulty.easy.rawValue
+    @objc dynamic var id = ""
+    @objc private dynamic var difficultyRaw = GlyphDifficulty.easy.rawValue
     var difficulty: GlyphDifficulty {
         get { return GlyphDifficulty(rawValue: difficultyRaw)! }
         set { difficultyRaw = difficulty.rawValue }

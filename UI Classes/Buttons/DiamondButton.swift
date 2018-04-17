@@ -19,7 +19,7 @@ class DiamondButton: UIButton {
         static let buttonTopAndBottomInset: CGFloat = 0
     }
     
-    fileprivate let customTitleLabel = UILabel()
+    private let customTitleLabel = UILabel()
     
     init(_ title: String) {
         super.init(frame: CGRect())

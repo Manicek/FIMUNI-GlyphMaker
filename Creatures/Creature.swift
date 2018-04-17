@@ -48,17 +48,17 @@ enum CreatureType: Int {
 }
 
 class Creature: Object {
-    dynamic var id = ""
-    dynamic var name = ""
-    private dynamic var typeRaw = CreatureType.wolf.rawValue
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+    @objc private dynamic var typeRaw = CreatureType.wolf.rawValue
     var type: CreatureType {
         get { return CreatureType(rawValue: typeRaw)! }
         set { typeRaw = newValue.rawValue }
     }
-    dynamic var maxHealth: Double = 100
-    dynamic var health: Double = 100
-    dynamic var level = 1
-    dynamic var alive = true
+    @objc dynamic var maxHealth: Double = 100
+    @objc dynamic var health: Double = 100
+    @objc dynamic var level = 1
+    @objc dynamic var alive = true
     
     var fireResistance: Double {
         return type.fireResistance

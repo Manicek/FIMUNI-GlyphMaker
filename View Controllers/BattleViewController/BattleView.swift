@@ -10,16 +10,16 @@ import UIKit
 
 class BattleView: UIView {
     
-    fileprivate let healthBarView = HealthBarView()
-    fileprivate let healthLabel = HealthLabel()
+    private let healthBarView = HealthBarView()
+    private let healthLabel = HealthLabel()
     let remainingTimeView = RemainingTimeView()
     
-    fileprivate let creatureImageView = UIImageView()
+    private let creatureImageView = UIImageView()
     
     let runButton = RegularButton("Run")
     
     let glyphView = GlyphView()
-    fileprivate let spellButtonsStackView = UIStackView()
+    private let spellButtonsStackView = UIStackView()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -70,7 +70,7 @@ class BattleView: UIView {
     }
 }
 
-fileprivate extension BattleView {
+private extension BattleView {
     
     func addSubviewsAndSetupConstraints() {
         addSubviews(
