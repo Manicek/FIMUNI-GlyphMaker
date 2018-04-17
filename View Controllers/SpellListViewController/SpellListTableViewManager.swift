@@ -88,7 +88,7 @@ extension SpellListTableViewManager: UITableViewDelegate {
 extension SpellListTableViewManager: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SpellListTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpellListTableViewCell.cellIdentifier, for: indexPath) as! SpellListTableViewCell
         switch indexPath.section {
         case Const.fireSectionIndex: cell.configure(with: fireSpells[indexPath.row])
         case Const.coldSectionIndex: cell.configure(with: coldSpells[indexPath.row])

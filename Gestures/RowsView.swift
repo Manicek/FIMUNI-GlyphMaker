@@ -49,9 +49,6 @@ class RowsView: UIView {
                 matrixAreas.append(MatrixArea(frame: nextArea, coordinate: AreaCoordinate(x, y)))
             }
         }
-        for area in matrixAreas {
-            print(area.coordinate)
-        }
         addSubviews(matrixAreas)
     }
     
