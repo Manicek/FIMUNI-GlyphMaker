@@ -16,7 +16,9 @@ class SchoolViewController: UIViewController {
     
     private var glyph = Glyph.testGlyph
     
-    func setup(with glyph: Glyph?) {
+    init(glyph: Glyph?) {
+        super.init(nibName: nil, bundle: nil)
+        
         if let glyph = glyph {
             self.glyph = glyph
         } else {
@@ -24,8 +26,8 @@ class SchoolViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {

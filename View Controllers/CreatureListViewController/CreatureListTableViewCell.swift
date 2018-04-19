@@ -10,4 +10,40 @@ import UIKit
 
 class CreatureListTableViewCell: UITableViewCell {
     static let cellIdentifier = "CreatureListTableViewCell"
+    
+    private let nameLabel = UILabel()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = .gray
+        
+        nameLabel.font = UIFont.systemFont(ofSize: 15)
+        nameLabel.textColor = .black
+        
+        addSubviewsAndSetupConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with creature: Creature) {
+        nameLabel.text = creature.name
+    }
+}
+
+private extension CreatureListTableViewCell {
+    
+    func addSubviewsAndSetupConstraints() {
+        addSubviews(
+            [
+                nameLabel
+            ]
+        )
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.centerY.left.equalToSuperview()
+        }
+    }
 }

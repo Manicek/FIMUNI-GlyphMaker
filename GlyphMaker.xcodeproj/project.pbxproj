@@ -30,6 +30,8 @@
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
 		964954E4205AA0AF0089A37D /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* GlyphView.swift */; };
 		964954E6205AA1790089A37D /* SchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* SchoolView.swift */; };
+		966B301B20888AD7004C6293 /* CreatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301A20888AD7004C6293 /* CreatureViewController.swift */; };
+		966B301D20888AE2004C6293 /* CreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301C20888AE2004C6293 /* CreatureView.swift */; };
 		96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AC20597DC800E6A6B5 /* AppDelegate.swift */; };
 		96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */; };
 		96A959B420597DC800E6A6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B320597DC800E6A6B5 /* Assets.xcassets */; };
@@ -92,6 +94,8 @@
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
 		964954E3205AA0AF0089A37D /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
 		964954E5205AA1790089A37D /* SchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolView.swift; sourceTree = "<group>"; };
+		966B301A20888AD7004C6293 /* CreatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureViewController.swift; sourceTree = "<group>"; };
+		966B301C20888AE2004C6293 /* CreatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureView.swift; sourceTree = "<group>"; };
 		96A959A920597DC800E6A6B5 /* GlyphMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlyphMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A959AC20597DC800E6A6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +210,15 @@
 			path = Gestures;
 			sourceTree = "<group>";
 		};
+		966B301920888AC3004C6293 /* CreatureViewController */ = {
+			isa = PBXGroup;
+			children = (
+				966B301A20888AD7004C6293 /* CreatureViewController.swift */,
+				966B301C20888AE2004C6293 /* CreatureView.swift */,
+			);
+			path = CreatureViewController;
+			sourceTree = "<group>";
+		};
 		96A959A020597DC700E6A6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				966B301920888AC3004C6293 /* CreatureViewController */,
 				96DDCC8620861925008DBA57 /* CreatureListViewController */,
 				9617360B207F4DED008B01AE /* GlyphCreationViewController */,
 				96D17CB320640C5C0004CC05 /* BattleViewController */,
@@ -537,12 +551,14 @@
 				96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */,
 				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
+				966B301D20888AE2004C6293 /* CreatureView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
 				96DDCC852085F50C008DBA57 /* UIBezierPath+Extension.swift in Sources */,
 				9617360F207F4E2C008B01AE /* GlyphCreationViewController.swift in Sources */,
 				96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */,
 				9617360D207F4E1D008B01AE /* GlyphCreationView.swift in Sources */,
 				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
+				966B301B20888AD7004C6293 /* CreatureViewController.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				962CDE9820692C67001CC996 /* AreaCoordinate.swift in Sources */,
 				96DDCC8820861942008DBA57 /* CreatureListView.swift in Sources */,

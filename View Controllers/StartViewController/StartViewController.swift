@@ -21,7 +21,6 @@ class StartViewController: UIViewController {
         startView.fightButton.addTarget(self, action: #selector(fightButtonTapped), for: .touchUpInside)
         startView.creaturesButton.addTarget(self, action: #selector(creaturesButtonTapped), for: .touchUpInside)
         startView.createButton.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
-
     }
     
     override func loadView() {
@@ -39,7 +38,7 @@ class StartViewController: UIViewController {
     }
     
     @objc func creaturesButtonTapped() {
-        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+        navigationController?.pushViewController(CreatureListViewController(), animated: true)
     }
     
     @objc func createButtonTapped() {

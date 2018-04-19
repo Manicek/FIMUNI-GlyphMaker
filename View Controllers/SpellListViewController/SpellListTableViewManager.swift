@@ -58,14 +58,11 @@ class SpellListTableViewManager: NSObject {
 extension SpellListTableViewManager: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let schoolVC = SchoolViewController()
         switch indexPath.section {
-        case Const.fireSectionIndex: schoolVC.setup(with: fireSpells[indexPath.row].glyph)
-        case Const.coldSectionIndex: schoolVC.setup(with: coldSpells[indexPath.row].glyph)
+        case Const.fireSectionIndex: delegate?.pushRequest(SchoolViewController(glyph: fireSpells[indexPath.row].glyph))
+        case Const.coldSectionIndex: delegate?.pushRequest(SchoolViewController(glyph: coldSpells[indexPath.row].glyph))
         default: return
         }
-        
-        delegate?.pushRequest(schoolVC)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
