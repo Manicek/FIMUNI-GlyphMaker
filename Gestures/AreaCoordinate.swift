@@ -13,6 +13,8 @@ class AreaCoordinate: Object {
     @objc dynamic var x = 0
     @objc dynamic var y = 0
     
+    static var nonExistent = AreaCoordinate(-1, -1)
+    
     override var description: String {
         return "(\(x),\(y))"
     }

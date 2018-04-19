@@ -19,6 +19,10 @@ class Line: NSObject {
         super.init()
     }
     
+    override var description: String {
+        return "From \(from) to \(to)"
+    }
+    
     override var hash: Int {
         return from.hashValue * to.hashValue //TODO test me pls
     }

@@ -29,7 +29,7 @@ class MatrixArea: UIView {
     
     func updateHighlighted(_ highlighted: Bool) {
         if highlighted {
-            backgroundColor = UIColor.white.withAlphaComponent(0.25)
+            backgroundColor = UIColor.white.withAlphaComponent(0.45)
         } else {
             backgroundColor = .clear
         }

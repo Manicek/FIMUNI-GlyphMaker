@@ -19,8 +19,8 @@ class GlyphCreationViewController: UIViewController {
     
     private var areaTapGestureRecognizer = UITapGestureRecognizer()
     
-    private var lastActionWasAddingBreakpoint = false
-    private var lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
+    private var onlyOneAreaAddedAfterBreakpoint = false
+    private var lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate.nonExistent)
     private var blockedLines = [Line]()
     
     override func loadView() {
@@ -43,22 +43,38 @@ class GlyphCreationViewController: UIViewController {
     @objc func areaTapped() {
         for area in glyphCreationView.rowsView.matrixAreas {
             if (area.frame.contains(areaTapGestureRecognizer.location(in: glyphCreationView.rowsView))) {
-                if area != lastArea {
-                    let candidateLine = Line(from: lastArea.coordinate, to: area.coordinate)
-                    if blockedLines.contains(candidateLine) {
-                        log.warning("Line \(candidateLine) is blocked")
-                        showBasicAlert(message: "Invalid line", title: "No")
-                        return
-                    }
-                    lastArea.updateHighlighted(false)
-                    lastArea = area
-                    lastArea.updateHighlighted(true)
-                    blockedLines.append(candidateLine)
-                    coordinates.append(area.coordinate)
-                    lastActionWasAddingBreakpoint = false
-                    glyphCreationView.createAndDrawPath(coordinates: coordinates, breakpoints: breakpoints)
-                    break
+                if area == lastArea {
+                    return
                 }
+                
+                if lastArea.coordinate == AreaCoordinate.nonExistent {
+                    lastArea = area
+                    area.updateHighlighted(true)
+                    coordinates.append(area.coordinate)
+                    return
+                }
+                
+                if breakpoints.contains(coordinates.count) {
+                    lastArea.updateHighlighted(false)
+                    area.updateHighlighted(true)
+                    lastArea = area
+                    coordinates.append(area.coordinate)
+                    return
+                }
+                
+                let candidateLine = Line(from: lastArea.coordinate, to: area.coordinate)
+                if candidateLine.overlapsAnyLineIn(blockedLines) {
+                    log.warning("Line \(candidateLine) is blocked")
+                    showBasicAlert(message: "Invalid line", title: "No")
+                    return
+                }
+                lastArea.updateHighlighted(false)
+                area.updateHighlighted(true)
+                lastArea = area
+                blockedLines.append(candidateLine)
+                coordinates.append(area.coordinate)
+                glyphCreationView.createAndDrawPath(coordinates: coordinates, breakpoints: breakpoints)
+                return
             }
         }
     }
@@ -66,7 +82,6 @@ class GlyphCreationViewController: UIViewController {
     @objc func resetButtonTapped() {
         breakpoints = [Int]()
         coordinates = [AreaCoordinate]()
-        lastActionWasAddingBreakpoint = false
         lastArea.updateHighlighted(false)
         lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
         blockedLines = [Line]()
@@ -79,10 +94,9 @@ class GlyphCreationViewController: UIViewController {
     }
     
     @objc func breakpointButtonTapped() {
-        if lastActionWasAddingBreakpoint {
-            return
+        let newBreakpoint = coordinates.count
+        if !breakpoints.contains(newBreakpoint) && !breakpoints.contains(newBreakpoint - 1) {
+            breakpoints.append(coordinates.count)
         }
-        breakpoints.append(coordinates.count)
-        lastActionWasAddingBreakpoint = true
     }
 }
