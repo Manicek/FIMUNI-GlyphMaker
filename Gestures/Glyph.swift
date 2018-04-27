@@ -95,7 +95,7 @@ class Glyph: Object {
         var coordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
-        let randomizer = AppConstants.randomizer + variant
+        var randomizer = abs(AppConstants.randomizer.addingReportingOverflow(variant).partialValue)
         var lastIndex = randomizer % difficulty.coordinatesCount
         
         for x in 0..<AppConstants.matrixSize {
@@ -124,6 +124,7 @@ class Glyph: Object {
             
             areasCoordinates.append(candidateCoordinate)
             blockedLines.append(candidateLine)
+            randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
         }
         
         return Glyph(difficulty: difficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: difficulty.breakpointsIndexes)
