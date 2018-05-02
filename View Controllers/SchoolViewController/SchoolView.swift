@@ -17,13 +17,13 @@ class SchoolView: UIView {
     private let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
     private let showHideMatrixButton = ShowHideButton(status: .hide, what: "matrix")
     
-    private var glyph: Glyph!
+    private var glyph: RealmGlyph!
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(_ glyph: Glyph) {
+    init(_ glyph: RealmGlyph) {
         super.init(frame: CGRect())
         
         self.glyph = glyph

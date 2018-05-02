@@ -14,15 +14,15 @@ class SchoolViewController: UIViewController {
         return view as! SchoolView
     }
     
-    private var glyph = Glyph.testGlyph
+    private var glyph = RealmGlyph.testGlyph
     
-    init(glyph: Glyph?) {
+    init(glyph: RealmGlyph?) {
         super.init(nibName: nil, bundle: nil)
         
         if let glyph = glyph {
             self.glyph = glyph
         } else {
-            self.glyph = Glyph.testGlyph
+            self.glyph = RealmGlyph.testGlyph
         }
     }
     

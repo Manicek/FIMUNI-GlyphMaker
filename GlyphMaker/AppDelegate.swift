@@ -29,7 +29,7 @@ private extension AppDelegate {
     
     func performFirstLaunchSetup() {
         Defaults.setupForFirstLaunch()
-        Spell.createBasicSpells()
+        RealmSpell.createBasicSpells()
     }
     
     func setupWindow() {

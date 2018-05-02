@@ -47,7 +47,7 @@ enum CreatureType: Int {
     }
 }
 
-class Creature: Object {
+class RealmCreature: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc private dynamic var typeRaw = CreatureType.wolf.rawValue
@@ -99,10 +99,10 @@ class Creature: Object {
         return finalDamage
     }
     
-    static let testCreature = Creature(name: "Test", type: .wolf, level: 1)
+    static let testCreature = RealmCreature(name: "Test", type: .wolf, level: 1)
     
-    static func getRandomCreature() -> Creature {
-        return Creature(name: "",
+    static func getRandomCreature() -> RealmCreature {
+        return RealmCreature(name: "",
                         type: CreatureType(rawValue: Utils.randomInt(CreatureType.allValues.count))!,
                         level: Utils.randomInt(3))
     }
@@ -113,22 +113,22 @@ struct CreatureStore {
     static func deleteAllCreatures() {
         guard let realm = Realm.defaultRealm() else { return }
         
-        realm.safeDelete(realm.objects(Creature.self))
+        realm.safeDelete(realm.objects(RealmCreature.self))
     }
     
-    static func getAllCreatures() -> Results<Creature>? {
+    static func getAllCreatures() -> Results<RealmCreature>? {
         guard let realm = Realm.defaultRealm() else { return nil }
         
-        return realm.objects(Creature.self)
+        return realm.objects(RealmCreature.self)
     }
     
-    static func add(creature: Creature) {
+    static func add(creature: RealmCreature) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeAdd(creature)
     }
     
-    static func delete(creature: Creature) {
+    static func delete(creature: RealmCreature) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeDelete(creature)

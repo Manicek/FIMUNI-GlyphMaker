@@ -32,20 +32,20 @@ class SpellListTableViewManager: NSObject {
         }
     }
     
-    private var fireSpells = [Spell]()
-    private var coldSpells = [Spell]()
+    private var fireSpells = [RealmSpell]()
+    private var coldSpells = [RealmSpell]()
     
     func reload() {
         if let fireResults = SpellStore.getSpells(ofType: .fire) {
             fireSpells = Array(fireResults)
         } else {
-            fireSpells = [Spell]()
+            fireSpells = [RealmSpell]()
         }
         
         if let coldResults = SpellStore.getSpells(ofType: .cold) {
             coldSpells = Array(coldResults)
         } else {
-            coldSpells = [Spell]()
+            coldSpells = [RealmSpell]()
         }
         
         print("Fire: \(fireSpells.count)")

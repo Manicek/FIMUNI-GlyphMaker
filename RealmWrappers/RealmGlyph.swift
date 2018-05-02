@@ -30,17 +30,17 @@ enum GlyphDifficulty: Int {
     }
 }
 
-class Glyph: Object {
+class RealmGlyph: Object {
     @objc dynamic var id = ""
     @objc private dynamic var difficultyRaw = GlyphDifficulty.easy.rawValue
     var difficulty: GlyphDifficulty {
         get { return GlyphDifficulty(rawValue: difficultyRaw)! }
         set { difficultyRaw = difficulty.rawValue }
     }
-    let areasCoordinates = List<AreaCoordinate>()
+    let areasCoordinates = List<RealmAreaCoordinate>()
     let breakpointsIndexes = List<Int>()
     
-    convenience init(areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
+    convenience init(areasCoordinates: [RealmAreaCoordinate], breakpointsIndexes: [Int]) {
         var closestDifficulty = GlyphDifficulty.normal
         
         switch areasCoordinates.count {
@@ -53,7 +53,7 @@ class Glyph: Object {
         self.init(difficulty: closestDifficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
     }
     
-    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
+    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [RealmAreaCoordinate], breakpointsIndexes: [Int]) {
         self.init()
 
         self.id = UUID().uuidString
@@ -82,8 +82,8 @@ class Glyph: Object {
         return "id"
     }
     
-    static let testGlyph = Glyph(difficulty: .easy, areasCoordinates:
-            [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
+    static let testGlyph = RealmGlyph(difficulty: .easy, areasCoordinates:
+            [RealmAreaCoordinate(2, 1), RealmAreaCoordinate(0, 2), RealmAreaCoordinate(2, 3), RealmAreaCoordinate(2, 1), RealmAreaCoordinate(3, 1), RealmAreaCoordinate(3, 3), RealmAreaCoordinate(4, 3), RealmAreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
     /**
      - parameter difficulty: decides length of glyph and breakpoints
@@ -91,16 +91,16 @@ class Glyph: Object {
      
      - returns: generated glyph
     */
-    static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty, variant: Int) -> Glyph {
-        var coordinates = [AreaCoordinate]()
-        var areasCoordinates = [AreaCoordinate]()
+    static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty, variant: Int) -> RealmGlyph {
+        var coordinates = [RealmAreaCoordinate]()
+        var areasCoordinates = [RealmAreaCoordinate]()
         var blockedLines = [Line]()
         var randomizer = abs(AppConstants.randomizer.addingReportingOverflow(variant).partialValue)
         var lastIndex = randomizer % difficulty.coordinatesCount
         
         for x in 0..<AppConstants.matrixSize {
             for y in 0..<AppConstants.matrixSize {
-                coordinates.append(AreaCoordinate(x, y))
+                coordinates.append(RealmAreaCoordinate(x, y))
             }
         }
         
@@ -127,7 +127,7 @@ class Glyph: Object {
             randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
         }
         
-        return Glyph(difficulty: difficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: difficulty.breakpointsIndexes)
+        return RealmGlyph(difficulty: difficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: difficulty.breakpointsIndexes)
     }
     
     /**
@@ -139,7 +139,7 @@ class Glyph: Object {
      the func returns [(**c1**, **c2**), (**c3**, **c4**)]
      
     */
-    func expectedBeginEndAreaCoordinates() -> [(AreaCoordinate, AreaCoordinate)] {
+    func expectedBeginEndAreaCoordinates() -> [(RealmAreaCoordinate, RealmAreaCoordinate)] {
         if areasCoordinates.isEmpty {
             return []
         }
@@ -148,7 +148,7 @@ class Glyph: Object {
             return [(areasCoordinates.first!, areasCoordinates.last!)]
         }
         
-        var coordinates = [(AreaCoordinate, AreaCoordinate)]()
+        var coordinates = [(RealmAreaCoordinate, RealmAreaCoordinate)]()
         var beginCoordinate = areasCoordinates.first!
         for index in breakpointsIndexes {
             coordinates.append((beginCoordinate, areasCoordinates[index - 1]))
@@ -164,22 +164,22 @@ struct GlyphStore {
     static func deleteAllGlyphs() {
         guard let realm = Realm.defaultRealm() else { return }
         
-        realm.safeDelete(realm.objects(Glyph.self))
+        realm.safeDelete(realm.objects(RealmGlyph.self))
     }
     
-    static func getAllGlyphs() -> Results<Glyph>? {
+    static func getAllGlyphs() -> Results<RealmGlyph>? {
         guard let realm = Realm.defaultRealm() else { return nil }
         
-        return realm.objects(Glyph.self)
+        return realm.objects(RealmGlyph.self)
     }
     
-    static func add(glyph: Glyph) {
+    static func add(glyph: RealmGlyph) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeAdd(glyph)
     }
     
-    static func delete(glyph: Glyph) {
+    static func delete(glyph: RealmGlyph) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeDelete(glyph)

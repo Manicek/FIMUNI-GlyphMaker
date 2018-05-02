@@ -28,7 +28,7 @@ class CreatureListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with creature: Creature) {
+    func configure(with creature: RealmCreature) {
         nameLabel.text = creature.name
     }
 }

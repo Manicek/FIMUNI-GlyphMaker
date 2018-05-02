@@ -20,7 +20,7 @@ class BattleViewController: UIViewController {
         return view as! BattleView
     }
     
-    private var currentSpell: Spell? {
+    private var currentSpell: RealmSpell? {
         didSet {
             guard let spell = currentSpell, let glyph = spell.glyph else {
                 return
@@ -28,14 +28,14 @@ class BattleViewController: UIViewController {
             battleView.glyphView.setup(with: glyph, forcefully: true)
         }
     }
-    private var creature = Creature.testCreature
+    private var creature = RealmCreature.testCreature
     
     private var remainingTimeTimer: Timer?
     private var remainingTimeTimerCounter: TimeInterval = 0
     
-    private var unlockedSpells = [Spell]()
+    private var unlockedSpells = [RealmSpell]()
     
-    func setup(with creature: Creature) {
+    func setup(with creature: RealmCreature) {
         self.creature = creature
     }
     
@@ -50,7 +50,7 @@ class BattleViewController: UIViewController {
         
         battleView.glyphView.delegate = self
         
-        creature = Creature.getRandomCreature()
+        creature = RealmCreature.getRandomCreature()
         battleView.setup(with: creature)
         
         if let results = SpellStore.getAllUnlockedSpells() {

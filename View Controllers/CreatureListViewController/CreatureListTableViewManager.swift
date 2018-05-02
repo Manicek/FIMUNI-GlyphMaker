@@ -29,13 +29,13 @@ class CreatureListTableViewManager: NSObject {
         }
     }
     
-    private var creatures = [Creature]()
+    private var creatures = [RealmCreature]()
     
     func reload() {
         if let creaturesResults = CreatureStore.getAllCreatures() {
             creatures = Array(creaturesResults)
         } else {
-            creatures = [Creature]()
+            creatures = [RealmCreature]()
         }
         
         print("Creatures: \(creatures.count)")

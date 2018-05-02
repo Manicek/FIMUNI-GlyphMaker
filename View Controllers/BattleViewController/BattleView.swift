@@ -51,7 +51,7 @@ class BattleView: UIView {
         glyphView.createRows()
     }
     
-    func setup(with creature: Creature) {
+    func setup(with creature: RealmCreature) {
         creatureImageView.image = creature.type.image
         healthLabel.healthValue = creature.maxHealth
     }

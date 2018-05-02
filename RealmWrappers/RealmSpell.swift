@@ -13,7 +13,7 @@ class SpellImageStore: NSObject {
     static let defaultImage = #imageLiteral(resourceName: "nothing")
 }
 
-class Spell: Object {
+class RealmSpell: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var damage: Double = 0
@@ -26,10 +26,10 @@ class Spell: Object {
         get { return DamageType(rawValue: damageTypeRaw)! }
         set { damageTypeRaw = newValue.rawValue }
     }
-    @objc dynamic var glyph: Glyph? = nil
+    @objc dynamic var glyph: RealmGlyph? = nil
     @objc dynamic var unlocked = false
     
-    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph, imageIndex: Int) {
+    convenience init(name: String, damageType: DamageType, damage: Double, glyph: RealmGlyph, imageIndex: Int) {
         self.init()
         
         self.id = UUID().uuidString + name
@@ -45,13 +45,13 @@ class Spell: Object {
     }
     
     static func createBasicSpells() {
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(.easy, variant: 0), imageIndex: 0)
+        let fireball = RealmSpell(name: "Fireball", damageType: .fire, damage: 50, glyph: RealmGlyph.generateDeterministicRandomGlyph(.easy, variant: 0), imageIndex: 0)
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(.easy, variant: 1), imageIndex: 1)
+        let frostSpear = RealmSpell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: RealmGlyph.generateDeterministicRandomGlyph(.easy, variant: 1), imageIndex: 1)
         frostSpear.unlocked = true
         
-        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(.hard, variant: 0), imageIndex: 2)
+        let inferno = RealmSpell(name: "Inferno", damageType: .fire, damage: 110, glyph: RealmGlyph.generateDeterministicRandomGlyph(.hard, variant: 0), imageIndex: 2)
         
         SpellStore.add(Spell: fireball)
         SpellStore.add(Spell: frostSpear)
@@ -64,34 +64,34 @@ struct SpellStore {
     static func deleteAllSpells() {
         guard let realm = Realm.defaultRealm() else { return }
         
-        realm.safeDelete(realm.objects(Spell.self))
+        realm.safeDelete(realm.objects(RealmSpell.self))
     }
     
-    static func getAllSpells() -> Results<Spell>? {
+    static func getAllSpells() -> Results<RealmSpell>? {
         guard let realm = Realm.defaultRealm() else { return nil }
         
-        return realm.objects(Spell.self)
+        return realm.objects(RealmSpell.self)
     }
     
-    static func getAllUnlockedSpells() -> Results<Spell>? {
+    static func getAllUnlockedSpells() -> Results<RealmSpell>? {
         guard let realm = Realm.defaultRealm() else { return nil }
 
-        return realm.objects(Spell.self).filter("unlocked == true")
+        return realm.objects(RealmSpell.self).filter("unlocked == true")
     }
     
-    static func getSpells(ofType type: DamageType) -> Results<Spell>? {
+    static func getSpells(ofType type: DamageType) -> Results<RealmSpell>? {
         guard let realm = Realm.defaultRealm() else { return nil }
         
-        return realm.objects(Spell.self).filter("damageTypeRaw == \(type.rawValue)")
+        return realm.objects(RealmSpell.self).filter("damageTypeRaw == \(type.rawValue)")
     }
     
-    static func add(Spell: Spell) {
+    static func add(Spell: RealmSpell) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeAdd(Spell)
     }
     
-    static func delete(spell: Spell) {
+    static func delete(spell: RealmSpell) {
         guard let realm = Realm.defaultRealm() else { return }
         
         realm.safeDelete(spell)
