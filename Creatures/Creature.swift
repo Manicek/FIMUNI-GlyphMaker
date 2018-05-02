@@ -49,7 +49,6 @@ enum CreatureType: Int {
 
 class Creature: NSObject {
     
-    private(set) var id = ""
     private(set) var name = ""
     private(set) var type = CreatureType.wolf
     private(set) var level = 1
@@ -59,12 +58,6 @@ class Creature: NSObject {
     
     convenience init(name: String, type: CreatureType, level: Int, id: String? = nil) {
         self.init()
-        
-        if let id = id {
-            self.id = id
-        } else {
-            self.id = UUID().uuidString + name
-        }
         
         self.name = name
         self.type = type

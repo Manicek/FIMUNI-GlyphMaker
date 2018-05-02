@@ -28,7 +28,7 @@ class RealmCreature: Object {
     convenience init(from creature: Creature) {
         self.init()
         
-        self.id = creature.id
+        self.id = UUID().uuidString
         self.name = creature.name
         self.type = creature.type
         self.maxHealth = creature.maxHealth

@@ -10,7 +10,6 @@ import Foundation
 
 class AreaCoordinate: NSObject {
     
-    private(set) var id = ""
     private(set) var x = 0
     private(set) var y = 0
     
@@ -22,9 +21,9 @@ class AreaCoordinate: NSObject {
     
     convenience init(_ x: Int, _ y: Int) {
         self.init()
-        self.id = UUID().uuidString
+        
         self.x = x
-        self.y = y
+        self.y = y        
     }
     
     override var hash: Int {

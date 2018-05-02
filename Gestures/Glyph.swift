@@ -10,7 +10,6 @@ import Foundation
 
 class Glyph: NSObject {
     
-    private(set) var id = ""
     private(set) var difficulty = GlyphDifficulty.easy
     private(set) var areasCoordinates = [AreaCoordinate]()
     private(set) var breakpointsIndexes = [Int]()
@@ -28,14 +27,9 @@ class Glyph: NSObject {
         self.init(difficulty: closestDifficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
     }
     
-    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int], id: String? = nil) {
+    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
         self.init()
         
-        if let id = id {
-            self.id = id
-        } else {
-            self.id = UUID().uuidString
-        }
         self.difficulty = difficulty
         self.areasCoordinates = areasCoordinates
         

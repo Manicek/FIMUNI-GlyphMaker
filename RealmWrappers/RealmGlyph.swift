@@ -47,7 +47,7 @@ class RealmGlyph: Object {
     convenience init(from glyph: Glyph) {
         self.init()
         
-        self.id = glyph.id
+        self.id = UUID().uuidString
         self.difficulty = glyph.difficulty
         for areaCoordinate in glyph.areasCoordinates {
             self.areasCoordinates.append(RealmAreaCoordinate(from: areaCoordinate))
@@ -62,7 +62,7 @@ class RealmGlyph: Object {
         }
         let normalBreakpoints = Array(breakpointsIndexes)
 
-        return Glyph(difficulty: difficulty, areasCoordinates: normalAreasCoordinates, breakpointsIndexes: normalBreakpoints, id: id)
+        return Glyph(difficulty: difficulty, areasCoordinates: normalAreasCoordinates, breakpointsIndexes: normalBreakpoints)
     }
 }
 

@@ -14,7 +14,7 @@ class SpellImageStore: NSObject {
 }
 
 class Spell: NSObject {
-    private(set) var id = ""
+    
     private(set) var name = ""
     private(set) var damage: Double = 0
     private(set) var imageIndex = 0
@@ -25,14 +25,8 @@ class Spell: NSObject {
     }
     var unlocked = false
     
-    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph, imageIndex: Int, id: String? = nil, unlocked: Bool? = false) {
+    convenience init(name: String, damageType: DamageType, damage: Double, glyph: Glyph, imageIndex: Int, unlocked: Bool? = false) {
         self.init()
-        
-        if let id = id {
-            self.id = id
-        } else {
-            self.id = UUID().uuidString + name
-        }
         
         if let unlocked = unlocked {
             self.unlocked = unlocked

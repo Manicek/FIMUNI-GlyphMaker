@@ -20,6 +20,7 @@ class RealmAreaCoordinate: Object {
     convenience init(from areaCoordinate: AreaCoordinate) {
         self.init()
         
+        self.id = UUID().uuidString
         self.x = areaCoordinate.x
         self.y = areaCoordinate.y
     }

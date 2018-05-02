@@ -31,7 +31,7 @@ class RealmSpell: Object {
     convenience init(from spell: Spell) {
         self.init()
         
-        self.id = spell.id
+        self.id = UUID().uuidString
         self.name = spell.name
         self.damage = spell.damage
         self.imageIndex = spell.imageIndex
@@ -41,7 +41,7 @@ class RealmSpell: Object {
     }
     
     func toSpell() -> Spell {
-        return Spell(name: name, damageType: damageType, damage: damage, glyph: glyph!.toGlyph(), imageIndex: imageIndex, id: id, unlocked: unlocked)
+        return Spell(name: name, damageType: damageType, damage: damage, glyph: glyph!.toGlyph(), imageIndex: imageIndex, unlocked: unlocked)
     }
 }
 
