@@ -8,45 +8,6 @@
 
 import RealmSwift
 
-enum CreatureType: Int {
-    case beardedDragon = 0
-    case wolf = 1
-    
-    static let allValues: [CreatureType] = [.beardedDragon, .wolf]
-    
-    func healthForLevel(_ level: Int) -> Double {
-        return baseHealth * Double(level)
-    }
-    
-    var image: UIImage {
-        switch self {
-        case .beardedDragon: return #imageLiteral(resourceName: "beardedDragon1")
-        case .wolf: return #imageLiteral(resourceName: "wolf")
-        }
-    }
-    
-    var baseHealth: Double {
-        switch self {
-        case .beardedDragon: return 150
-        case .wolf: return 100
-        }
-    }
-    
-    var fireResistance: Double {
-        switch self {
-        case .beardedDragon: return 0.75
-        case .wolf: return 0
-        }
-    }
-    
-    var coldResistance: Double {
-        switch self {
-        case .beardedDragon: return 0
-        case .wolf: return 0.20
-        }
-    }
-}
-
 class RealmCreature: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
@@ -60,51 +21,24 @@ class RealmCreature: Object {
     @objc dynamic var level = 1
     @objc dynamic var alive = true
     
-    var fireResistance: Double {
-        return type.fireResistance
-    }
-    
-    var coldResistance: Double {
-        return type.coldResistance
-    }
-
-    convenience init(name: String, type: CreatureType, level: Int) {
-        self.init()
-        
-        self.id = UUID().uuidString + name
-        self.name = name
-        self.type = type
-        self.level = level > 0 ? level : 1
-        self.health = type.healthForLevel(self.level)
-        self.maxHealth = health
-    }
-    
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    func receiveDamage(_ damage: Double, ofType type: DamageType) -> Double {
-        var resistance = 0.0
-        switch type {
-        case .fire: resistance = fireResistance
-        case .cold: resistance = coldResistance
-        }
-        let finalDamage = damage * (1 - resistance)
-        health -= finalDamage
-        if health <= 0 {
-            health = 0
-            alive = false
-        }
+    convenience init(from creature: Creature) {
+        self.init()
         
-        return finalDamage
+        self.id = creature.id
+        self.name = creature.name
+        self.type = creature.type
+        self.maxHealth = creature.maxHealth
+        self.health = creature.health
+        self.level = creature.level
+        self.alive = creature.alive
     }
     
-    static let testCreature = RealmCreature(name: "Test", type: .wolf, level: 1)
-    
-    static func getRandomCreature() -> RealmCreature {
-        return RealmCreature(name: "",
-                        type: CreatureType(rawValue: Utils.randomInt(CreatureType.allValues.count))!,
-                        level: Utils.randomInt(3))
+    func toCreature() -> Creature {
+        return Creature(name: name, type: type, level: level, id: id)
     }
 }
 
@@ -116,10 +50,14 @@ struct CreatureStore {
         realm.safeDelete(realm.objects(RealmCreature.self))
     }
     
-    static func getAllCreatures() -> Results<RealmCreature>? {
-        guard let realm = Realm.defaultRealm() else { return nil }
+    static func getAllCreatures() -> [Creature] {
+        guard let realm = Realm.defaultRealm() else { return [] }
         
-        return realm.objects(RealmCreature.self)
+        var creatures = [Creature]()
+        for realmCreature in realm.objects(RealmCreature.self) {
+            creatures.append(realmCreature.toCreature())
+        }
+        return creatures
     }
     
     static func add(creature: RealmCreature) {

@@ -14,7 +14,7 @@ class CreatureViewController: UIViewController {
         return view as! CreatureView
     }
     
-    private var creature = RealmCreature.testCreature
+    private var creature = Creature.testCreature
 
     override func loadView() {
         super.loadView()
@@ -22,12 +22,12 @@ class CreatureViewController: UIViewController {
         view = CreatureView(creature)
     }
     
-    init(creature: RealmCreature?) {
+    init(creature: Creature?) {
         super.init(nibName: nil, bundle: nil)
         if let creature = creature {
             self.creature = creature
         } else {
-            self.creature = RealmCreature.testCreature
+            self.creature = Creature.testCreature
         }
     }
     

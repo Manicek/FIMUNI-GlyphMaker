@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		960D855D205BF9A90034F709 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D855C205BF9A90034F709 /* AppConstants.swift */; };
+		9611346E2099B40500258B28 /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611346D2099B40500258B28 /* Glyph.swift */; };
+		961134702099B4A700258B28 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611346F2099B4A700258B28 /* Spell.swift */; };
+		961134722099B4B100258B28 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961134712099B4B100258B28 /* Creature.swift */; };
+		961134742099B4BD00258B28 /* AreaCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961134732099B4BD00258B28 /* AreaCoordinate.swift */; };
 		9617360D207F4E1D008B01AE /* GlyphCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617360C207F4E1D008B01AE /* GlyphCreationView.swift */; };
 		9617360F207F4E2C008B01AE /* GlyphCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617360E207F4E2C008B01AE /* GlyphCreationViewController.swift */; };
 		96173611207F68BA008B01AE /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173610207F68BA008B01AE /* RegularButton.swift */; };
@@ -72,6 +76,10 @@
 		3F12F47E47B1F863F96AA28C /* Pods_GlyphMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlyphMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FEB70DCEB8BB4B2292638F /* Pods-GlyphMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlyphMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		960D855C205BF9A90034F709 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		9611346D2099B40500258B28 /* Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
+		9611346F2099B4A700258B28 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
+		961134712099B4B100258B28 /* Creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
+		961134732099B4BD00258B28 /* AreaCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCoordinate.swift; sourceTree = "<group>"; };
 		9617360C207F4E1D008B01AE /* GlyphCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphCreationView.swift; sourceTree = "<group>"; };
 		9617360E207F4E2C008B01AE /* GlyphCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphCreationViewController.swift; sourceTree = "<group>"; };
 		96173610207F68BA008B01AE /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 		961A7D89205EA5320017046C /* Creatures */ = {
 			isa = PBXGroup;
 			children = (
+				961134712099B4B100258B28 /* Creature.swift */,
 			);
 			path = Creatures;
 			sourceTree = "<group>";
@@ -213,6 +222,9 @@
 				962CDE9520692B0D001CC996 /* Line.swift */,
 				96E9FAA62077825800B31060 /* MatrixArea.swift */,
 				961CD5742080B9560050A30F /* RowsView.swift */,
+				9611346D2099B40500258B28 /* Glyph.swift */,
+				9611346F2099B4A700258B28 /* Spell.swift */,
+				961134732099B4BD00258B28 /* AreaCoordinate.swift */,
 			);
 			path = Gestures;
 			sourceTree = "<group>";
@@ -553,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96173625207F6F96008B01AE /* DiamondButton.swift in Sources */,
+				9611346E2099B40500258B28 /* Glyph.swift in Sources */,
 				96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */,
 				96173611207F68BA008B01AE /* RegularButton.swift in Sources */,
 				96DDCC8C20861BF2008DBA57 /* CreatureListTableViewManager.swift in Sources */,
@@ -573,9 +586,11 @@
 				96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */,
 				961CD5772080BCA40050A30F /* ShowHideButton.swift in Sources */,
 				964954E4205AA0AF0089A37D /* GlyphView.swift in Sources */,
+				961134742099B4BD00258B28 /* AreaCoordinate.swift in Sources */,
 				96DA0C08205EF91600118AA6 /* SpellListViewController.swift in Sources */,
 				962CDE9620692B0D001CC996 /* Line.swift in Sources */,
 				96DDCC8A20861950008DBA57 /* CreatureListViewController.swift in Sources */,
+				961134722099B4B100258B28 /* Creature.swift in Sources */,
 				96DA0C10205F00BF00118AA6 /* SpellListHeaderView.swift in Sources */,
 				96D17CB520640C750004CC05 /* BattleView.swift in Sources */,
 				96DA0C13205F026700118AA6 /* DamageType.swift in Sources */,
@@ -601,6 +616,7 @@
 				9642C35F205AF46C001252CA /* RealmGlyph.swift in Sources */,
 				9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */,
 				96173613207F6A18008B01AE /* UIFont+Extension.swift in Sources */,
+				961134702099B4A700258B28 /* Spell.swift in Sources */,
 				964954E6205AA1790089A37D /* SchoolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

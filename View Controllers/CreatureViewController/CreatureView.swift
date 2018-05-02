@@ -10,7 +10,7 @@ import UIKit
 
 class CreatureView: UIView {
 
-    init(_ creature: RealmCreature) {
+    init(_ creature: Creature) {
         super.init(frame: CGRect())
     }
     

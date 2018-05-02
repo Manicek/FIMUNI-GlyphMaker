@@ -15,12 +15,12 @@ class GlyphCreationViewController: UIViewController {
     }
     
     private var breakpoints = [Int]()
-    private var coordinates = [RealmAreaCoordinate]()
+    private var coordinates = [AreaCoordinate]()
     
     private var areaTapGestureRecognizer = UITapGestureRecognizer()
     
     private var onlyOneAreaAddedAfterBreakpoint = false
-    private var lastArea = MatrixArea(frame: CGRect.zero, coordinate: RealmAreaCoordinate.nonExistent)
+    private var lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate.nonExistent)
     private var blockedLines = [Line]()
     
     override func loadView() {
@@ -47,7 +47,7 @@ class GlyphCreationViewController: UIViewController {
                     return
                 }
                 
-                if lastArea.coordinate == RealmAreaCoordinate.nonExistent {
+                if lastArea.coordinate == AreaCoordinate.nonExistent {
                     lastArea = area
                     area.updateHighlighted(true)
                     coordinates.append(area.coordinate)
@@ -81,15 +81,15 @@ class GlyphCreationViewController: UIViewController {
     
     @objc func resetButtonTapped() {
         breakpoints = [Int]()
-        coordinates = [RealmAreaCoordinate]()
+        coordinates = [AreaCoordinate]()
         lastArea.updateHighlighted(false)
-        lastArea = MatrixArea(frame: CGRect.zero, coordinate: RealmAreaCoordinate(-1, -1))
+        lastArea = MatrixArea(frame: CGRect.zero, coordinate: AreaCoordinate(-1, -1))
         blockedLines = [Line]()
         glyphCreationView.createAndDrawPath(coordinates: coordinates, breakpoints: breakpoints)
     }
     
     @objc func doneButtonTapped() {
-        let glyph = RealmGlyph(areasCoordinates: coordinates, breakpointsIndexes: breakpoints)
+        let glyph = Glyph(areasCoordinates: coordinates, breakpointsIndexes: breakpoints)
         log.debug(glyph)
     }
     

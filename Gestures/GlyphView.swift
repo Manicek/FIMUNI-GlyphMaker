@@ -21,7 +21,7 @@ class GlyphView: RowsView {
     
     weak var delegate: GlyphViewDelegate?
     
-    private var glyph = RealmGlyph.testGlyph
+    private var glyph = Glyph.testGlyph
     
     private var lastPoint = CGPoint.zero
     
@@ -36,7 +36,7 @@ class GlyphView: RowsView {
     
     private var drawingTimer: Timer?
     private var drawingTimerCounter = 0
-    private var areaCoordinates = [RealmAreaCoordinate]()
+    private var areaCoordinates = [AreaCoordinate]()
     private var breakpointsIndexes = [Int]()
     private var pointArray = [CGPoint]()
     
@@ -53,7 +53,7 @@ class GlyphView: RowsView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with glyph: RealmGlyph, forcefully: Bool = false) {
+    func setup(with glyph: Glyph, forcefully: Bool = false) {
         log.debug()
         if isAlreadySetup && !forcefully {
             return

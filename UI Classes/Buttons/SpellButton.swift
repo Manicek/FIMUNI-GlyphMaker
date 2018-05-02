@@ -10,9 +10,9 @@ import UIKit
 
 class SpellButton: UIButton {
     
-    private(set) var spell: RealmSpell!
+    private(set) var spell: Spell!
 
-    init(_ spell: RealmSpell) {
+    init(_ spell: Spell) {
         super.init(frame: CGRect())
         self.spell = spell
         

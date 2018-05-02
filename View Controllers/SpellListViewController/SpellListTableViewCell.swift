@@ -32,7 +32,7 @@ class SpellListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with spell: RealmSpell) {
+    func configure(with spell: Spell) {
         nameLabel.text = spell.name
         damageLabel.text = "Damage: " + String(format: "%.0f", spell.damage)
     }

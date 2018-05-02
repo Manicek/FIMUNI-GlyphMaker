@@ -37,7 +37,7 @@ class GlyphCreationView: UIView {
         rowsView.createRows()
     }
     
-    func createAndDrawPath(coordinates: [RealmAreaCoordinate], breakpoints: [Int]) {
+    func createAndDrawPath(coordinates: [AreaCoordinate], breakpoints: [Int]) {
         rowsView.path = UIBezierPath.newPath()
         
         if !coordinates.isEmpty {

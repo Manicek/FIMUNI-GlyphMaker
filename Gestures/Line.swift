@@ -9,10 +9,10 @@
 import Foundation
 
 class Line: NSObject {
-    private var from: RealmAreaCoordinate
-    private var to: RealmAreaCoordinate
+    private var from: AreaCoordinate
+    private var to: AreaCoordinate
     
-    init(from: RealmAreaCoordinate, to: RealmAreaCoordinate) {
+    init(from: AreaCoordinate, to: AreaCoordinate) {
         self.from = from
         self.to = to
         
@@ -66,12 +66,12 @@ class Line: NSObject {
             
             if yDiff > 0 {
                 while y != yDiff {
-                    subLines.append(Line(from: RealmAreaCoordinate(from.x, from.y + y), to: RealmAreaCoordinate(from.x, from.y + y + 1)))
+                    subLines.append(Line(from: AreaCoordinate(from.x, from.y + y), to: AreaCoordinate(from.x, from.y + y + 1)))
                     y += 1
                 }
             } else if yDiff < 0 {
                 while y != yDiff {
-                    subLines.append(Line(from: RealmAreaCoordinate(from.x, from.y + y), to: RealmAreaCoordinate(from.x, from.y + y - 1)))
+                    subLines.append(Line(from: AreaCoordinate(from.x, from.y + y), to: AreaCoordinate(from.x, from.y + y - 1)))
                     y -= 1
                 }
             }
@@ -80,12 +80,12 @@ class Line: NSObject {
             
             if xDiff > 0 {
                 while x != xDiff {
-                    subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y), to: RealmAreaCoordinate(from.x + x + 1, from.y)))
+                    subLines.append(Line(from: AreaCoordinate(from.x + x, from.y), to: AreaCoordinate(from.x + x + 1, from.y)))
                     x += 1
                 }
             } else if xDiff < 0 {
                 while x != xDiff {
-                    subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y), to: RealmAreaCoordinate(from.x + x - 1, from.y)))
+                    subLines.append(Line(from: AreaCoordinate(from.x + x, from.y), to: AreaCoordinate(from.x + x - 1, from.y)))
                     x -= 1
                 }
             }
@@ -96,13 +96,13 @@ class Line: NSObject {
             if xDiff > 0 {
                 if yDiff > 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y + y), to: RealmAreaCoordinate(from.x + x + 1, from.y + y + 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x + 1, from.y + y + 1)))
                         y += 1
                         x += 1
                     }
                 } else if yDiff < 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y + y), to: RealmAreaCoordinate(from.x + x + 1, from.y + y - 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x + 1, from.y + y - 1)))
                         y -= 1
                         x += 1
                     }
@@ -110,13 +110,13 @@ class Line: NSObject {
             } else if xDiff < 0 {
                 if yDiff > 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y + y), to: RealmAreaCoordinate(from.x + x - 1, from.y + y + 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x - 1, from.y + y + 1)))
                         y += 1
                         x -= 1
                     }
                 } else if yDiff < 0 {
                     while y != yDiff {
-                        subLines.append(Line(from: RealmAreaCoordinate(from.x + x, from.y + y), to: RealmAreaCoordinate(from.x + x - 1, from.y + y - 1)))
+                        subLines.append(Line(from: AreaCoordinate(from.x + x, from.y + y), to: AreaCoordinate(from.x + x - 1, from.y + y - 1)))
                         y -= 1
                         x -= 1
                     }

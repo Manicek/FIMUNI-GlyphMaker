@@ -20,22 +20,22 @@ class BattleViewController: UIViewController {
         return view as! BattleView
     }
     
-    private var currentSpell: RealmSpell? {
+    private var currentSpell: Spell? {
         didSet {
-            guard let spell = currentSpell, let glyph = spell.glyph else {
+            guard let spell = currentSpell else {
                 return
             }
-            battleView.glyphView.setup(with: glyph, forcefully: true)
+            battleView.glyphView.setup(with: spell.glyph, forcefully: true)
         }
     }
-    private var creature = RealmCreature.testCreature
+    private var creature = Creature.testCreature
     
     private var remainingTimeTimer: Timer?
     private var remainingTimeTimerCounter: TimeInterval = 0
     
-    private var unlockedSpells = [RealmSpell]()
+    private var unlockedSpells = [Spell]()
     
-    func setup(with creature: RealmCreature) {
+    func setup(with creature: Creature) {
         self.creature = creature
     }
     
@@ -50,16 +50,14 @@ class BattleViewController: UIViewController {
         
         battleView.glyphView.delegate = self
         
-        creature = RealmCreature.getRandomCreature()
+        creature = Creature.getRandomCreature()
         battleView.setup(with: creature)
         
-        if let results = SpellStore.getAllUnlockedSpells() {
-            unlockedSpells = Array(results)
-            for spell in unlockedSpells {
-                let button = SpellButton(spell)
-                button.addTarget(self, action: #selector(spellButtonTapped(_:)), for: .touchUpInside)
-                battleView.addSpellButton(button)
-            }
+        unlockedSpells = SpellStore.getAllUnlockedSpells()
+        for spell in unlockedSpells {
+            let button = SpellButton(spell)
+            button.addTarget(self, action: #selector(spellButtonTapped(_:)), for: .touchUpInside)
+            battleView.addSpellButton(button)
         }
         
         battleView.runButton.addTarget(self, action: #selector(runButtonTapped), for: .touchUpInside)
