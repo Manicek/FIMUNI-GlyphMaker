@@ -138,7 +138,7 @@ class GlyphView: RowsView {
         if shouldDisplayTestPaths {
             UIColor.lightGray.setFill()
             for testPath in testPaths {
-                testPath.fill()
+                testPath.fill(with: .normal, alpha: 0.5)
             }
         }
 

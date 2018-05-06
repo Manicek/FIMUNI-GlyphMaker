@@ -81,9 +81,9 @@ class BattleViewController: UIViewController {
     @objc func remainingTimeTimerUpdate() {
         if remainingTimeTimerCounter >= Const.timeForFight {
             if creature.alive {
-                showBasicAlert(message: "You got rekt", title: "Dead")
+                showBasicAlert(message: "You have lost the fight!", title: "Defeat")
             } else{
-                showBasicAlert(message: "You are a winrar", title: "GG")
+                showBasicAlert(message: "You have won the fight!", title: "Victory")
             }
             stopRemainingTimeTimer()
             return
@@ -105,7 +105,7 @@ extension BattleViewController: GlyphViewDelegate {
                 battleView.setRemainingHealth(current: creature.health, max: creature.maxHealth)
             }
         } else {
-            showBasicAlert(message: "You dun goofd", title: "Failure!")
+            showBasicAlert(message: "The spell failed", title: "Failure!")
         }
         
         battleView.glyphView.clear()

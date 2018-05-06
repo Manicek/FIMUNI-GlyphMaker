@@ -34,9 +34,6 @@ class BattleView: UIView {
         
         remainingTimeView.progress = 1
         
-        //glyphView.hideTestPaths()
-        glyphView.showMatrix()
-        
         spellButtonsStackView.spacing = 10
         spellButtonsStackView.axis = .horizontal
         spellButtonsStackView.distribution = .equalSpacing
@@ -49,6 +46,7 @@ class BattleView: UIView {
         super.layoutSubviews()
         
         glyphView.createRows()
+        glyphView.hideMatrix()
     }
     
     func setup(with creature: Creature) {
