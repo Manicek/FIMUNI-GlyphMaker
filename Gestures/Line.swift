@@ -36,8 +36,9 @@ class Line: NSObject {
     }
     
     func overlaps(_ otherLine: Line) -> Bool {
+        let otherSublines = otherLine.subLines()
         for subLine in subLines() {
-            for otherSubLine in otherLine.subLines() {
+            for otherSubLine in otherSublines {
                 if otherSubLine == subLine {
                     return true
                 }
