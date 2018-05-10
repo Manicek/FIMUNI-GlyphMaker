@@ -10,27 +10,12 @@ import Foundation
 
 class Glyph: NSObject {
     
-    private(set) var difficulty = GlyphDifficulty.easy
     private(set) var areasCoordinates = [AreaCoordinate]()
     private(set) var breakpointsIndexes = [Int]()
     
     convenience init(areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
-        var closestDifficulty = GlyphDifficulty.normal
-        
-        switch areasCoordinates.count {
-        case ...6: closestDifficulty = .easy
-        case 7...10: closestDifficulty = .normal
-        case 11...: closestDifficulty = .hard
-        default: break
-        }
-        
-        self.init(difficulty: closestDifficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
-    }
-    
-    convenience init(difficulty: GlyphDifficulty, areasCoordinates: [AreaCoordinate], breakpointsIndexes: [Int]) {
         self.init()
         
-        self.difficulty = difficulty
         self.areasCoordinates = areasCoordinates
         
         let notTooBigOrSmallBreakpointsIndexes = breakpointsIndexes.filter( {$0 < areasCoordinates.count - 1 && $0 > 1} ).sorted()
@@ -51,7 +36,7 @@ class Glyph: NSObject {
         self.breakpointsIndexes = checkedBreakpointsIndexes
     }
     
-    static let testGlyph = Glyph(difficulty: .easy, areasCoordinates:
+    static let testGlyph = Glyph(areasCoordinates:
         [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
     /**
@@ -60,12 +45,30 @@ class Glyph: NSObject {
      
      - returns: generated glyph
      */
-    static func generateDeterministicRandomGlyph(_ difficulty: GlyphDifficulty, variant: Int) -> Glyph {
+    static func generateDeterministicRandomGlyph(coordinatesCount: Int, variant: Int, preventOverlaps: Bool, allowTaps: Bool) -> Glyph {
         var coordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
         var randomizer = abs(AppConstants.randomizer.addingReportingOverflow(variant).partialValue)
-        var lastIndex = randomizer % difficulty.coordinatesCount
+        var lastIndex = randomizer % coordinatesCount
+        var breakpointsIndexes = [Int]()
+        var breakpointsIndexesCount = 0
+        
+        switch coordinatesCount {
+        case ...3: breakpointsIndexesCount = 0
+        case 4...10: breakpointsIndexesCount = 1
+        case 11...: breakpointsIndexesCount = 2
+        default: break
+        }
+        
+        for i in 0..<breakpointsIndexesCount {
+            if allowTaps {
+                //TODO
+            } else {
+                //TODO
+            }
+            breakpointsIndexes.append(randomizer % coordinatesCount)
+        }
         
         for x in 0..<AppConstants.matrixSize {
             for y in 0..<AppConstants.matrixSize {
@@ -75,8 +78,8 @@ class Glyph: NSObject {
         
         areasCoordinates.append(coordinates[lastIndex])
         
-        for i in 1..<difficulty.coordinatesCount {
-            if difficulty.breakpointsIndexes.contains(i) {
+        for i in 1..<coordinatesCount {
+            if breakpointsIndexes.contains(i) {
                 continue
             }
             
@@ -85,10 +88,12 @@ class Glyph: NSObject {
             var candidateCoordinate = coordinates[lastIndex]
             var candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
             
-            while candidateLine.overlapsAnyLineIn(blockedLines) {
-                lastIndex = (lastIndex + 1 == coordinates.count) ? 0 : (lastIndex + 1)
-                candidateCoordinate = coordinates[lastIndex]
-                candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+            if preventOverlaps {
+                while candidateLine.overlapsAnyLineIn(blockedLines) {
+                    lastIndex = (lastIndex + 1 == coordinates.count) ? 0 : (lastIndex + 1)
+                    candidateCoordinate = coordinates[lastIndex]
+                    candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+                }
             }
             
             areasCoordinates.append(candidateCoordinate)
@@ -96,7 +101,7 @@ class Glyph: NSObject {
             randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
         }
         
-        return Glyph(difficulty: difficulty, areasCoordinates: areasCoordinates, breakpointsIndexes: difficulty.breakpointsIndexes)
+        return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
     }
     
     /**

@@ -8,35 +8,8 @@
 
 import RealmSwift
 
-enum GlyphDifficulty: Int {
-    case easy = 0
-    case normal = 1
-    case hard = 2
-    
-    var coordinatesCount: Int {
-        switch self {
-        case .easy: return 5
-        case .normal: return 8
-        case .hard: return 13
-        }
-    }
-    
-    var breakpointsIndexes: [Int] {
-        switch self {
-        case .easy: return []
-        case .normal: return [4]
-        case .hard: return [7]
-        }
-    }
-}
-
 class RealmGlyph: Object {
     @objc dynamic var id = ""
-    @objc private dynamic var difficultyRaw = GlyphDifficulty.easy.rawValue
-    var difficulty: GlyphDifficulty {
-        get { return GlyphDifficulty(rawValue: difficultyRaw)! }
-        set { difficultyRaw = difficulty.rawValue }
-    }
     let areasCoordinates = List<RealmAreaCoordinate>()
     let breakpointsIndexes = List<Int>()
     
@@ -48,7 +21,6 @@ class RealmGlyph: Object {
         self.init()
         
         self.id = UUID().uuidString
-        self.difficulty = glyph.difficulty
         for areaCoordinate in glyph.areasCoordinates {
             self.areasCoordinates.append(RealmAreaCoordinate(from: areaCoordinate))
         }
@@ -62,7 +34,7 @@ class RealmGlyph: Object {
         }
         let normalBreakpoints = Array(breakpointsIndexes)
 
-        return Glyph(difficulty: difficulty, areasCoordinates: normalAreasCoordinates, breakpointsIndexes: normalBreakpoints)
+        return Glyph(areasCoordinates: normalAreasCoordinates, breakpointsIndexes: normalBreakpoints)
     }
 }
 

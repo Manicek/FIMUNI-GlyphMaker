@@ -209,6 +209,7 @@
 		961A7D89205EA5320017046C /* Creatures */ = {
 			isa = PBXGroup;
 			children = (
+				9611346F2099B4A700258B28 /* Spell.swift */,
 				961134712099B4B100258B28 /* Creature.swift */,
 			);
 			path = Creatures;
@@ -223,7 +224,6 @@
 				96E9FAA62077825800B31060 /* MatrixArea.swift */,
 				961CD5742080B9560050A30F /* RowsView.swift */,
 				9611346D2099B40500258B28 /* Glyph.swift */,
-				9611346F2099B4A700258B28 /* Spell.swift */,
 				961134732099B4BD00258B28 /* AreaCoordinate.swift */,
 			);
 			path = Gestures;
