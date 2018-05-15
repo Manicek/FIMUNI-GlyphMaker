@@ -13,5 +13,5 @@ class Constants: NSObject {
     static var numberOfRows: Int = 5
     static var numberOfColumns: Int = 5
     static var lineWidth: CGFloat = 6
-    static var allowedOffsetMultiplier: CGFloat = 0.2
+    static var allowedOffsetMultiplier: CGFloat = 0.3
 }

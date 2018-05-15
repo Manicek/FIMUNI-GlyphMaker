@@ -27,30 +27,28 @@ class TestPath: UIBezierPath {
         let xDiff = fabs(startPoint.x - goalPoint.x)
         let yDiff = fabs(startPoint.y - goalPoint.y)
         
-        if xDiff != 1 && yDiff != 1 {
+        if xDiff != 0 {
             xOffset *= CGFloat(2).squareRoot()
+        }
+        
+        if yDiff != 0 {
             yOffset *= CGFloat(2).squareRoot()
         }
         
         let diffSum = xDiff + yDiff
         let xMultiplier = yDiff / diffSum * (startPoint.x - goalPoint.x > 0 ? -1 : 1)
         let yMultiplier = xDiff / diffSum * (startPoint.y - goalPoint.y < 0 ? -1 : 1)
+                
+        let startCorner1 = CGPoint(x: startPoint.x + xMultiplier * xOffset, y: startPoint.y + yMultiplier * yOffset)
+        let startCorner2 = CGPoint(x: startPoint.x - xMultiplier * xOffset, y: startPoint.y - yMultiplier * yOffset)
         
-        if xMultiplier != 1 && yMultiplier != 1 {
-            xOffset *= CGFloat(2).squareRoot()
-            yOffset *= CGFloat(2).squareRoot()
-        }
+        let goalCorner1 = CGPoint(x: goalPoint.x + xMultiplier * xOffset, y: goalPoint.y + yMultiplier * yOffset)
+        let goalCorner2 = CGPoint(x: goalPoint.x - xMultiplier * xOffset, y: goalPoint.y - yMultiplier * yOffset)
         
-        let firstCorner1 = CGPoint(x: startPoint.x + xMultiplier * xOffset, y: startPoint.y + yMultiplier * yOffset)
-        let firstCorner2 = CGPoint(x: startPoint.x - xMultiplier * xOffset, y: startPoint.y - yMultiplier * yOffset)
-        
-        let secondCorner1 = CGPoint(x: goalPoint.x + xMultiplier * xOffset, y: goalPoint.y + yMultiplier * yOffset)
-        let secondCorner2 = CGPoint(x: goalPoint.x - xMultiplier * xOffset, y: goalPoint.y - yMultiplier * yOffset)
-        
-        move(to: firstCorner1)
-        addLine(to: firstCorner2)
-        addLine(to: secondCorner2)
-        addLine(to: secondCorner1)
+        move(to: startCorner1)
+        addLine(to: startCorner2)
+        addLine(to: goalCorner2)
+        addLine(to: goalCorner1)
         close()
     }
     
