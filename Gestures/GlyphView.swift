@@ -83,7 +83,7 @@ class GlyphView: RowsView {
         drawingTimer?.invalidate()
         drawingTimer = nil
         drawingTimerCounter = 0
-        path = UIBezierPath.newPath()
+        path.removeAllPoints()
         okPoints = 0
         nokPoints = 0
         expectedBeginAndEndAreasIndex = 0
@@ -98,7 +98,7 @@ class GlyphView: RowsView {
         drawingTimer = nil
         drawingTimerCounter = 0
         
-        path = UIBezierPath.newPath()
+        path.removeAllPoints()
         
         drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
     }
@@ -245,7 +245,7 @@ private extension GlyphView {
             var currentX = fromPoint.x
             var currentY = fromPoint.y
             
-            testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaSize: rows[0][0].height))
+            testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaWidth: rows[0][0].width, areaHeight: rows[0][0].height))
             
             for _ in 0..<Const.inBetweenPointsCountForDrawing {
                 pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)

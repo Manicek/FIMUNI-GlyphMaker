@@ -38,7 +38,7 @@ class GlyphCreationView: UIView {
     }
     
     func createAndDrawPath(coordinates: [AreaCoordinate], breakpoints: [Int]) {
-        rowsView.path = UIBezierPath.newPath()
+        rowsView.path.removeAllPoints()
         
         if !coordinates.isEmpty {
             rowsView.path.move(to: rowsView.rows[coordinates.first!.x][coordinates.first!.y].center)

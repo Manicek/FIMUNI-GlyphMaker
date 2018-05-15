@@ -13,21 +13,23 @@ class TestPath: UIBezierPath {
     private var startPoint = CGPoint.zero
     private var goalPoint = CGPoint.zero
 
-    init(startPoint: CGPoint, goalPoint: CGPoint, areaSize: CGFloat) {
+    init(startPoint: CGPoint, goalPoint: CGPoint, areaWidth: CGFloat, areaHeight: CGFloat) {
         super.init()
         
         self.startPoint = startPoint
         self.goalPoint = goalPoint
         
-        lineWidth = AppConstants.lineWidth
+        lineWidth = Constants.lineWidth
         
-        var offset = AppConstants.allowedOffsetMultiplier * areaSize
-        
+        var xOffset = Constants.allowedOffsetMultiplier * areaWidth
+        var yOffset = Constants.allowedOffsetMultiplier * areaHeight
+
         let xDiff = fabs(startPoint.x - goalPoint.x)
         let yDiff = fabs(startPoint.y - goalPoint.y)
         
         if xDiff != 1 && yDiff != 1 {
-            offset *= CGFloat(2).squareRoot()
+            xOffset *= CGFloat(2).squareRoot()
+            yOffset *= CGFloat(2).squareRoot()
         }
         
         let diffSum = xDiff + yDiff
@@ -35,14 +37,15 @@ class TestPath: UIBezierPath {
         let yMultiplier = xDiff / diffSum * (startPoint.y - goalPoint.y < 0 ? -1 : 1)
         
         if xMultiplier != 1 && yMultiplier != 1 {
-            offset *= CGFloat(2).squareRoot()
+            xOffset *= CGFloat(2).squareRoot()
+            yOffset *= CGFloat(2).squareRoot()
         }
         
-        let firstCorner1 = CGPoint(x: startPoint.x + xMultiplier * offset, y: startPoint.y + yMultiplier * offset)
-        let firstCorner2 = CGPoint(x: startPoint.x - xMultiplier * offset, y: startPoint.y - yMultiplier * offset)
+        let firstCorner1 = CGPoint(x: startPoint.x + xMultiplier * xOffset, y: startPoint.y + yMultiplier * yOffset)
+        let firstCorner2 = CGPoint(x: startPoint.x - xMultiplier * xOffset, y: startPoint.y - yMultiplier * yOffset)
         
-        let secondCorner1 = CGPoint(x: goalPoint.x + xMultiplier * offset, y: goalPoint.y + yMultiplier * offset)
-        let secondCorner2 = CGPoint(x: goalPoint.x - xMultiplier * offset, y: goalPoint.y - yMultiplier * offset)
+        let secondCorner1 = CGPoint(x: goalPoint.x + xMultiplier * xOffset, y: goalPoint.y + yMultiplier * yOffset)
+        let secondCorner2 = CGPoint(x: goalPoint.x - xMultiplier * xOffset, y: goalPoint.y - yMultiplier * yOffset)
         
         move(to: firstCorner1)
         addLine(to: firstCorner2)

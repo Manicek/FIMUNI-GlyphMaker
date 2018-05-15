@@ -18,7 +18,8 @@ class RowsView: UIView {
     init() {
         super.init(frame: CGRect())
         
-        path = UIBezierPath.newPath()
+        path = UIBezierPath()
+        path.lineWidth = 6
         
         backgroundColor = .clear
     }
@@ -32,19 +33,20 @@ class RowsView: UIView {
             log.debug("Matrix rows already created")
             return
         }
-        let size = frame.width / CGFloat(AppConstants.matrixSize)
+        let width = frame.width / CGFloat(Constants.numberOfColumns)
+        let height = frame.height / CGFloat(Constants.numberOfRows)
         
-        for _ in 0..<AppConstants.matrixSize {
+        for _ in 0..<Constants.numberOfRows {
             rows.append([CGRect]())
         }
         
         for x in 0..<rows.count {
-            let newFrame = CGRect(x: 0, y: CGFloat(x) * size, width: size, height: size)
+            let newFrame = CGRect(x: 0, y: CGFloat(x) * height, width: width, height: height)
             rows[x].append(newFrame)
             matrixAreas.append(MatrixArea(frame: newFrame, coordinate: AreaCoordinate(x, 0)))
-            for y in 1..<AppConstants.matrixSize {
+            for y in 1..<Constants.numberOfColumns {
                 let previousArea = rows[x][y - 1]
-                let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: size, height: size)
+                let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: width, height: height)
                 rows[x].append(nextArea)
                 matrixAreas.append(MatrixArea(frame: nextArea, coordinate: AreaCoordinate(x, y)))
             }
