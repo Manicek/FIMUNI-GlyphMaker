@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  GlyphMakerConstants.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 15/05/2018.
@@ -8,10 +8,12 @@
 
 import UIKit
 
-class Constants: NSObject {
+class GlyphMakerConstants: NSObject {
     static var randomizer: Int = 0
     static var numberOfRows: Int = 5
     static var numberOfColumns: Int = 5
     static var lineWidth: CGFloat = 6
     static var allowedOffsetMultiplier: CGFloat = 0.3
+    static var drawingTime: TimeInterval = 0.05
+    static var inBetweenPointsCountForDrawing = 20
 }

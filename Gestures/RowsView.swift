@@ -33,10 +33,10 @@ class RowsView: UIView {
             log.debug("Matrix rows already created")
             return
         }
-        let width = frame.width / CGFloat(Constants.numberOfColumns)
-        let height = frame.height / CGFloat(Constants.numberOfRows)
+        let width = frame.width / CGFloat(GlyphMakerConstants.numberOfColumns)
+        let height = frame.height / CGFloat(GlyphMakerConstants.numberOfRows)
         
-        for _ in 0..<Constants.numberOfRows {
+        for _ in 0..<GlyphMakerConstants.numberOfRows {
             rows.append([CGRect]())
         }
         
@@ -44,7 +44,7 @@ class RowsView: UIView {
             let newFrame = CGRect(x: 0, y: CGFloat(x) * height, width: width, height: height)
             rows[x].append(newFrame)
             matrixAreas.append(MatrixArea(frame: newFrame, coordinate: AreaCoordinate(x, 0)))
-            for y in 1..<Constants.numberOfColumns {
+            for y in 1..<GlyphMakerConstants.numberOfColumns {
                 let previousArea = rows[x][y - 1]
                 let nextArea = CGRect(x: previousArea.maxX, y: previousArea.minY, width: width, height: height)
                 rows[x].append(nextArea)

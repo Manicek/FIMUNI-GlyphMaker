@@ -19,10 +19,10 @@ class TestPath: UIBezierPath {
         self.startPoint = startPoint
         self.goalPoint = goalPoint
         
-        lineWidth = Constants.lineWidth
+        lineWidth = GlyphMakerConstants.lineWidth
         
-        var xOffset = Constants.allowedOffsetMultiplier * areaWidth
-        var yOffset = Constants.allowedOffsetMultiplier * areaHeight
+        var xOffset = GlyphMakerConstants.allowedOffsetMultiplier * areaWidth
+        var yOffset = GlyphMakerConstants.allowedOffsetMultiplier * areaHeight
 
         let xDiff = fabs(startPoint.x - goalPoint.x)
         let yDiff = fabs(startPoint.y - goalPoint.y)

@@ -14,11 +14,6 @@ protocol GlyphViewDelegate: class {
 
 class GlyphView: RowsView {
     
-    struct Const {
-        static let drawingTime: TimeInterval = 0.05
-        static let inBetweenPointsCountForDrawing = 20
-    }
-    
     weak var delegate: GlyphViewDelegate?
     
     private var glyph = Glyph.testGlyph
@@ -36,8 +31,6 @@ class GlyphView: RowsView {
     
     private var drawingTimer: Timer?
     private var drawingTimerCounter = 0
-    private var areaCoordinates = [AreaCoordinate]()
-    private var breakpointsIndexes = [Int]()
     private var pointArray = [CGPoint]()
     
     private var isAlreadySetup = false
@@ -62,17 +55,8 @@ class GlyphView: RowsView {
         
         self.glyph = glyph
         
-        areaCoordinates = Array(glyph.areasCoordinates)
-        breakpointsIndexes = Array(glyph.breakpointsIndexes)
-        
         createExpectedBeginAndEndAreas()
         createPointArrayAndTestRectPaths()
-        
-        print("pointArray count: \(pointArray.count)")
-        print("breakpointIndex: \(breakpointsIndexes)")
-        print("areasCoordinates count: \(areaCoordinates.count)")
-        print("testPaths count: \(testPaths.count)")
-        print("expectedBeginAndEndAreas count: \(expectedBeginAndEndAreas.count)")
         
         isUserInteractionEnabled = true
         setNeedsDisplay()
@@ -100,7 +84,7 @@ class GlyphView: RowsView {
         
         path.removeAllPoints()
         
-        drawingTimer = Timer.scheduledTimer(timeInterval: Const.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
+        drawingTimer = Timer.scheduledTimer(timeInterval: GlyphMakerConstants.drawingTime, target: self, selector: #selector(drawingTimerUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func drawingTimerUpdate() {
@@ -110,7 +94,7 @@ class GlyphView: RowsView {
             return
         }
         
-        let shouldMove = drawingTimerCounter % Const.inBetweenPointsCountForDrawing == 0 && breakpointsIndexes.contains((drawingTimerCounter / Const.inBetweenPointsCountForDrawing) + 1)
+        let shouldMove = drawingTimerCounter % GlyphMakerConstants.inBetweenPointsCountForDrawing == 0 && glyph.breakpointsIndexes.contains((drawingTimerCounter / GlyphMakerConstants.inBetweenPointsCountForDrawing) + 1)
         
         let nextPoint = pointArray[drawingTimerCounter]
         if shouldMove || drawingTimerCounter == 0 {
@@ -226,28 +210,28 @@ private extension GlyphView {
     func createPointArrayAndTestRectPaths() {
         log.debug()
         
-        let linesCount = areaCoordinates.count - (1 + breakpointsIndexes.count)
-        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * Const.inBetweenPointsCountForDrawing)
+        let linesCount = glyph.areasCoordinates.count - (1 + glyph.breakpointsIndexes.count)
+        pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * GlyphMakerConstants.inBetweenPointsCountForDrawing)
         testPaths = [TestPath]()
         
         var arrayIndex = 0
         
-        for i in 0..<areaCoordinates.count - 1 {
-            if breakpointsIndexes.contains(i + 1) {
+        for i in 0..<glyph.areasCoordinates.count - 1 {
+            if glyph.breakpointsIndexes.contains(i + 1) {
                 continue
             }
-            let fromCoordinate = areaCoordinates[i]
-            let toCoordinate = areaCoordinates[i + 1]
+            let fromCoordinate = glyph.areasCoordinates[i]
+            let toCoordinate = glyph.areasCoordinates[i + 1]
             let fromPoint = rows[fromCoordinate.x][fromCoordinate.y].center
             let toPoint = rows[toCoordinate.x][toCoordinate.y].center
-            let xDiff = (fromPoint.x - toPoint.x) / CGFloat(Const.inBetweenPointsCountForDrawing)
-            let yDiff = (fromPoint.y - toPoint.y) / CGFloat(Const.inBetweenPointsCountForDrawing)
+            let xDiff = (fromPoint.x - toPoint.x) / CGFloat(GlyphMakerConstants.inBetweenPointsCountForDrawing)
+            let yDiff = (fromPoint.y - toPoint.y) / CGFloat(GlyphMakerConstants.inBetweenPointsCountForDrawing)
             var currentX = fromPoint.x
             var currentY = fromPoint.y
             
             testPaths.append(TestPath(startPoint: fromPoint, goalPoint: toPoint, areaWidth: rows[0][0].width, areaHeight: rows[0][0].height))
             
-            for _ in 0..<Const.inBetweenPointsCountForDrawing {
+            for _ in 0..<GlyphMakerConstants.inBetweenPointsCountForDrawing {
                 pointArray[arrayIndex] = CGPoint(x: currentX, y: currentY)
                 currentX -= xDiff
                 currentY -= yDiff

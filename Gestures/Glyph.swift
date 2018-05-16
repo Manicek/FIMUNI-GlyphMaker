@@ -49,7 +49,7 @@ class Glyph: NSObject {
         var coordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
-        var randomizer = abs(Constants.randomizer.addingReportingOverflow(variant).partialValue)
+        var randomizer = abs(GlyphMakerConstants.randomizer.addingReportingOverflow(variant).partialValue)
         var lastIndex = randomizer % coordinatesCount
         var breakpointsIndexes = [Int]()
         var breakpointsIndexesCount = 0
@@ -70,8 +70,8 @@ class Glyph: NSObject {
             breakpointsIndexes.append(randomizer % coordinatesCount)
         }
         
-        for x in 0..<Constants.numberOfRows {
-            for y in 0..<Constants.numberOfColumns {
+        for x in 0..<GlyphMakerConstants.numberOfRows {
+            for y in 0..<GlyphMakerConstants.numberOfColumns {
                 coordinates.append(AreaCoordinate(x, y))
             }
         }

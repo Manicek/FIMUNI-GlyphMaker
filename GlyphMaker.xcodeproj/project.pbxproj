@@ -29,7 +29,7 @@
 		962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A3F122067D0CD0083A8B2 /* Utils.swift */; };
 		962CDE9620692B0D001CC996 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9520692B0D001CC996 /* Line.swift */; };
 		962CDE9820692C67001CC996 /* RealmAreaCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CDE9720692C67001CC996 /* RealmAreaCoordinate.swift */; };
-		9635209020AB2D28004A2775 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635208F20AB2D28004A2775 /* Constants.swift */; };
+		9635209020AB2D28004A2775 /* GlyphMakerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635208F20AB2D28004A2775 /* GlyphMakerConstants.swift */; };
 		9642C35F205AF46C001252CA /* RealmGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C35E205AF46C001252CA /* RealmGlyph.swift */; };
 		9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642C360205B00FA001252CA /* CGRect+Extension.swift */; };
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
@@ -97,7 +97,7 @@
 		962A3F122067D0CD0083A8B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		962CDE9520692B0D001CC996 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		962CDE9720692C67001CC996 /* RealmAreaCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAreaCoordinate.swift; sourceTree = "<group>"; };
-		9635208F20AB2D28004A2775 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9635208F20AB2D28004A2775 /* GlyphMakerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphMakerConstants.swift; sourceTree = "<group>"; };
 		9642C35E205AF46C001252CA /* RealmGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGlyph.swift; sourceTree = "<group>"; };
 		9642C360205B00FA001252CA /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 				961CD5742080B9560050A30F /* RowsView.swift */,
 				9611346D2099B40500258B28 /* Glyph.swift */,
 				961134732099B4BD00258B28 /* AreaCoordinate.swift */,
-				9635208F20AB2D28004A2775 /* Constants.swift */,
+				9635208F20AB2D28004A2775 /* GlyphMakerConstants.swift */,
 			);
 			path = Gestures;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				96173613207F6A18008B01AE /* UIFont+Extension.swift in Sources */,
 				961134702099B4A700258B28 /* Spell.swift in Sources */,
 				964954E6205AA1790089A37D /* SchoolView.swift in Sources */,
-				9635209020AB2D28004A2775 /* Constants.swift in Sources */,
+				9635209020AB2D28004A2775 /* GlyphMakerConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
