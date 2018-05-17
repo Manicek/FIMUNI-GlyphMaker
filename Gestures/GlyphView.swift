@@ -36,6 +36,8 @@ class GlyphView: RowsView {
     private var isAlreadySetup = false
     private var shouldDisplayTestPaths = true
     
+    public var shouldDrawUsersTouches = true
+    
     override init() {
         super.init()
         
@@ -47,8 +49,7 @@ class GlyphView: RowsView {
     }
     
     func setup(with glyph: Glyph, forcefully: Bool = false) {
-        log.debug()
-        if isAlreadySetup && !forcefully {
+         if isAlreadySetup && !forcefully {
             return
         }
         isAlreadySetup = true
@@ -63,7 +64,6 @@ class GlyphView: RowsView {
     }
     
     func clear() {
-        log.debug()
         drawingTimer?.invalidate()
         drawingTimer = nil
         drawingTimerCounter = 0
@@ -76,8 +76,6 @@ class GlyphView: RowsView {
     }
     
     func drawGlyph() {
-        log.debug()
-        
         drawingTimer?.invalidate()
         drawingTimer = nil
         drawingTimerCounter = 0
@@ -131,15 +129,13 @@ class GlyphView: RowsView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        log.debug()
         if let touch = touches.first {
             let firstPoint = touch.location(in: self)
             lastPoint = firstPoint
             path.move(to: firstPoint)
             
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].first!.contains(firstPoint) {
-                nokPoints += 100
-                log.warning("Not starting in expected area")
+                nokPoints += GlyphMakerConstants.wrongBeginOrEndAreaPenalty
             }
         }
     }
@@ -149,11 +145,11 @@ class GlyphView: RowsView {
             let currentPoint = touch.location(in: self)
             
             if testPaths[expectedPathIndex].contains(currentPoint) {
-                let numberOfCrrectDirections = testPaths[expectedPathIndex].numberOfCorrectDirections(lastPoint: lastPoint, currentPoint: currentPoint)
-                if numberOfCrrectDirections == 0 {
+                let numberOfCorrectDirections = testPaths[expectedPathIndex].numberOfCorrectDirections(lastPoint: lastPoint, currentPoint: currentPoint)
+                if numberOfCorrectDirections == 0 {
                     okPoints -= 2
                 } else {
-                    okPoints += 1 * numberOfCrrectDirections
+                    okPoints += numberOfCorrectDirections
                 }
                 print("ok: \(okPoints)")
             } else if (expectedPathIndex + 1) < testPaths.count && testPaths[expectedPathIndex + 1].contains(currentPoint) {
@@ -165,17 +161,20 @@ class GlyphView: RowsView {
                 print("nok: \(nokPoints), expected: \(expectedPathIndex)")
             }
             
-            drawLine(toPoint: currentPoint)
+            path.addLine(to: currentPoint)
+            
+            if shouldDrawUsersTouches {
+                setNeedsDisplay()
+            }
+
             lastPoint = currentPoint
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        log.debug()
         if let touch = touches.first {
             if !expectedBeginAndEndAreas[expectedBeginAndEndAreasIndex].last!.contains(touch.location(in: self)) {
-                log.warning("Not ending in expected area")
-                nokPoints += 100
+                nokPoints += GlyphMakerConstants.wrongBeginOrEndAreaPenalty
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {
@@ -191,13 +190,7 @@ class GlyphView: RowsView {
 
 private extension GlyphView {
     
-    func drawLine(toPoint: CGPoint) {
-        path.addLine(to: toPoint)
-        setNeedsDisplay()
-    }
-    
     func createExpectedBeginAndEndAreas() {
-        log.debug()
         expectedBeginAndEndAreas = [[CGRect]]()
         
         for tuple in glyph.expectedBeginEndAreaCoordinates() {
@@ -208,8 +201,6 @@ private extension GlyphView {
     }
     
     func createPointArrayAndTestRectPaths() {
-        log.debug()
-        
         let linesCount = glyph.areasCoordinates.count - (1 + glyph.breakpointsIndexes.count)
         pointArray = [CGPoint](repeating: CGPoint.zero, count: linesCount * GlyphMakerConstants.inBetweenPointsCountForDrawing)
         testPaths = [TestPath]()
