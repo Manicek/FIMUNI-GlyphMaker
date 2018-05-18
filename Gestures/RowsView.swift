@@ -19,7 +19,7 @@ class RowsView: UIView {
         super.init(frame: CGRect())
         
         path = UIBezierPath()
-        path.lineWidth = 6
+        path.lineWidth = GlyphMakerConstants.lineWidth
         
         backgroundColor = .clear
     }

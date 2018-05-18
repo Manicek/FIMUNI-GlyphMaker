@@ -101,7 +101,7 @@ class BattleViewController: UIViewController {
 
 extension BattleViewController: GlyphViewDelegate {
     func finishedGlyphWithResults(okPointsRatio: Double) {
-        log.debug("ratio: \(100 * okPointsRatio)")
+        log.debug("accuracy: \(100 * okPointsRatio)")
         
         if okPointsRatio > AppConstants.minimumRatioToPass {
             if let spell = currentSpell {

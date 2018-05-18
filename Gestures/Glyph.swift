@@ -36,11 +36,15 @@ class Glyph: NSObject {
         self.breakpointsIndexes = checkedBreakpointsIndexes
     }
     
+    override var description: String {
+        return "areasCoordinates: \(areasCoordinates)" + " " + "breakpointsIndexes \(breakpointsIndexes)"
+    }
+    
     static let testGlyph = Glyph(areasCoordinates:
         [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
     static func generateDeterministicRandomGlyph(coordinatesCount: Int, variant: Int, preventOverlaps: Bool) -> Glyph {
-        var coordinates = [AreaCoordinate]()
+        var allPossibleCoordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
         var randomizer = abs(GlyphMakerConstants.randomizer.addingReportingOverflow(variant).partialValue)
@@ -58,32 +62,53 @@ class Glyph: NSObject {
         
         for x in 0..<GlyphMakerConstants.numberOfRows {
             for y in 0..<GlyphMakerConstants.numberOfColumns {
-                coordinates.append(AreaCoordinate(x, y))
+                allPossibleCoordinates.append(AreaCoordinate(x, y))
             }
         }
         
-        areasCoordinates.append(coordinates[lastIndex])
+        areasCoordinates.append(allPossibleCoordinates[lastIndex])
         
         for i in 1..<coordinatesCount {
-            if breakpointsIndexes.contains(i) {
-                continue
-            }
+            lastIndex = (lastIndex + randomizer) % allPossibleCoordinates.count
             
-            lastIndex = (lastIndex + randomizer) % coordinates.count
-            
-            var candidateCoordinate = coordinates[lastIndex]
-            var candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
-            
-            if preventOverlaps {
-                while candidateLine.overlapsAnyLineIn(blockedLines) {
-                    lastIndex = (lastIndex + 1 == coordinates.count) ? 0 : (lastIndex + 1)
-                    candidateCoordinate = coordinates[lastIndex]
-                    candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+            var candidateCoordinate = allPossibleCoordinates[lastIndex]
+            if let lastCoordinate = areasCoordinates.last {
+                while lastCoordinate == candidateCoordinate {
+                    lastIndex = (3 * lastIndex + randomizer) % allPossibleCoordinates.count
+                    candidateCoordinate = allPossibleCoordinates[lastIndex]
                 }
             }
             
+            if !breakpointsIndexes.contains(i) {
+                
+                var candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+                
+                var attemptsCount = 0
+                if preventOverlaps {
+                    while candidateLine.overlapsAnyLineIn(blockedLines) {
+                        lastIndex = (lastIndex + 1 == allPossibleCoordinates.count) ? 0 : (lastIndex + 1)
+                        candidateCoordinate = allPossibleCoordinates[lastIndex]
+
+                        var candidateCoordinate = allPossibleCoordinates[lastIndex]
+                        if let lastCoordinate = areasCoordinates.last, lastCoordinate == candidateCoordinate {
+                            if candidateCoordinate == allPossibleCoordinates.last! {
+                                candidateCoordinate = allPossibleCoordinates.first!
+                            } else {
+                                candidateCoordinate = allPossibleCoordinates[lastIndex + 1]
+                            }
+                        }
+                        
+                        candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+                        attemptsCount += 1
+                        if attemptsCount == coordinatesCount {
+                            return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
+                        }
+                    }
+                }
+                blockedLines.append(candidateLine)
+            }
+            
             areasCoordinates.append(candidateCoordinate)
-            blockedLines.append(candidateLine)
             randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
         }
         

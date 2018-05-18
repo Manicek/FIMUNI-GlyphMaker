@@ -40,6 +40,7 @@ class SchoolViewController: UIViewController {
         super.viewDidLoad()
         
         schoolView.glyphView.delegate = self
+        print(glyph)
     }
 }
 
