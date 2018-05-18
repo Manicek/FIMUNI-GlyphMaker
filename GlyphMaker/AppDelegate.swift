@@ -53,13 +53,13 @@ private extension AppDelegate {
     }
     
     func createBasicSpells() {
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 0, preventOverlaps: true, allowTaps: false), imageIndex: 0)
+        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 0, preventOverlaps: true), imageIndex: 0)
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 1, preventOverlaps: true, allowTaps: false), imageIndex: 1)
+        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 1, preventOverlaps: true), imageIndex: 1)
         frostSpear.unlocked = true
         
-        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 10, variant: 0, preventOverlaps: true, allowTaps: false), imageIndex: 2)
+        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 10, variant: 0, preventOverlaps: true), imageIndex: 2)
         
         SpellStore.add(spell: fireball)
         SpellStore.add(spell: frostSpear)

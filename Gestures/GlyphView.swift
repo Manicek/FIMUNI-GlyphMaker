@@ -118,13 +118,13 @@ class GlyphView: RowsView {
     
     override func draw(_ rect: CGRect) {
         if shouldDisplayTestPaths {
-            UIColor.lightGray.setFill()
+            GlyphMakerConstants.testPathColor.setFill()
             for testPath in testPaths {
-                testPath.fill(with: .normal, alpha: 0.5)
+                testPath.fill(with: .normal, alpha: GlyphMakerConstants.testPathOpacity)
             }
         }
 
-        UIColor.red.setStroke()
+        GlyphMakerConstants.lineColor.setStroke()
         path.stroke()
     }
     

@@ -17,4 +17,8 @@ class GlyphMakerConstants: NSObject {
     static var drawingTime: TimeInterval = 0.05
     static var inBetweenPointsCountForDrawing: Int = 20
     static var wrongBeginOrEndAreaPenalty: Int = 100
+    
+    static var lineColor: UIColor = .red
+    static var testPathColor: UIColor = .lightGray
+    static var testPathOpacity: CGFloat = 0.5
 }

@@ -55,7 +55,7 @@ class RowsView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        UIColor.red.setStroke()
+        GlyphMakerConstants.lineColor.setStroke()
         path.stroke()
     }
     
