@@ -81,9 +81,15 @@ class BattleViewController: UIViewController {
     @objc func remainingTimeTimerUpdate() {
         if remainingTimeTimerCounter >= Const.timeForFight {
             if creature.alive {
-                showBasicAlert(message: "You have lost the fight!", title: "Defeat")
+                showBasicAlert(message: "You have lost the fight!", title: "Defeat", action: {
+                    action in
+                    self.dismiss(animated: true, completion: nil)
+                })
             } else{
-                showBasicAlert(message: "You have won the fight!", title: "Victory")
+                showBasicAlert(message: "You have won the fight!", title: "Victory", action: {
+                    action in
+                    self.dismiss(animated: true, completion: nil)
+                })
             }
             stopRemainingTimeTimer()
             return

@@ -16,4 +16,11 @@ extension UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    func showBasicAlert(message: String, title: String, action: ((UIAlertAction) -> Swift.Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("ok", comment: "|||OK"), style: .default, handler: action)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
