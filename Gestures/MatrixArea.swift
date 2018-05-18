@@ -20,7 +20,7 @@ class MatrixArea: UIView {
         backgroundColor = .clear
         
         layer.borderWidth = 1
-        layer.borderColor = UIColor.green.cgColor
+        layer.borderColor = GlyphMakerConstants.matrixAreaBorderColor.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GlyphViewDelegate: class {
-    func finishedGlyphWithResults(okPointsPercentage: Double)
+    func finishedGlyphWithResults(okPointsRatio: Double)
 }
 
 class GlyphView: RowsView {
@@ -178,7 +178,7 @@ class GlyphView: RowsView {
             }
         }
         if expectedBeginAndEndAreasIndex + 1 == expectedBeginAndEndAreas.count {
-            delegate?.finishedGlyphWithResults(okPointsPercentage: Double(okPoints) / Double(nokPoints + okPoints))
+            delegate?.finishedGlyphWithResults(okPointsRatio: Double(okPoints) / Double(nokPoints + okPoints))
         } else {
             expectedBeginAndEndAreasIndex += 1
         }

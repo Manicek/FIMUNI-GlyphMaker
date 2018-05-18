@@ -10,7 +10,7 @@ import UIKit
 
 class SchoolViewController: UIViewController {
 
-    private var glyphView: SchoolView {
+    private var schoolView: SchoolView {
         return view as! SchoolView
     }
     
@@ -34,5 +34,18 @@ class SchoolViewController: UIViewController {
         super.loadView()
         
         view = SchoolView(glyph)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        schoolView.glyphView.delegate = self
+    }
+}
+
+extension SchoolViewController: GlyphViewDelegate {
+    func finishedGlyphWithResults(okPointsRatio: Double) {
+        schoolView.glyphView.clear()
+        showBasicAlert(message: String(format: "%.0f %% accuracy", 100 * okPointsRatio), title: "Result")
     }
 }

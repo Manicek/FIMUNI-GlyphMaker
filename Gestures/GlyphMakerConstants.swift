@@ -21,4 +21,5 @@ class GlyphMakerConstants: NSObject {
     static var lineColor: UIColor = .red
     static var testPathColor: UIColor = .lightGray
     static var testPathOpacity: CGFloat = 0.5
+    static var matrixAreaBorderColor: UIColor = .white
 }

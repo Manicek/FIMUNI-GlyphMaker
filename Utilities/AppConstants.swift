@@ -11,7 +11,7 @@ import Simple_KeychainSwift
 
 class AppConstants: NSObject {
 
-    static let minimumPercentageToPass: Double = 0.65 // Value between 0 and 1
+    static let minimumRatioToPass: Double = 0.65 // Value between 0 and 1
     static var randomizer: Int {
         if let alreadyLoadedValue = loadedRandomizer {
             return alreadyLoadedValue

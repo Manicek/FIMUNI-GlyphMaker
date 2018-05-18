@@ -94,12 +94,12 @@ class BattleViewController: UIViewController {
 }
 
 extension BattleViewController: GlyphViewDelegate {
-    func finishedGlyphWithResults(okPointsPercentage: Double) {
-        log.debug("ratio: \(100 * okPointsPercentage)")
+    func finishedGlyphWithResults(okPointsRatio: Double) {
+        log.debug("ratio: \(100 * okPointsRatio)")
         
-        if okPointsPercentage > AppConstants.minimumPercentageToPass {
+        if okPointsRatio > AppConstants.minimumRatioToPass {
             if let spell = currentSpell {
-                let damage = spell.damage * okPointsPercentage
+                let damage = spell.damage * okPointsRatio
                 let dealtDamage = creature.receiveDamage(damage, ofType: spell.damageType)
                 showBasicAlert(message: String(format: "You dealt %.0f damage, the creature resisted %.0f", dealtDamage, damage - dealtDamage), title: "Success!")
                 battleView.setRemainingHealth(current: creature.health, max: creature.maxHealth)

@@ -10,8 +10,9 @@ import SnapKit
 
 class SchoolView: UIView {
     
+    let glyphView = GlyphView()
+    
     private let backgroundImageView = BackgroundImageView()
-    private let glyphView = GlyphView()
     private let clearButton = RegularButton("Clear")
     private let drawGlyphButton = RegularButton("Draw")
     private let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
