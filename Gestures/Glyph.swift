@@ -39,35 +39,21 @@ class Glyph: NSObject {
     static let testGlyph = Glyph(areasCoordinates:
         [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
-    /**
-     - parameter difficulty: decides length of glyph and breakpoints
-     - parameter variant: enables different glyphs of same difficulty
-     
-     - returns: generated glyph
-     */
-    static func generateDeterministicRandomGlyph(coordinatesCount: Int, variant: Int, preventOverlaps: Bool, allowTaps: Bool) -> Glyph {
+    static func generateDeterministicRandomGlyph(coordinatesCount: Int, variant: Int, preventOverlaps: Bool) -> Glyph {
         var coordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
         var randomizer = abs(GlyphMakerConstants.randomizer.addingReportingOverflow(variant).partialValue)
         var lastIndex = randomizer % coordinatesCount
         var breakpointsIndexes = [Int]()
-        var breakpointsIndexesCount = 0
         
         switch coordinatesCount {
-        case ...3: breakpointsIndexesCount = 0
-        case 4...10: breakpointsIndexesCount = 1
-        case 11...: breakpointsIndexesCount = 2
+        case ...4: break
+        case 5...10: breakpointsIndexes.append((randomizer % 2 == 0) ? 2 : 3)
+        case 11...:
+            breakpointsIndexes.append((randomizer % 2 == 0) ? 2 : 3)
+            breakpointsIndexes.append((randomizer % 2 == 0) ? 7 : 8)
         default: break
-        }
-        
-        for i in 0..<breakpointsIndexesCount {
-            if allowTaps {
-                //TODO
-            } else {
-                //TODO
-            }
-            breakpointsIndexes.append(randomizer % coordinatesCount)
         }
         
         for x in 0..<GlyphMakerConstants.numberOfRows {
