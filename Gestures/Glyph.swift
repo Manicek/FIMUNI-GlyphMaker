@@ -43,7 +43,11 @@ class Glyph: NSObject {
     static let testGlyph = Glyph(areasCoordinates:
         [AreaCoordinate(2, 1), AreaCoordinate(0, 2), AreaCoordinate(2, 3), AreaCoordinate(2, 1), AreaCoordinate(3, 1), AreaCoordinate(3, 3), AreaCoordinate(4, 3), AreaCoordinate(3, 2)], breakpointsIndexes: [4])
     
-    static func generateDeterministicRandomGlyph(coordinatesCount: Int, variant: Int, preventOverlaps: Bool) -> Glyph {
+    static func generateDeterministicRandomGlyph(coordinatesCount: Int,
+                                                 variant: Int,
+                                                 preventOverlaps: Bool = true,
+                                                 insertBreakPoints: Bool = true,
+                                                 neverUseTheSameAreaTwice: Bool = false) -> Glyph {
         var allPossibleCoordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
@@ -51,14 +55,16 @@ class Glyph: NSObject {
         var lastIndex = 0
         var breakpointsIndexes = [Int]()
         
-        switch coordinatesCount {
-        case ...4: break
-        case 5...10:
-            breakpointsIndexes.append((randomizer % (coordinatesCount - 3)) + 2)
-        case 11...:
-            breakpointsIndexes.append((randomizer % (coordinatesCount - 5)) + 2)
-            breakpointsIndexes.append(breakpointsIndexes[0] + 2)
-        default: break
+        if insertBreakPoints {
+            switch coordinatesCount {
+            case ...4: break
+            case 5...10:
+                breakpointsIndexes.append((randomizer % (coordinatesCount - 3)) + 2)
+            case 11...:
+                breakpointsIndexes.append(randomizer % (coordinatesCount/2 - 2) + 2)
+                breakpointsIndexes.append(randomizer % (coordinatesCount/2 - 2) + coordinatesCount/2 + 1)
+            default: break
+            }
         }
         
         for x in 0..<GlyphMakerConstants.numberOfRows {
@@ -70,8 +76,12 @@ class Glyph: NSObject {
         lastIndex = randomizer % allPossibleCoordinates.count
         
         areasCoordinates.append(allPossibleCoordinates[lastIndex])
+        if neverUseTheSameAreaTwice {
+            areasCoordinates.remove(at: lastIndex)
+        }
         
         for i in 1..<coordinatesCount {
+            randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
             lastIndex = (lastIndex + randomizer) % allPossibleCoordinates.count
             
             var candidateCoordinate = allPossibleCoordinates[lastIndex]
@@ -113,7 +123,9 @@ class Glyph: NSObject {
             }
             
             areasCoordinates.append(candidateCoordinate)
-            randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
+            if neverUseTheSameAreaTwice {
+                areasCoordinates.remove(at: lastIndex)
+            }
         }
         
         return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)

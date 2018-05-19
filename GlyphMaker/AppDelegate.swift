@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         GlyphMakerConstants.randomizer = AppConstants.randomizer
-        GlyphMakerConstants.numberOfColumns = 20
-        GlyphMakerConstants.numberOfRows = 20
+        GlyphMakerConstants.numberOfColumns = 5
+        GlyphMakerConstants.numberOfRows = 5
         GlyphMakerConstants.lineWidth = 3
         
         if !Defaults.appHasBeenLaunchedBefore {
