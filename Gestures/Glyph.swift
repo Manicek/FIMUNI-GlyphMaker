@@ -48,15 +48,16 @@ class Glyph: NSObject {
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
         var randomizer = abs(GlyphMakerConstants.randomizer.addingReportingOverflow(variant).partialValue)
-        var lastIndex = randomizer % coordinatesCount
+        var lastIndex = 0
         var breakpointsIndexes = [Int]()
         
         switch coordinatesCount {
         case ...4: break
-        case 5...10: breakpointsIndexes.append((randomizer % 2 == 0) ? 2 : 3)
+        case 5...10:
+            breakpointsIndexes.append((randomizer % (coordinatesCount - 3)) + 2)
         case 11...:
-            breakpointsIndexes.append((randomizer % 2 == 0) ? 2 : 3)
-            breakpointsIndexes.append((randomizer % 2 == 0) ? 7 : 8)
+            breakpointsIndexes.append((randomizer % (coordinatesCount - 5)) + 2)
+            breakpointsIndexes.append(breakpointsIndexes[0] + 2)
         default: break
         }
         
@@ -66,16 +67,19 @@ class Glyph: NSObject {
             }
         }
         
+        lastIndex = randomizer % allPossibleCoordinates.count
+        
         areasCoordinates.append(allPossibleCoordinates[lastIndex])
         
         for i in 1..<coordinatesCount {
             lastIndex = (lastIndex + randomizer) % allPossibleCoordinates.count
             
             var candidateCoordinate = allPossibleCoordinates[lastIndex]
-            if let lastCoordinate = areasCoordinates.last {
-                while lastCoordinate == candidateCoordinate {
-                    lastIndex = (3 * lastIndex + randomizer) % allPossibleCoordinates.count
-                    candidateCoordinate = allPossibleCoordinates[lastIndex]
+            if areasCoordinates.last! == candidateCoordinate {
+                if candidateCoordinate == allPossibleCoordinates.last! {
+                    candidateCoordinate = allPossibleCoordinates.first!
+                } else {
+                    candidateCoordinate = allPossibleCoordinates[lastIndex + 1]
                 }
             }
             
@@ -90,7 +94,7 @@ class Glyph: NSObject {
                         candidateCoordinate = allPossibleCoordinates[lastIndex]
 
                         var candidateCoordinate = allPossibleCoordinates[lastIndex]
-                        if let lastCoordinate = areasCoordinates.last, lastCoordinate == candidateCoordinate {
+                        if areasCoordinates.last! == candidateCoordinate {
                             if candidateCoordinate == allPossibleCoordinates.last! {
                                 candidateCoordinate = allPossibleCoordinates.first!
                             } else {
