@@ -93,32 +93,30 @@ class Glyph: NSObject {
                 }
             }
             
-            if !breakpointsIndexes.contains(i) {
-                
+            if preventOverlaps && !breakpointsIndexes.contains(i) {
                 var candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
-                
                 var attemptsCount = 0
-                if preventOverlaps {
-                    while candidateLine.overlapsAnyLineIn(blockedLines) {
-                        lastIndex = (lastIndex + 1 == allPossibleCoordinates.count) ? 0 : (lastIndex + 1)
-                        candidateCoordinate = allPossibleCoordinates[lastIndex]
-
-                        var candidateCoordinate = allPossibleCoordinates[lastIndex]
-                        if areasCoordinates.last! == candidateCoordinate {
-                            if candidateCoordinate == allPossibleCoordinates.last! {
-                                candidateCoordinate = allPossibleCoordinates.first!
-                            } else {
-                                candidateCoordinate = allPossibleCoordinates[lastIndex + 1]
-                            }
-                        }
-                        
-                        candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
-                        attemptsCount += 1
-                        if attemptsCount == coordinatesCount {
-                            return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
+                
+                while candidateLine.overlapsAnyLineIn(blockedLines) {
+                    lastIndex = (lastIndex + 1 == allPossibleCoordinates.count) ? 0 : (lastIndex + 1)
+                    candidateCoordinate = allPossibleCoordinates[lastIndex]
+                    
+                    var candidateCoordinate = allPossibleCoordinates[lastIndex]
+                    if areasCoordinates.last! == candidateCoordinate {
+                        if candidateCoordinate == allPossibleCoordinates.last! {
+                            candidateCoordinate = allPossibleCoordinates.first!
+                        } else {
+                            candidateCoordinate = allPossibleCoordinates[lastIndex + 1]
                         }
                     }
+                    
+                    candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
+                    attemptsCount += 1
+                    if attemptsCount == coordinatesCount {
+                        return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
+                    }
                 }
+                
                 blockedLines.append(candidateLine)
             }
             
