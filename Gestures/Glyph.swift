@@ -47,7 +47,11 @@ class Glyph: NSObject {
                                                  variant: Int,
                                                  preventOverlaps: Bool = true,
                                                  insertBreakPoints: Bool = true,
-                                                 neverUseTheSameAreaTwice: Bool = false) -> Glyph {
+                                                 neverUseTheSameAreaTwice: Bool = false) -> Glyph? {
+        if coordinatesCount < 1  {
+            return nil
+        }
+        
         var allPossibleCoordinates = [AreaCoordinate]()
         var areasCoordinates = [AreaCoordinate]()
         var blockedLines = [Line]()
@@ -113,7 +117,7 @@ class Glyph: NSObject {
                     candidateLine = Line(from: areasCoordinates.last!, to: candidateCoordinate)
                     attemptsCount += 1
                     if attemptsCount == coordinatesCount {
-                        return Glyph(areasCoordinates: areasCoordinates, breakpointsIndexes: breakpointsIndexes)
+                        return nil
                     }
                 }
                 

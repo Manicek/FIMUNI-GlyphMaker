@@ -56,13 +56,25 @@ private extension AppDelegate {
     }
     
     func createBasicSpells() {
-        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 0, preventOverlaps: true), imageIndex: 0)
+        var fireballGlyph = Glyph.testGlyph
+        if let glyph = Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 0, preventOverlaps: true) {
+            fireballGlyph = glyph
+        }
+        let fireball = Spell(name: "Fireball", damageType: .fire, damage: 50, glyph: fireballGlyph, imageIndex: 0)
         fireball.unlocked = true
         
-        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 1, preventOverlaps: true), imageIndex: 1)
+        var frostSpearGlyph = Glyph.testGlyph
+        if let glyph = Glyph.generateDeterministicRandomGlyph(coordinatesCount: 5, variant: 1, preventOverlaps: true) {
+            frostSpearGlyph = glyph
+        }
+        let frostSpear = Spell(name: "Frost Grasp", damageType: .cold, damage: 40, glyph: frostSpearGlyph, imageIndex: 1)
         frostSpear.unlocked = true
         
-        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: Glyph.generateDeterministicRandomGlyph(coordinatesCount: 10, variant: 0, preventOverlaps: true), imageIndex: 2)
+        var infernoGlyph = Glyph.testGlyph
+        if let glyph = Glyph.generateDeterministicRandomGlyph(coordinatesCount: 10, variant: 0, preventOverlaps: true) {
+            infernoGlyph = glyph
+        }
+        let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: infernoGlyph, imageIndex: 2)
         
         SpellStore.add(spell: fireball)
         SpellStore.add(spell: frostSpear)
