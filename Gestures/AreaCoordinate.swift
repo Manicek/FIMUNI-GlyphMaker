@@ -27,7 +27,7 @@ class AreaCoordinate: NSObject {
     }
     
     override var hash: Int {
-        return (10 * x) + y
+        return (10000000 * x) + y
     }
     
     override func isEqual(_ object: Any?) -> Bool {
