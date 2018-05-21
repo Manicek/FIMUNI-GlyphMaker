@@ -17,7 +17,7 @@ extension Realm {
             realm = try Realm()
         } catch let error as NSError {
             realm = nil
-            log.error("Failed to initialize a default Realm instance with error: \(error.description)")
+            print("Failed to initialize a default Realm instance with error: \(error.description)")
         }
         
         return realm
@@ -29,7 +29,7 @@ extension Realm {
                 delete(object)
             }
         } catch let error as NSError {
-            log.error(error.description)
+            print(error.description)
         }
     }
     
@@ -39,7 +39,7 @@ extension Realm {
                 delete(objects)
             }
         } catch let error as NSError {
-            log.error(error.description)
+            print(error.description)
         }
     }
     
@@ -49,7 +49,7 @@ extension Realm {
                 add(object, update: update)
             }
         } catch let error as NSError {
-            log.error(error.description)
+            print(error.description)
         }
     }
     
@@ -59,7 +59,7 @@ extension Realm {
                 add(objects, update: update)
             }
         } catch let error as NSError {
-            log.error(error.description)
+            print(error.description)
         }
     }
 }

@@ -4,7 +4,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def core_pods
     pod 'SnapKit'
-    pod 'XCGLogger'
     pod 'RealmSwift'
     pod 'Simple-KeychainSwift'
 end

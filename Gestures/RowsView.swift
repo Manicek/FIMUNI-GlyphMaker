@@ -30,7 +30,6 @@ class RowsView: UIView {
     
     func createRows() {
         if rows.count != 0 {
-            log.debug("Matrix rows already created")
             return
         }
         let width = frame.width / CGFloat(GlyphMakerConstants.numberOfColumns)

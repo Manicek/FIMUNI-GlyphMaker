@@ -45,7 +45,6 @@
 		96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */; };
 		96A959C72059A1D300E6A6B5 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */; };
 		96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959C92059A25500E6A6B5 /* Defaults.swift */; };
-		96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959CA2059A25500E6A6B5 /* Logger.swift */; };
 		96D17CB520640C750004CC05 /* BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB420640C750004CC05 /* BattleView.swift */; };
 		96D17CB720640C820004CC05 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB620640C820004CC05 /* BattleViewController.swift */; };
 		96D17CB9206411140004CC05 /* HealthBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D17CB8206411140004CC05 /* HealthBarView.swift */; };
@@ -115,7 +114,6 @@
 		96A959C32059A1D300E6A6B5 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		96A959C42059A1D300E6A6B5 /* Realm+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
 		96A959C92059A25500E6A6B5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		96A959CA2059A25500E6A6B5 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		96D17CB420640C750004CC05 /* BattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleView.swift; sourceTree = "<group>"; };
 		96D17CB620640C820004CC05 /* BattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		96D17CB8206411140004CC05 /* HealthBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarView.swift; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				96A959C92059A25500E6A6B5 /* Defaults.swift */,
-				96A959CA2059A25500E6A6B5 /* Logger.swift */,
 				960D855C205BF9A90034F709 /* AppConstants.swift */,
 				962A3F122067D0CD0083A8B2 /* Utils.swift */,
 			);
@@ -536,21 +533,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GlyphMaker/Pods-GlyphMaker-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Simple-KeychainSwift/Simple_KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Simple_KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -603,7 +596,6 @@
 				96A959C62059A1D300E6A6B5 /* UIView+Extension.swift in Sources */,
 				96A959C52059A1D300E6A6B5 /* UIColor+Extension.swift in Sources */,
 				96DA0C0E205EFA0900118AA6 /* SpellListTableViewCell.swift in Sources */,
-				96A959CC2059A25500E6A6B5 /* Logger.swift in Sources */,
 				96DDCC8E20861C0A008DBA57 /* CreatureListTableViewCell.swift in Sources */,
 				962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */,
 				96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */,

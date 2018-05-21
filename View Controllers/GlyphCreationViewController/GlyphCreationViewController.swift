@@ -64,7 +64,7 @@ class GlyphCreationViewController: UIViewController {
                 
                 let candidateLine = Line(from: lastArea.coordinate, to: area.coordinate)
                 if candidateLine.overlapsAnyLineIn(blockedLines) {
-                    log.warning("Line \(candidateLine) is blocked")
+                    print("Line \(candidateLine) is blocked")
                     showBasicAlert(message: "Line would overlap an existing line", title: "No")
                     return
                 }
@@ -90,7 +90,7 @@ class GlyphCreationViewController: UIViewController {
     
     @objc func doneButtonTapped() {
         let glyph = Glyph(areasCoordinates: coordinates, breakpointsIndexes: breakpoints)
-        log.debug(glyph)
+        print(glyph)
     }
     
     @objc func breakpointButtonTapped() {

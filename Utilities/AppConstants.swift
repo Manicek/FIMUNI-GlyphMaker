@@ -17,13 +17,13 @@ class AppConstants: NSObject {
             return alreadyLoadedValue
         }
         if let value: Int = Keychain.value(forKey: "randomizer") {
-            log.debug("Loading randomizer with value \(value) from Keychain")
+            print("Loading randomizer with value \(value) from Keychain")
             loadedRandomizer = value
             return value
         }
         let value = abs(UIDevice.current.identifierForVendor!.uuidString.hashValue)
         Keychain.set(value, forKey: "randomizer")
-        log.debug("Generating randomizer with value \(value) and saving it to Keychain")
+        print("Generating randomizer with value \(value) and saving it to Keychain")
         return value
         
     }

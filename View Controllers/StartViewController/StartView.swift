@@ -16,9 +16,9 @@ class StartView: UIView {
     }
     
     private let backgroundImageView = BackgroundImageView()
-    let spellsButton = DiamondButton("Spells")
-    let fightButton = DiamondButton("Fight")
-    let creaturesButton = DiamondButton("Creatures")
+    let spellsButton = DiamondButton("Train")
+    let fightButton = DiamondButton("Battle")
+    let creaturesButton = DiamondButton("Learn")
     let createButton = DiamondButton("Create")
     
     required init?(coder aDecoder: NSCoder) {
