@@ -27,7 +27,7 @@ class Glyph: NSObject {
                 let previousIndex = checkedBreakpointsIndexes.last!
                 let currentIndex = notTooBigOrSmallBreakpointsIndexes[i]
                 
-                if currentIndex != previousIndex && currentIndex != previousIndex + 1 {
+                if currentIndex > previousIndex + 1 {
                     checkedBreakpointsIndexes.append(currentIndex)
                 }
             }
@@ -48,7 +48,7 @@ class Glyph: NSObject {
                                                  preventOverlaps: Bool = true,
                                                  insertBreakPoints: Bool = true,
                                                  neverUseTheSameAreaTwice: Bool = false) -> Glyph? {
-        if coordinatesCount < 1  {
+        if coordinatesCount < 2 {
             return nil
         }
         
@@ -61,7 +61,6 @@ class Glyph: NSObject {
         
         if insertBreakPoints {
             switch coordinatesCount {
-            case ...4: break
             case 5...10:
                 breakpointsIndexes.append((randomizer % (coordinatesCount - 3)) + 2)
             case 11...:
