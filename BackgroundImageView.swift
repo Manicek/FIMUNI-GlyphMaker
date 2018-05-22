@@ -12,8 +12,9 @@ class BackgroundImageView: UIImageView {
 
     init() {
         super.init(frame: CGRect())
-        image = UIImage()
+        //image = UIImage()
         //image = #imageLiteral(resourceName: "beardedDragon1")
+        backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
