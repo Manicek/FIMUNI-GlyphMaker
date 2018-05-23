@@ -28,8 +28,8 @@ class CreatureListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with creature: Creature) {
-        nameLabel.text = creature.name
+    func configure(with creatureType: CreatureType) {
+        nameLabel.text = creatureType.name
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CreatureListTableViewManagerDelegate: class {
-    func pushRequest(_ vc: CreatureViewController)
+    func pushRequest(_ vc: CreatureTypeViewController)
 }
 
 class CreatureListTableViewManager: NSObject {
@@ -28,32 +28,22 @@ class CreatureListTableViewManager: NSObject {
             tableView?.separatorStyle = .none
         }
     }
-    
-    private var creatures = [Creature]()
-    
-    func reload() {
-        creatures = CreatureStore.getAllCreatures()
-        
-        print("Creatures: \(creatures.count)")
-
-        tableView?.reloadData()
-    }
 }
 
 extension CreatureListTableViewManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.pushRequest(CreatureViewController(creature: creatures[indexPath.row]))
+        delegate?.pushRequest(CreatureTypeViewController(creatureType: CreatureType.allValues[indexPath.row]))
     }
 }
 
 extension CreatureListTableViewManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return creatures.count
+        return CreatureType.allValues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CreatureListTableViewCell.cellIdentifier, for: indexPath) as! CreatureListTableViewCell
-        cell.configure(with: creatures[indexPath.row])
+        cell.configure(with: CreatureType.allValues[indexPath.row])
         return cell
     }
 }

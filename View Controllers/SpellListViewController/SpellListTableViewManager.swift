@@ -19,6 +19,7 @@ class SpellListTableViewManager: NSObject {
         static let headerHeight: CGFloat = 20
         static let fireSectionIndex = 0
         static let coldSectionIndex = 1
+        static let physicalSectionIndex = 2
     }
     
     weak var delegate: SpellListTableViewManagerDelegate?
@@ -34,13 +35,12 @@ class SpellListTableViewManager: NSObject {
     
     private var fireSpells = [Spell]()
     private var coldSpells = [Spell]()
+    private var physicalSpells = [Spell]()
     
     func reload() {
         fireSpells = SpellStore.getSpells(ofType: .fire)
         coldSpells = SpellStore.getSpells(ofType: .cold)
-        
-        print("Fire: \(fireSpells.count)")
-        print("Cold: \(coldSpells.count)")
+        physicalSpells = SpellStore.getSpells(ofType: .physical)
         
         tableView?.reloadData()
     }
@@ -52,6 +52,7 @@ extension SpellListTableViewManager: UITableViewDelegate {
         switch indexPath.section {
         case Const.fireSectionIndex: delegate?.pushRequest(SchoolViewController(glyph: fireSpells[indexPath.row].glyph))
         case Const.coldSectionIndex: delegate?.pushRequest(SchoolViewController(glyph: coldSpells[indexPath.row].glyph))
+        case Const.physicalSectionIndex: delegate?.pushRequest(SchoolViewController(glyph: physicalSpells[indexPath.row].glyph))
         default: return
         }
     }
@@ -68,6 +69,7 @@ extension SpellListTableViewManager: UITableViewDelegate {
         switch section {
         case Const.fireSectionIndex: return SpellListHeaderView(forType: .fire)
         case Const.coldSectionIndex: return SpellListHeaderView(forType: .cold)
+        case Const.physicalSectionIndex: return SpellListHeaderView(forType: .physical)
         default: return nil
         }
     }
@@ -80,19 +82,21 @@ extension SpellListTableViewManager: UITableViewDataSource {
         switch indexPath.section {
         case Const.fireSectionIndex: cell.configure(with: fireSpells[indexPath.row])
         case Const.coldSectionIndex: cell.configure(with: coldSpells[indexPath.row])
+        case Const.physicalSectionIndex: cell.configure(with: physicalSpells[indexPath.row])
         default: break
         }
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case Const.fireSectionIndex: return fireSpells.count
         case Const.coldSectionIndex: return coldSpells.count
+        case Const.physicalSectionIndex: return physicalSpells.count
         default: return 0
         }
     }

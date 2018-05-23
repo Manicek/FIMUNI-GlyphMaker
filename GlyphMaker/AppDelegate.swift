@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GlyphMakerConstants.numberOfColumns = 5
         GlyphMakerConstants.numberOfRows = 5
         GlyphMakerConstants.lineWidth = 3
+        GlyphMakerConstants.allowedOffsetMultiplier = 0.3
+        GlyphMakerConstants.matrixAreaBorderColor = .white
         
         if !Defaults.appHasBeenLaunchedBefore {
             performFirstLaunchSetup()

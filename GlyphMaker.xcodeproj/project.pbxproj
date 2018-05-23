@@ -23,7 +23,6 @@
 		96173622207F6ADD008B01AE /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361C207F6ADD008B01AE /* SFUIText-Bold.ttf */; };
 		96173623207F6ADD008B01AE /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */; };
 		96173625207F6F96008B01AE /* DiamondButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173624207F6F96008B01AE /* DiamondButton.swift */; };
-		961A7D8B205EA5460017046C /* RealmCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961A7D8A205EA5460017046C /* RealmCreature.swift */; };
 		961CD5752080B9560050A30F /* RowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961CD5742080B9560050A30F /* RowsView.swift */; };
 		961CD5772080BCA40050A30F /* ShowHideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961CD5762080BCA40050A30F /* ShowHideButton.swift */; };
 		962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A3F122067D0CD0083A8B2 /* Utils.swift */; };
@@ -35,8 +34,8 @@
 		9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645F9EE2063C2EA006E4776 /* TestPath.swift */; };
 		964954E4205AA0AF0089A37D /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E3205AA0AF0089A37D /* GlyphView.swift */; };
 		964954E6205AA1790089A37D /* SchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964954E5205AA1790089A37D /* SchoolView.swift */; };
-		966B301B20888AD7004C6293 /* CreatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301A20888AD7004C6293 /* CreatureViewController.swift */; };
-		966B301D20888AE2004C6293 /* CreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301C20888AE2004C6293 /* CreatureView.swift */; };
+		966B301B20888AD7004C6293 /* CreatureTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301A20888AD7004C6293 /* CreatureTypeViewController.swift */; };
+		966B301D20888AE2004C6293 /* CreatureTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B301C20888AE2004C6293 /* CreatureTypeView.swift */; };
 		96A959AD20597DC800E6A6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AC20597DC800E6A6B5 /* AppDelegate.swift */; };
 		96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */; };
 		96A959B420597DC800E6A6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A959B320597DC800E6A6B5 /* Assets.xcassets */; };
@@ -90,7 +89,6 @@
 		9617361C207F6ADD008B01AE /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		9617361D207F6ADD008B01AE /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "GlyphMaker/Resources/Fonts/SFUIText-Heavy.ttf"; sourceTree = SOURCE_ROOT; };
 		96173624207F6F96008B01AE /* DiamondButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondButton.swift; sourceTree = "<group>"; };
-		961A7D8A205EA5460017046C /* RealmCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCreature.swift; sourceTree = "<group>"; };
 		961CD5742080B9560050A30F /* RowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowsView.swift; sourceTree = "<group>"; };
 		961CD5762080BCA40050A30F /* ShowHideButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideButton.swift; sourceTree = "<group>"; };
 		962A3F122067D0CD0083A8B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -102,8 +100,8 @@
 		9645F9EE2063C2EA006E4776 /* TestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPath.swift; sourceTree = "<group>"; };
 		964954E3205AA0AF0089A37D /* GlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
 		964954E5205AA1790089A37D /* SchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolView.swift; sourceTree = "<group>"; };
-		966B301A20888AD7004C6293 /* CreatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureViewController.swift; sourceTree = "<group>"; };
-		966B301C20888AE2004C6293 /* CreatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureView.swift; sourceTree = "<group>"; };
+		966B301A20888AD7004C6293 /* CreatureTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureTypeViewController.swift; sourceTree = "<group>"; };
+		966B301C20888AE2004C6293 /* CreatureTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureTypeView.swift; sourceTree = "<group>"; };
 		96A959A920597DC800E6A6B5 /* GlyphMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlyphMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A959AC20597DC800E6A6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96A959AE20597DC800E6A6B5 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				9642C35E205AF46C001252CA /* RealmGlyph.swift */,
 				96DA0C03205EE0E200118AA6 /* RealmSpell.swift */,
 				962CDE9720692C67001CC996 /* RealmAreaCoordinate.swift */,
-				961A7D8A205EA5460017046C /* RealmCreature.swift */,
 			);
 			path = RealmWrappers;
 			sourceTree = "<group>";
@@ -228,13 +225,13 @@
 			path = Gestures;
 			sourceTree = "<group>";
 		};
-		966B301920888AC3004C6293 /* CreatureViewController */ = {
+		966B301920888AC3004C6293 /* CreatureTypeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				966B301A20888AD7004C6293 /* CreatureViewController.swift */,
-				966B301C20888AE2004C6293 /* CreatureView.swift */,
+				966B301A20888AD7004C6293 /* CreatureTypeViewController.swift */,
+				966B301C20888AE2004C6293 /* CreatureTypeView.swift */,
 			);
-			path = CreatureViewController;
+			path = CreatureTypeViewController;
 			sourceTree = "<group>";
 		};
 		96A959A020597DC700E6A6B5 = {
@@ -278,7 +275,7 @@
 		96A959BE20598DB000E6A6B5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				966B301920888AC3004C6293 /* CreatureViewController */,
+				966B301920888AC3004C6293 /* CreatureTypeViewController */,
 				96DDCC8620861925008DBA57 /* CreatureListViewController */,
 				9617360B207F4DED008B01AE /* GlyphCreationViewController */,
 				96D17CB320640C5C0004CC05 /* BattleViewController */,
@@ -565,13 +562,13 @@
 				96A959AF20597DC800E6A6B5 /* SchoolViewController.swift in Sources */,
 				96FD3957206E7431006390DF /* HealthLabel.swift in Sources */,
 				96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */,
-				966B301D20888AE2004C6293 /* CreatureView.swift in Sources */,
+				966B301D20888AE2004C6293 /* CreatureTypeView.swift in Sources */,
 				96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */,
 				9617360F207F4E2C008B01AE /* GlyphCreationViewController.swift in Sources */,
 				96E9FAA72077825800B31060 /* MatrixArea.swift in Sources */,
 				9617360D207F4E1D008B01AE /* GlyphCreationView.swift in Sources */,
 				96D17CBB206411C20004CC05 /* RemainingTimeView.swift in Sources */,
-				966B301B20888AD7004C6293 /* CreatureViewController.swift in Sources */,
+				966B301B20888AD7004C6293 /* CreatureTypeViewController.swift in Sources */,
 				96A959CB2059A25500E6A6B5 /* Defaults.swift in Sources */,
 				962CDE9820692C67001CC996 /* RealmAreaCoordinate.swift in Sources */,
 				96DDCC8820861942008DBA57 /* CreatureListView.swift in Sources */,
@@ -602,7 +599,6 @@
 				96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */,
 				96FD3959206E7443006390DF /* BaseLabel.swift in Sources */,
 				9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */,
-				961A7D8B205EA5460017046C /* RealmCreature.swift in Sources */,
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,
 				9642C35F205AF46C001252CA /* RealmGlyph.swift in Sources */,
 				9645F9EF2063C2EA006E4776 /* TestPath.swift in Sources */,

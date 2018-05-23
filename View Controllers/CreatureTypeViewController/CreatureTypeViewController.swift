@@ -8,27 +8,24 @@
 
 import UIKit
 
-class CreatureViewController: UIViewController {
+class CreatureTypeViewController: UIViewController {
     
-    private var creatureView: CreatureView {
-        return view as! CreatureView
+    private var creatureView: CreatureTypeView {
+        return view as! CreatureTypeView
     }
     
-    private var creature = Creature.testCreature
-
+    private var creatureType = CreatureType.allValues[0]
+    
     override func loadView() {
         super.loadView()
         
-        view = CreatureView(creature)
+        view = CreatureTypeView(creatureType)
     }
     
-    init(creature: Creature?) {
+    init(creatureType: CreatureType) {
         super.init(nibName: nil, bundle: nil)
-        if let creature = creature {
-            self.creature = creature
-        } else {
-            self.creature = Creature.testCreature
-        }
+        
+        self.creatureType = creatureType
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -11,11 +11,13 @@ import UIKit
 enum DamageType: Int {
     case fire = 0
     case cold = 1
+    case physical = 2
     
     var color: UIColor {
         switch self {
         case .fire: return .fireRed
         case .cold: return .coldBlue
+        case .physical: return .gray
         }
     }
     
@@ -23,6 +25,7 @@ enum DamageType: Int {
         switch self {
         case .fire: return "Fire"
         case .cold: return "Cold"
+        case .physical: return "Physical"
         }
     }
 }

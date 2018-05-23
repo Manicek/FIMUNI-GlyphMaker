@@ -17,6 +17,8 @@ class CreatureListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Creature List"
+        
         tableViewManager.tableView = creatureListView.tableView
         tableViewManager.delegate = self
         
@@ -36,18 +38,10 @@ class CreatureListViewController: UIViewController {
             make.top.equalTo(topLayoutGuide.snp.bottom)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        title = "Spell List"
-        
-        tableViewManager.reload()
-    }
 }
 
 extension CreatureListViewController: CreatureListTableViewManagerDelegate {
-    func pushRequest(_ vc: CreatureViewController) {
+    func pushRequest(_ vc: CreatureTypeViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
 }

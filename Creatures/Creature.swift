@@ -11,17 +11,27 @@ import UIKit
 enum CreatureType: Int {
     case beardedDragon = 0
     case wolf = 1
+    case wraith = 2
     
-    static let allValues: [CreatureType] = [.beardedDragon, .wolf]
+    static let allValues: [CreatureType] = [.beardedDragon, .wolf, .wraith]
     
     func healthForLevel(_ level: Int) -> Double {
         return baseHealth * Double(level)
+    }
+    
+    var name: String {
+        switch self {
+        case .beardedDragon: return "Bearded Dragon"
+        case .wolf: return "Wolf"
+        case .wraith: return "Wraith"
+        }
     }
     
     var image: UIImage {
         switch self {
         case .beardedDragon: return #imageLiteral(resourceName: "beardedDragon1")
         case .wolf: return #imageLiteral(resourceName: "wolf")
+        case .wraith: return #imageLiteral(resourceName: "wraith")
         }
     }
     
@@ -29,6 +39,15 @@ enum CreatureType: Int {
         switch self {
         case .beardedDragon: return 150
         case .wolf: return 100
+        case .wraith: return 80
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .beardedDragon: return "The Bearded Dragon is a fearsome monster that devours everything it sees. This is thankfully just a hatchling."
+        case .wolf: return "Basicly a harder, better, faster, stronger dog."
+        case .wraith: return "It can see into your soul."
         }
     }
     
@@ -36,6 +55,7 @@ enum CreatureType: Int {
         switch self {
         case .beardedDragon: return 0.75
         case .wolf: return 0
+        case .wraith: return 0.20
         }
     }
     
@@ -43,13 +63,21 @@ enum CreatureType: Int {
         switch self {
         case .beardedDragon: return 0
         case .wolf: return 0.20
+        case .wraith: return 0.20
+        }
+    }
+    
+    var physicalResistance: Double {
+        switch self {
+        case .beardedDragon: return 0.15
+        case .wolf: return 0.20
+        case .wraith: return 0.80
         }
     }
 }
 
 class Creature: NSObject {
     
-    private(set) var name = ""
     private(set) var type = CreatureType.wolf
     private(set) var level = 1
     private(set) var health: Double = 100
@@ -59,7 +87,6 @@ class Creature: NSObject {
     convenience init(name: String, type: CreatureType, level: Int, id: String? = nil) {
         self.init()
         
-        self.name = name
         self.type = type
         self.level = level > 0 ? level : 1
         self.health = type.healthForLevel(self.level)
@@ -70,6 +97,7 @@ class Creature: NSObject {
         switch damageType {
         case .fire: return type.fireResistance
         case .cold: return type.coldResistance
+        case .physical: return type.physicalResistance
         }
     }
     
