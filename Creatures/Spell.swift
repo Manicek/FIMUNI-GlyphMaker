@@ -9,7 +9,7 @@
 import UIKit
 
 class SpellImageStore: NSObject {
-    static let images = [#imageLiteral(resourceName: "fireball"), #imageLiteral(resourceName: "frostGrasp"), #imageLiteral(resourceName: "inferno")]
+    static let images = [#imageLiteral(resourceName: "fireball"), #imageLiteral(resourceName: "frostGrasp"), #imageLiteral(resourceName: "inferno"), #imageLiteral(resourceName: "boulderThrow")]
     static let defaultImage = #imageLiteral(resourceName: "nothing")
 }
 

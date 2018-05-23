@@ -82,7 +82,7 @@ private extension AppDelegate {
         if let glyph = Glyph.generateDeterministicRandomGlyph(coordinatesCount: 6, variant: 0, preventOverlaps: true) {
             boulderGlyph = glyph
         }
-        let boulderThrow = Spell(name: "Boulder Throw", damageType: .physical, damage: 65, glyph: boulderGlyph, imageIndex: 2)
+        let boulderThrow = Spell(name: "Boulder Throw", damageType: .physical, damage: 65, glyph: boulderGlyph, imageIndex: 3)
         boulderThrow.unlocked = true
         
         SpellStore.add(spell: fireball)
