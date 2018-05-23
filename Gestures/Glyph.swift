@@ -84,7 +84,8 @@ class Glyph: NSObject {
         }
         
         for i in 1..<coordinatesCount {
-            randomizer = abs(randomizer.addingReportingOverflow(randomizer).partialValue)
+            randomizer = randomizer.addingReportingOverflow(randomizer).partialValue
+            randomizer = abs(randomizer.addingReportingOverflow(coordinatesCount).partialValue)
             lastIndex = (lastIndex + randomizer) % allPossibleCoordinates.count
             
             var candidateCoordinate = allPossibleCoordinates[lastIndex]
