@@ -78,8 +78,16 @@ private extension AppDelegate {
         }
         let inferno = Spell(name: "Inferno", damageType: .fire, damage: 110, glyph: infernoGlyph, imageIndex: 2)
         
+        var boulderGlyph = Glyph.testGlyph
+        if let glyph = Glyph.generateDeterministicRandomGlyph(coordinatesCount: 6, variant: 0, preventOverlaps: true) {
+            boulderGlyph = glyph
+        }
+        let boulderThrow = Spell(name: "Boulder Throw", damageType: .physical, damage: 65, glyph: boulderGlyph, imageIndex: 2)
+        boulderThrow.unlocked = true
+        
         SpellStore.add(spell: fireball)
         SpellStore.add(spell: frostSpear)
         SpellStore.add(spell: inferno)
+        SpellStore.add(spell: boulderThrow)
     }
 }
