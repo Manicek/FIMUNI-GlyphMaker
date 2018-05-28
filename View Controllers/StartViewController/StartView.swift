@@ -15,7 +15,7 @@ class StartView: UIView {
         static let buttonInset: CGFloat = 20
     }
     
-    private let backgroundImageView = BackgroundImageView()
+    private let backgroundView = BackgroundView()
     let spellsButton = DiamondButton("Train")
     let fightButton = DiamondButton("Battle")
     let creaturesButton = DiamondButton("Learn")
@@ -44,7 +44,7 @@ private extension StartView {
     func addSubviewsAndSetupConstraints() {
         addSubviews(
             [
-                backgroundImageView,
+                backgroundView,
                 spellsButton,
                 creaturesButton,
                 fightButton,
@@ -52,7 +52,7 @@ private extension StartView {
             ]
         )
         
-        backgroundImageView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

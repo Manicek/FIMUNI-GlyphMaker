@@ -15,7 +15,7 @@ class SpellListHeaderView: UIView {
     init(forType type: DamageType) {
         super.init(frame: CGRect())
         
-        backgroundColor = .black
+        backgroundColor = .white
         
         titleLabel.text = type.name
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .heavy)

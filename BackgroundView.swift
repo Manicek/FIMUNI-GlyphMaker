@@ -1,5 +1,5 @@
 //
-//  BackgroundImageView.swift
+//  BackgroundView.swift
 //  GlyphMaker
 //
 //  Created by Patrik Hora on 18/03/2018.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class BackgroundImageView: UIImageView {
+class BackgroundView: UIView {
 
     init() {
         super.init(frame: CGRect())
-        image = UIImage()
+        //image = UIImage()
         //image = #imageLiteral(resourceName: "beardedDragon1")
-        //backgroundColor = .white
+        backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

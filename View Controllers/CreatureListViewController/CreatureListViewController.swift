@@ -10,7 +10,7 @@ import UIKit
 
 class CreatureListViewController: UIViewController {
 
-    private let backgroundImageView = BackgroundImageView()
+    private let backgroundView = BackgroundView()
     private let creatureListView = CreatureListView()
     private let tableViewManager = CreatureListTableViewManager()
     
@@ -24,12 +24,12 @@ class CreatureListViewController: UIViewController {
         
         view.addSubviews(
             [
-                backgroundImageView,
+                backgroundView,
                 creatureListView
             ]
         )
         
-        backgroundImageView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

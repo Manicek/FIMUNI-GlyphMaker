@@ -10,7 +10,7 @@ import UIKit
 
 class CreatureTypeView: UIView {
 
-    private let backgroundImageView = BackgroundImageView()
+    private let backgroundView = BackgroundView()
     private let titleLabel = UILabel()
     private let imageView = UIImageView()
     private let descriptionLabel = UILabel()
@@ -22,7 +22,6 @@ class CreatureTypeView: UIView {
         super.init(frame: CGRect())
         
         titleLabel.text = creatureType.name
-        titleLabel.textColor = .white
         
         imageView.image = creatureType.image
         
@@ -30,15 +29,10 @@ class CreatureTypeView: UIView {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.lineBreakMode = .byWordWrapping
         descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .white
         
         fireResistanceLabel.text = String(format: "Fire resistance: %.0f %%", 100 * creatureType.fireResistance)
         coldResistanceLabel.text = String(format: "Cold resistance: %.0f %%", 100 * creatureType.coldResistance)
         physicalResistanceLabel.text = String(format: "Physical resistance: %.0f %%", 100 * creatureType.physicalResistance)
-        
-        fireResistanceLabel.textColor = .white
-        coldResistanceLabel.textColor = .white
-        physicalResistanceLabel.textColor = .white
         
         addSubviewsAndSetupConstraints()
     }
@@ -53,7 +47,7 @@ private extension CreatureTypeView {
     func addSubviewsAndSetupConstraints() {
         addSubviews(
             [
-                backgroundImageView,
+                backgroundView,
                 titleLabel,
                 imageView,
                 descriptionLabel,
@@ -63,7 +57,7 @@ private extension CreatureTypeView {
             ]
         )
         
-        backgroundImageView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

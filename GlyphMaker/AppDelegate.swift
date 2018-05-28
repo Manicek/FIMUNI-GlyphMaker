@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GlyphMakerConstants.numberOfRows = 5
         GlyphMakerConstants.lineWidth = 3
         GlyphMakerConstants.allowedOffsetMultiplier = 0.3
-        GlyphMakerConstants.matrixAreaBorderColor = .white
         
         if !Defaults.appHasBeenLaunchedBefore {
             performFirstLaunchSetup()
@@ -45,7 +44,7 @@ private extension AppDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().barTintColor = .clear
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedStringKey.foregroundColor : UIColor.white,

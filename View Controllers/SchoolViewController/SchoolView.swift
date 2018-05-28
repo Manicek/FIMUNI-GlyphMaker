@@ -12,7 +12,7 @@ class SchoolView: UIView {
     
     let glyphView = GlyphView()
     
-    private let backgroundImageView = BackgroundImageView()
+    private let backgroundView = BackgroundView()
     private let clearButton = RegularButton("Clear")
     private let drawGlyphButton = RegularButton("Draw")
     private let showHideTestPathsButton = ShowHideButton(status: .hide, what: "paths")
@@ -82,7 +82,7 @@ private extension SchoolView {
     func addSubviewsAndSetupConstraints() {
         addSubviews(
             [
-                backgroundImageView,
+                backgroundView,
                 glyphView,
                 clearButton,
                 drawGlyphButton,
@@ -91,7 +91,7 @@ private extension SchoolView {
             ]
         )
         
-        backgroundImageView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

@@ -19,6 +19,8 @@ class SpellListTableViewCell: UITableViewCell {
         
         backgroundColor = .gray
         
+        layer.cornerRadius = 8
+        
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = .black
         
@@ -49,7 +51,8 @@ private extension SpellListTableViewCell {
         )
         
         nameLabel.snp.makeConstraints { (make) in
-            make.centerY.left.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
         }
         
         damageLabel.snp.makeConstraints { (make) in

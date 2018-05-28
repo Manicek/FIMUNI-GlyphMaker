@@ -58,7 +58,7 @@
 		96DA0C13205F026700118AA6 /* DamageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C12205F026700118AA6 /* DamageType.swift */; };
 		96DA0C16205F1BB500118AA6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C15205F1BB500118AA6 /* StartView.swift */; };
 		96DA0C18205F1BCB00118AA6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C17205F1BCB00118AA6 /* StartViewController.swift */; };
-		96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */; };
+		96DA0C1A205F24CA00118AA6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA0C19205F24CA00118AA6 /* BackgroundView.swift */; };
 		96DDCC8820861942008DBA57 /* CreatureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDCC8720861942008DBA57 /* CreatureListView.swift */; };
 		96DDCC8A20861950008DBA57 /* CreatureListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDCC8920861950008DBA57 /* CreatureListViewController.swift */; };
 		96DDCC8C20861BF2008DBA57 /* CreatureListTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDCC8B20861BF2008DBA57 /* CreatureListTableViewManager.swift */; };
@@ -126,7 +126,7 @@
 		96DA0C12205F026700118AA6 /* DamageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageType.swift; sourceTree = "<group>"; };
 		96DA0C15205F1BB500118AA6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		96DA0C17205F1BCB00118AA6 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		96DA0C19205F24CA00118AA6 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		96DDCC8720861942008DBA57 /* CreatureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureListView.swift; sourceTree = "<group>"; };
 		96DDCC8920861950008DBA57 /* CreatureListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureListViewController.swift; sourceTree = "<group>"; };
 		96DDCC8B20861BF2008DBA57 /* CreatureListTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureListTableViewManager.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			children = (
 				961134682099B0C400258B28 /* RealmWrappers */,
 				96FD3952206E73DC006390DF /* UI Classes */,
-				96DA0C19205F24CA00118AA6 /* BackgroundImageView.swift */,
+				96DA0C19205F24CA00118AA6 /* BackgroundView.swift */,
 				96DA0C11205F025300118AA6 /* Enums */,
 				961A7D89205EA5320017046C /* Creatures */,
 				9642C35D205AF45D001252CA /* Gestures */,
@@ -596,7 +596,7 @@
 				96DDCC8E20861C0A008DBA57 /* CreatureListTableViewCell.swift in Sources */,
 				962A3F132067D0CD0083A8B2 /* Utils.swift in Sources */,
 				96DA0C0C205EF94A00118AA6 /* SpellListTableViewManager.swift in Sources */,
-				96DA0C1A205F24CA00118AA6 /* BackgroundImageView.swift in Sources */,
+				96DA0C1A205F24CA00118AA6 /* BackgroundView.swift in Sources */,
 				96FD3959206E7443006390DF /* BaseLabel.swift in Sources */,
 				9642C361205B00FA001252CA /* CGRect+Extension.swift in Sources */,
 				960D855D205BF9A90034F709 /* AppConstants.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class SpellListViewController: UIViewController {
 
-    private let backgroundImageView = BackgroundImageView()
+    private let backgroundView = BackgroundView()
     private let spellListView = SpellListView()
     private let tableViewManager = SpellListTableViewManager()
     
@@ -22,12 +22,12 @@ class SpellListViewController: UIViewController {
 
         view.addSubviews(
             [
-                backgroundImageView,
+                backgroundView,
                 spellListView
             ]
         )
         
-        backgroundImageView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

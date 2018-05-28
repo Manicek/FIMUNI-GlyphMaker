@@ -18,6 +18,8 @@ class CreatureListTableViewCell: UITableViewCell {
         
         backgroundColor = .gray
         
+        layer.cornerRadius = 8
+        
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = .black
         
@@ -43,7 +45,7 @@ private extension CreatureListTableViewCell {
         )
         
         nameLabel.snp.makeConstraints { (make) in
-            make.centerY.left.equalToSuperview()
+            make.center.equalToSuperview()
         }
     }
 }
